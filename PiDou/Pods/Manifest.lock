@@ -1,0 +1,73 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - AliyunOSSiOS (2.10.7)
+  - BGFMDB (2.0.13):
+    - BGFMDB/BG (= 2.0.13)
+    - BGFMDB/FMDB (= 2.0.13)
+  - BGFMDB/BG (2.0.13):
+    - BGFMDB/FMDB
+  - BGFMDB/FMDB (2.0.13)
+  - FDFullscreenPopGesture (1.1)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.17)
+  - MJRefresh (3.1.16)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - VODUpload (1.5.1):
+    - AliyunOSSiOS
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - BGFMDB (~> 2.0.9)
+  - FDFullscreenPopGesture (= 1.1)
+  - Masonry
+  - MBProgressHUD (~> 1.0.0)
+  - MJExtension
+  - MJRefresh
+  - SDWebImage (~> 4.3.0)
+  - VODUpload
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AliyunOSSiOS
+    - BGFMDB
+    - FDFullscreenPopGesture
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - SDWebImage
+    - VODUpload
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
+  BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  VODUpload: d180069b5fcee002079a892de2f310bacdb8e355
+
+PODFILE CHECKSUM: fe3ec9ea38d73974cd0c491698687d47d35f1afa
+
+COCOAPODS: 1.6.1
