@@ -104,6 +104,7 @@ static NSString * XLCommentCellID  = @"kXLCommentCell";
             XLVideoCell *videoCell = [tableView dequeueReusableCellWithIdentifier:XLVideoCellID forIndexPath:indexPath];
             kDefineWeakSelf;
             if (self.tieziModel) {
+                videoCell.isDetail = true;
                 videoCell.tieziModel = self.tieziModel;
                 videoCell.complete = ^(id  _Nonnull result) {
                     //[XLPlayerManager playVideoWithIndexPath:indexPath tag:1314 scrollView:WeakSelf.tableView videoUrl:result];
@@ -118,6 +119,7 @@ static NSString * XLCommentCellID  = @"kXLCommentCell";
         } else if (self.mainType == XLMainType_picture) {
             XLPictureCell *pictureCell = [tableView dequeueReusableCellWithIdentifier:XLPictureCellID forIndexPath:indexPath];
             if (self.tieziModel) {
+                pictureCell.isDetail = true;
                 pictureCell.tieziModel = self.tieziModel;
             }
             pictureCell.isDetailVC = YES;
@@ -131,6 +133,7 @@ static NSString * XLCommentCellID  = @"kXLCommentCell";
         } else {
             XLDuanziCell *duanziCell = [tableView dequeueReusableCellWithIdentifier:XLDuanziCellID forIndexPath:indexPath];
             if (self.tieziModel) {
+                duanziCell.isDetail = true;
                 duanziCell.tieziModel = self.tieziModel;
             }
             duanziCell.isDetailVC = YES;

@@ -81,7 +81,9 @@
 - (void)initLayout {
     [self.coverImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.equalTo(self.contentView);
-        make.height.mas_offset(160 * kWidthRatio6s);
+      //  make.top.equalTo(self.contentView).mas_offset(33);
+      //  make.height.mas_offset(iPHONE_Xr ? 250 * kWidthRatio6s : 160 * kWidthRatio6s);
+        make.height.mas_offset(250 * kWidthRatio6s);
     }];
     
     [self.botView mas_makeConstraints:^(MASConstraintMaker *make) {

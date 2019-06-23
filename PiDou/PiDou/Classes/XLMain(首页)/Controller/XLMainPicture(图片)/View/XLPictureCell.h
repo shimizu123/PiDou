@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) XLCompletedBlock didSelectedAction;
 
+@property (nonatomic, assign) BOOL isDetail;
+
 @end
 
 NS_ASSUME_NONNULL_END

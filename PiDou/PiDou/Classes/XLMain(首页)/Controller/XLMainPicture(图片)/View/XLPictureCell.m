@@ -58,7 +58,8 @@
     
     self.duanziLabel = [[UILabel alloc] init];
     [self.contentView addSubview:self.duanziLabel];
-    self.duanziLabel.numberOfLines = 0;
+   // self.duanziLabel.numberOfLines = 0;
+    self.duanziLabel.numberOfLines = 7;
     [self.duanziLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:16.f];
     
     
@@ -334,6 +335,14 @@
     self.pictureView.pictures = _pictureItemInfos;
 }
 
+- (void)setIsDetail:(BOOL)isDetail {
+    _isDetail = isDetail;
+    if (_isDetail) {
+        self.duanziLabel.numberOfLines = 0;
+    } else {
+        self.duanziLabel.numberOfLines = 7;
+    }
+}
 
 #pragma mark - XLMainUserActionViewDelegate
 /**

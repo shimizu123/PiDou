@@ -51,7 +51,8 @@
     
     self.duanziLabel = [[UILabel alloc] init];
     [self.contentView addSubview:self.duanziLabel];
-    self.duanziLabel.numberOfLines = 0;
+   // self.duanziLabel.numberOfLines = 0;
+    self.duanziLabel.numberOfLines = 7;
     [self.duanziLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:16.f];
     
     self.godCommentView = [[XLGodCommentView alloc] init];
@@ -198,6 +199,15 @@
             make.top.equalTo(self.actionView.mas_bottom);
         }];
         self.tagRewardView.isDetail = NO;
+    }
+}
+
+- (void)setIsDetail:(BOOL)isDetail {
+    _isDetail = isDetail;
+    if (_isDetail) {
+        self.duanziLabel.numberOfLines = 0;
+    } else {
+        self.duanziLabel.numberOfLines = 7;
     }
 }
 

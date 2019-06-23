@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, assign) BOOL isDetail;
+
 @end
 
 NS_ASSUME_NONNULL_END
