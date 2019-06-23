@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:COLOR_A(0xffffff, 1)] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:XL_COLOR_DARKBLACK,NSFontAttributeName:[UIFont xl_mediumFontOfSiz:18.f]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:XL_COLOR_DARKBLACK, NSFontAttributeName:[UIFont xl_mediumFontOfSiz:18.f]}];
 }
 
 

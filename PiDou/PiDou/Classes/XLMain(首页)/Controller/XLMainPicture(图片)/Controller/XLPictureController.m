@@ -33,7 +33,7 @@
     self.navigationItem.title = @"图片";
     
     [self initUI];
-    
+    [self didLoadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"doubleClickHomeTabBarItem" object:nil];
     
 }
@@ -47,7 +47,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self didLoadData];
 }
 
 - (void)initUI {

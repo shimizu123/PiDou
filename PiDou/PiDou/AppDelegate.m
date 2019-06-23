@@ -28,7 +28,6 @@
 //    SDWebImageDownloader *sdmanager = [SDWebImageManager sharedManager].imageDownloader;
 //    [sdmanager setValue:[XLUserHandle token] forHTTPHeaderField:@"Authorization"];
     
-    
     return YES;
 }
 
