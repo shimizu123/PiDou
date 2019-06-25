@@ -88,7 +88,7 @@
     kDefineWeakSelf;
     [HUDController xl_showHUD];
     [XLMineHandle userDynamicWithUser_id:self.user_id page:self.page success:^(NSMutableArray *responseObject) {
-        [HUDController hideHUD];
+       // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
@@ -99,7 +99,7 @@
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
         if (WeakSelf.page > 1) {
-            [HUDController hideHUDWithText:@"没有更多数据"];
+          // [HUDController hideHUDWithText:@"没有更多数据"];
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
         } else {
@@ -110,13 +110,14 @@
             WeakSelf.table.data = WeakSelf.data;
         }
     }];
+    [HUDController hideHUD];
 }
 
 - (void)initTieziData {
     kDefineWeakSelf;
     [HUDController xl_showHUD];
     [XLMineHandle userEntityWithUser_id:self.user_id page:self.page success:^(NSMutableArray *responseObject) {
-        [HUDController hideHUD];
+       // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
@@ -127,7 +128,7 @@
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
         if (WeakSelf.page > 1) {
-            [HUDController hideHUDWithText:@"没有更多数据"];
+           // [HUDController hideHUDWithText:@"没有更多数据"];
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
         } else {
@@ -138,13 +139,14 @@
             WeakSelf.table.data = WeakSelf.data;
         }
     }];
+    [HUDController hideHUD];
 }
 
 - (void)initCommentData {
     kDefineWeakSelf;
     [HUDController xl_showHUD];
     [XLMineHandle userCommentsWithUser_id:self.user_id page:self.page success:^(NSMutableArray *responseObject) {
-        [HUDController hideHUD];
+       // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
@@ -155,7 +157,7 @@
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
         if (WeakSelf.page > 1) {
-            [HUDController hideHUDWithText:@"没有更多数据"];
+           // [HUDController hideHUDWithText:@"没有更多数据"];
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
         } else {
@@ -166,6 +168,7 @@
             WeakSelf.table.data = WeakSelf.data;
         }
     }];
+    [HUDController hideHUD];
 }
 
 #pragma mark - XLUserDetailTableDelegate

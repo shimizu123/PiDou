@@ -34,6 +34,7 @@
 @property (nonatomic, strong) UIView *leftLine;
 @property (nonatomic, strong) UIView *rightLine;
 @property (nonatomic, strong) UIButton *wechatButton;
+@property (nonatomic, strong) UILabel *privacyLabel;
 
 @end
 
@@ -107,6 +108,20 @@
     [self.scrollView addSubview:self.wechatButton];
     [self.wechatButton xl_setImageName:@"mine_weixin" target:self action:@selector(onWechat:)];
     
+    self.privacyLabel = [[UILabel alloc] init];
+    [self.scrollView addSubview:self.privacyLabel];
+    [self.privacyLabel xl_setTextColor:COLOR(0x666666) fontSize:12.f];
+    self.privacyLabel.textAlignment = NSTextAlignmentCenter;
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"登录即代表您同意皮逗用户服务和隐私协议"];
+    [string addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(10, 4)];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:NSMakeRange(10, 4)];
+    [string addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(15, 4)];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:NSMakeRange(15, 4)];
+    self.privacyLabel.attributedText = string;
+    self.privacyLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
+    [self.privacyLabel addGestureRecognizer:tap];
+    
     [self initLayout];
 }
 
@@ -159,12 +174,21 @@
         make.width.height.centerY.equalTo(self.leftLine);
         make.left.equalTo(self.wechatLabel.mas_right).mas_offset(8 * kWidthRatio6s);
     }];
+    
+    [self.privacyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom).mas_offset(-XL_HOME_INDICATOR_H);
+        make.height.mas_offset(20 * kWidthRatio6s);
+    }];
 }
 
 - (void)hideKeyBoard {
     [self.view endEditing:YES];
 }
 
+- (void)tapAction {
+    NSLog(@"用户服务和隐私协议");
+}
 
 #pragma mark - XLLoginViewdelegate
 - (void)loginView:(XLLoginView *)loginView didBeginEditing:(UITextField *)textField {

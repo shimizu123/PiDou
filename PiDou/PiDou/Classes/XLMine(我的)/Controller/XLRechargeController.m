@@ -29,6 +29,7 @@ static NSString * XLWalletHeaderID = @"kXLWalletHeader";
 @property (nonatomic, strong) NSNumber *coin;
 /**单位rmb能兑换的星票数 如2则表示 1rmb兑换2星票*/
 @property (nonatomic, strong) NSNumber *rmb2coin;
+@property (nonatomic, strong) UILabel *privacyLabel;
 
 @end
 
@@ -50,11 +51,33 @@ static NSString * XLWalletHeaderID = @"kXLWalletHeader";
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - XL_NAVIBAR_H);
     [self.view addSubview:self.tableView];
     
+    self.privacyLabel = [[UILabel alloc] init];
+    [self.view addSubview:self.privacyLabel];
+    [self.privacyLabel xl_setTextColor:COLOR(0x666666) fontSize:12.f];
+    self.privacyLabel.textAlignment = NSTextAlignmentCenter;
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"充值即代表您同意皮逗充值服务协议"];
+    [string addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(8, 8)];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:NSMakeRange(8, 8)];
+    self.privacyLabel.attributedText = string;
+    self.privacyLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
+    [self.privacyLabel addGestureRecognizer:tap];
+    
+    [self.privacyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom).mas_offset(-XL_HOME_INDICATOR_H);
+        make.height.mas_offset(20 * kWidthRatio6s);
+    }];
+    
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+}
+
+- (void)tapAction {
+    NSLog(@"充值协议");
 }
 
 - (void)initData {

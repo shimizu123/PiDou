@@ -41,9 +41,6 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
     self.navigationItem.title = @"我的钱包";
     
     [self initUI];
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -101,7 +98,7 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
         // 余额记录
         [HUDController xl_showHUD];
         [XLMineHandle walletBillWithPage:self.page success:^(NSMutableArray *responseObject) {
-            [HUDController hideHUD];
+           // [HUDController hideHUD];
             
             if (WeakSelf.page > 1) {
                 [WeakSelf.tableView.mj_footer endRefreshing];
@@ -112,7 +109,7 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
             }
             [WeakSelf.tableView reloadData];
         } failure:^(id  _Nonnull result) {
-            [HUDController xl_hideHUDWithResult:result];
+          // [HUDController xl_hideHUDWithResult:result];
             
             
             if (WeakSelf.page > 1) {
@@ -123,11 +120,12 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
             }
             [WeakSelf.tableView reloadData];
         }];
+        [HUDController hideHUD];
     } else {
         // 参与回馈PDCoin明细
         [HUDController xl_showHUD];
         [XLPDCoinHandle joinProfitBillWithPage:self.page success:^(NSMutableArray *responseObject) {
-            [HUDController hideHUD];
+           // [HUDController hideHUD];
             if (WeakSelf.page > 1) {
                 [WeakSelf.tableView.mj_footer endRefreshing];
                 [WeakSelf.billData addObjectsFromArray:responseObject];
@@ -137,7 +135,7 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
             }
             [WeakSelf.tableView reloadData];
         } failure:^(id  _Nonnull result) {
-            [HUDController xl_hideHUDWithResult:result];
+          // [HUDController xl_hideHUDWithResult:result];
             if (WeakSelf.page > 1) {
                 [WeakSelf.tableView.mj_footer endRefreshing];
                 WeakSelf.page--;
@@ -146,6 +144,7 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
             }
             [WeakSelf.tableView reloadData];
         }];
+        [HUDController hideHUD];
     }
 }
 

@@ -333,7 +333,7 @@ static NSString *XLXingRewardCellID = @"kXLXingRewardCell";
 
 - (NSArray *)data {
     if (!_data) {
-        _data = [NSArray arrayWithObjects:@"1",@"10",@"100",@"1000", nil].mutableCopy;
+        _data = [NSArray arrayWithObjects:@"10",@"100",@"1000",@"10000", nil].mutableCopy;
     }
     return _data;
 }

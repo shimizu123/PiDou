@@ -88,7 +88,7 @@
         self.onceDidload = YES;
     }
     [XLTieziHandle tieziListWithPage:self.page category:@"" success:^(id  _Nonnull responseObject) {
-        [HUDController hideHUD];
+       // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
@@ -98,7 +98,7 @@
         }
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
-        [HUDController xl_hideHUDWithResult:result];
+       // [HUDController xl_hideHUDWithResult:result];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
@@ -107,6 +107,7 @@
         }
         WeakSelf.table.data = WeakSelf.data;
     }];
+    [HUDController hideHUD];
 }
 
 #pragma mark - lazy load

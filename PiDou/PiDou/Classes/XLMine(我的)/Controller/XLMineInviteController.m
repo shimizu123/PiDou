@@ -75,7 +75,7 @@ static NSString * XLSearchUserCellID = @"kXLSearchUserCell";
     kDefineWeakSelf;
     [HUDController xl_showHUD];
     [XLMineHandle myInviteWithDirect:self.index+1 page:self.page success:^(id  _Nonnull responseObject) {
-        [HUDController hideHUD];
+       // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
@@ -85,7 +85,7 @@ static NSString * XLSearchUserCellID = @"kXLSearchUserCell";
         }
         [WeakSelf.tableView reloadData];
     } failure:^(id  _Nonnull result) {
-        [HUDController xl_hideHUDWithResult:result];
+       // [HUDController xl_hideHUDWithResult:result];
         if (WeakSelf.page > 1) {
             [WeakSelf.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
@@ -94,6 +94,7 @@ static NSString * XLSearchUserCellID = @"kXLSearchUserCell";
         }
         [WeakSelf.tableView reloadData];
     }];
+    [HUDController hideHUD];
 }
 
 #pragma mark - XLSegmentDelegate

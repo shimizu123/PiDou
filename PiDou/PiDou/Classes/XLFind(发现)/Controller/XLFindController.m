@@ -123,7 +123,7 @@
         }
         [HUDController xl_showHUD];
         [XLFansFocusHandle myFollowTopicsWithPage:self.page success:^(id  _Nonnull responseObject) {
-            [HUDController hideHUD];
+           // [HUDController hideHUD];
             if (WeakSelf.page > 1) {
                 [WeakSelf.table.tableView.mj_footer endRefreshing];
                 [WeakSelf.data addObjectsFromArray:responseObject];
@@ -133,7 +133,7 @@
             }
             WeakSelf.table.data = WeakSelf.data;
         } failure:^(id  _Nonnull result) {
-            [HUDController xl_hideHUDWithResult:result];
+          // [HUDController xl_hideHUDWithResult:result];
             if (WeakSelf.page > 1) {
                 [WeakSelf.table.tableView.mj_footer endRefreshing];
                 WeakSelf.page--;
@@ -142,6 +142,7 @@
             }
             WeakSelf.table.data = WeakSelf.data;
         }];
+        [HUDController hideHUD];
     } else {
         [HUDController xl_showHUD];
         [XLFansFocusHandle hotTopicsWithPage:self.page success:^(id  _Nonnull responseObject) {

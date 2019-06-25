@@ -13,7 +13,7 @@
 #import "XLTieziModel.h"
 
 static NSString * XLVideoCellID = @"kXLVideoCell";
-@interface XLVideoTable () <UITableViewDelegate, UITableViewDataSource>
+@interface XLVideoTable () <UITableViewDelegate, UITableViewDataSource, ZFPlayerControlViewDelagate>
 
 @end
 
@@ -80,6 +80,9 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     videoCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return videoCell;
 }
+
+
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 246 * kWidthRatio6s;

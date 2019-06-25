@@ -107,7 +107,7 @@
     //二维码
     self.QRCodeBtn = [XLTopBotButton buttonWithType:(UIButtonTypeCustom)];
     [self.QRCodeBtn xl_setTitle:@"二维码" color:XL_COLOR_BLACK size:14.f target:self action:@selector(clickQRCode)];
-    [self.QRCodeBtn setImage:[UIImage imageNamed:@"share_qq"] forState:(UIControlStateNormal)];
+    [self.QRCodeBtn setImage:[UIImage imageNamed:@"sao_yi_sao"] forState:(UIControlStateNormal)];
     [self.topV addSubview:self.QRCodeBtn];
     
     self.deleteBtn = [XLTopBotButton buttonWithType:(UIButtonTypeCustom)];

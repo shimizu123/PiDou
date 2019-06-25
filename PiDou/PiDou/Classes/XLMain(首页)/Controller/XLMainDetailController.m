@@ -155,6 +155,7 @@
     message.entity_id = self.tieziModel.entity_id;
     
     XLShareView *shareView = [XLShareView shareView];
+    shareView.showQRCode = false;
     shareView.message = message;
     shareView.noDeletebtn = YES;
     [shareView show];

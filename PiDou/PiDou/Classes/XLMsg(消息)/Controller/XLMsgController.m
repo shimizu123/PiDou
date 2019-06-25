@@ -114,7 +114,7 @@
     kDefineWeakSelf;
     [HUDController xl_showHUD];
     [XLMgsHandle messageWithPage:self.page category:category success:^(NSMutableArray *data) {
-        [HUDController hideHUD];
+       // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:data];
@@ -124,7 +124,7 @@
         }
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
-        [HUDController xl_hideHUDWithResult:result];
+       // [HUDController xl_hideHUDWithResult:result];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
@@ -133,6 +133,7 @@
         }
         WeakSelf.table.data = WeakSelf.data;
     }];
+    [HUDController hideHUD];
 }
 
 - (void)initNaviItem {
