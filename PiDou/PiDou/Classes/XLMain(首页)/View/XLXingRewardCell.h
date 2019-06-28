@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *numStr;
 
+@property (nonatomic, copy) NSString *gift;
+
 @end
 
 NS_ASSUME_NONNULL_END

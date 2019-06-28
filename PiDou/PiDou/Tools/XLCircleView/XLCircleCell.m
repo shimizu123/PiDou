@@ -32,7 +32,7 @@
     self.imageView.backgroundColor = XL_COLOR_BG;
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.bottom.equalTo(self);
+        make.left.top.right.bottom.equalTo(self.contentView);
     }];
     
     

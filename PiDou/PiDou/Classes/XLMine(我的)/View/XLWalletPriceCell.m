@@ -96,6 +96,7 @@
     [self.exchangeButton addTarget:self action:@selector(exchangeAction) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.withdrawButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+  //  self.withdrawButton.hidden = YES;
     [self.contentView addSubview:self.withdrawButton];
     [self.withdrawButton xl_setTitle:@"提现" color:[UIColor whiteColor] size:14.f];
     XLViewBorderRadius(self.withdrawButton, 14 * kWidthRatio6s, 1, [UIColor whiteColor].CGColor);
@@ -143,6 +144,7 @@
     self.xingNumL.text = @"0";
     
     self.rechargeButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+   // self.rechargeButton.hidden = YES;
     [self.contentView addSubview:self.rechargeButton];
     [self.rechargeButton xl_setTitle:@"充值" color:XL_COLOR_RED size:12.f];
     XLViewBorderRadius(self.rechargeButton, 14 * kWidthRatio6s, 1, XL_COLOR_RED.CGColor);
@@ -206,6 +208,7 @@
     [self.exchangeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.priceL.mas_bottom).mas_offset(24 * kWidthRatio6s);
         make.right.equalTo(self.kongMidLine.mas_left).mas_offset(-16 * kWidthRatio6s);
+      //  make.centerX.equalTo(self.contentView);
         make.height.mas_offset(28 * kWidthRatio6s);
         make.width.mas_offset(84 * kWidthRatio6s);
         make.bottom.equalTo(self.topView.mas_bottom).mas_offset(-32 * kWidthRatio6s);

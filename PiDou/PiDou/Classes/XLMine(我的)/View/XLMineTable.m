@@ -35,6 +35,8 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
 
 @interface XLMineTable () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, copy) NSArray *icons;
+
 @end
 
 @implementation XLMineTable
@@ -118,6 +120,9 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
         return inviteCell;
     } else {
         XLMineListCell *listCell = [tableView dequeueReusableCellWithIdentifier:XLMineListCellID forIndexPath:indexPath];
+        
+        listCell.icon = self.icons[row];
+        
         if (!XLArrayIsEmpty(self.titles)) {
             listCell.titleName = self.titles[row];
         }
@@ -263,6 +268,13 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
     shareView.message = message;
     shareView.noDeletebtn = YES;
     [shareView show];
+}
+
+- (NSArray *)icons {
+    if (!_icons) {
+        _icons = [NSArray arrayWithObjects:@"666", @"juice", @"qianbao", @"huangguan", @"666", @"juice", @"qianbao", @"huangguan", @"666", nil];
+    }
+    return _icons;
 }
 
 

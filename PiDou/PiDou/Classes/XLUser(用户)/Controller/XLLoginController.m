@@ -19,6 +19,7 @@
 #import "WXApiRequestHandler.h"
 #import "WXApiManager.h"
 #import "XLWechatHandle.h"
+#import "PrivacyController.h"
 
 #define LOGIN_BUTTON_HEIGHT 44 * kWidthRatio6s
 
@@ -188,6 +189,9 @@
 
 - (void)tapAction {
     NSLog(@"用户服务和隐私协议");
+    PrivacyController *privacyVC = [[PrivacyController alloc] init];
+    privacyVC.isRecharge = false;
+    [self.navigationController pushViewController:privacyVC animated:true];
 }
 
 #pragma mark - XLLoginViewdelegate

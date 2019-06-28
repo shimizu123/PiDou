@@ -14,6 +14,7 @@
 #import "XLXingDetailController.h"
 #import "WXApiRequestHandler.h"
 #import "XLMineHandle.h"
+#import "PrivacyController.h"
 
 static NSString * XLMyXingCellID = @"kXLMyXingCell";
 static NSString * XLWalletPayWayCellID = @"kXLWalletPayWayCell";
@@ -78,6 +79,9 @@ static NSString * XLWalletHeaderID = @"kXLWalletHeader";
 
 - (void)tapAction {
     NSLog(@"充值协议");
+    PrivacyController *privacyVC = [[PrivacyController alloc] init];
+    privacyVC.isRecharge = false;
+    [self.navigationController pushViewController:privacyVC animated:true];
 }
 
 - (void)initData {

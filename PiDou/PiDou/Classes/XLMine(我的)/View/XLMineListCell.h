@@ -24,6 +24,8 @@ typedef NS_ENUM(NSUInteger, XLMineListType) {
 
 @property (nonatomic, strong) NSDictionary *infoDic;
 
+@property (nonatomic, copy) NSString *icon;
+
 @end
 
 NS_ASSUME_NONNULL_END

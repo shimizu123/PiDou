@@ -58,7 +58,7 @@ static NSString * XLCircleCellID = @"kXLCircleCell";
 }
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     if (_isScrol) {
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:_scrollPosition animated:NO];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1] atScrollPosition:_scrollPosition animated:NO];
         _isScrol = NO;
     }
 }
@@ -84,7 +84,7 @@ static NSString * XLCircleCellID = @"kXLCircleCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectItemAtIndex:)]) {
-        [self.delegate didSelectItemAtIndex:indexPath.row];
+        [self.delegate didSelectItemAtIndex:indexPath.item];
     }
 }
 
@@ -103,14 +103,14 @@ static NSString * XLCircleCellID = @"kXLCircleCell";
 - (void)timerCycleImageAction:(NSTimer *)timer {
     if (_index == self.images.count) {
         
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:_scrollPosition animated:YES];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:2] atScrollPosition:_scrollPosition animated:YES];
         self.pageControl.currentPage = 0;
         _index = 1;
         _isScrol = YES;
         
     }else
     {
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_index inSection:1] atScrollPosition:_scrollPosition animated:YES];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:1] atScrollPosition:_scrollPosition animated:YES];
         self.pageControl.currentPage = _index;
         _index += 1;
     }
@@ -183,7 +183,7 @@ static NSString * XLCircleCellID = @"kXLCircleCell";
         
         [self addSubview:_collectionView];
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:1];
         [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:_scrollPosition animated:NO];
         
     }

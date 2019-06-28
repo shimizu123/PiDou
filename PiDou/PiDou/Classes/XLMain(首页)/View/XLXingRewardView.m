@@ -39,6 +39,8 @@ static NSString *XLXingRewardCellID = @"kXLXingRewardCell";
 @property (nonatomic, strong) NSNumber *coin;
 @property (nonatomic, strong) NSNumber *rmb2coin;
 
+@property (nonatomic, copy) NSArray *gifts;
+
 @end
 
 @implementation XLXingRewardView
@@ -94,6 +96,7 @@ static NSString *XLXingRewardCellID = @"kXLXingRewardCell";
     self.xingNumL.textAlignment = NSTextAlignmentCenter;
     
     self.addButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+   // self.addButton.hidden = YES;
     [self.botView addSubview:self.addButton];
     [self.addButton xl_setTitle:@"充值>>" color:XL_COLOR_RED size:14.f target:self action:@selector(addXingAction:)];
     [self.addButton setContentEdgeInsets:(UIEdgeInsetsMake(0, XL_LEFT_DISTANCE, 0, 0))];
@@ -282,6 +285,7 @@ static NSString *XLXingRewardCellID = @"kXLXingRewardCell";
     XLXingRewardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XLXingRewardCellID forIndexPath:indexPath];
     if (!XLArrayIsEmpty(self.data)) {
         cell.numStr = self.data[indexPath.item];
+        cell.gift = self.gifts[indexPath.item];
     }
     cell.hightlight = indexPath.item == self.item;
     return cell;
@@ -336,6 +340,13 @@ static NSString *XLXingRewardCellID = @"kXLXingRewardCell";
         _data = [NSArray arrayWithObjects:@"10",@"100",@"1000",@"10000", nil].mutableCopy;
     }
     return _data;
+}
+
+- (NSArray *)gifts {
+    if (!_gifts) {
+        _gifts = [NSArray arrayWithObjects:@"666", @"juice", @"qianbao", @"huangguan", nil];
+    }
+    return _gifts;
 }
 
 @end

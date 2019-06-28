@@ -71,8 +71,12 @@
 
 - (void)setNumStr:(NSString *)numStr {
     _numStr = numStr;
-    self.xingNumL.text = [NSString stringWithFormat:@"%@星票",_numStr];
+    self.xingNumL.text = [NSString stringWithFormat:@"%@星票", _numStr];
 }
 
+- (void)setGift:(NSString *)gift {
+    _gift = gift;
+    self.xingImgV.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", _gift]];
+}
 
 @end

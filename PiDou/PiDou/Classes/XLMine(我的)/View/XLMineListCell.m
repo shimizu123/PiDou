@@ -10,6 +10,7 @@
 
 @interface XLMineListCell () 
 
+@property (nonatomic, strong) UIImageView *iconImgV;
 @property (nonatomic, strong) UILabel *titleL;
 @property (nonatomic, strong) UIImageView *arrowImgV;
 @property (nonatomic, strong) UILabel *descL;
@@ -31,6 +32,11 @@
 }
 
 - (void)setup {
+    
+    self.iconImgV = [[UIImageView alloc] init];
+    [self.contentView addSubview:self.iconImgV];
+    
+    
     self.titleL = [[UILabel alloc] init];
     [self.contentView addSubview:self.titleL];
     [self.titleL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:16.f];
@@ -51,8 +57,16 @@
 }
 
 - (void)initLayout {
-    [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.iconImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
+        make.centerY.equalTo(self.contentView);
+        make.width.height.mas_offset(48 * kWidthRatio6s);
+    }];
+    
+    [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
+       // make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
+        make.left.equalTo(self.iconImgV.mas_right).mas_offset(16 * kWidthRatio6s);
         make.centerY.equalTo(self.contentView);
         make.right.equalTo(self.descL.mas_left);
         make.height.mas_offset(48 * kWidthRatio6s);
@@ -97,6 +111,11 @@
         default:
             break;
     }
+}
+
+- (void)setIcon:(NSString *)icon {
+    _icon = icon;
+    self.iconImgV.image = [UIImage imageNamed:_icon];
 }
 
 - (void)setTitleName:(NSString *)titleName {

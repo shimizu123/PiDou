@@ -1,55 +1,46 @@
 //
-//  XLAnnoDetailController.m
+//  PrivacyController.m
 //  PiDou
 //
-//  Created by ice on 2019/5/12.
-//  Copyright © 2019 ice. All rights reserved.
+//  Created by 邓康大 on 2019/6/27.
+//  Copyright © 2019年 ice. All rights reserved.
 //
 
-#import "XLAnnoDetailController.h"
+#import "PrivacyController.h"
 #import <WebKit/WebKit.h>
-#import "XLMineHandle.h"
-#import "XLAnnouncement.h"
 
-@interface XLAnnoDetailController () <WKNavigationDelegate, WKUIDelegate>
+@interface PrivacyController () <WKNavigationDelegate, WKUIDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, copy) NSString *string;
 
 @end
 
-@implementation XLAnnoDetailController
+@implementation PrivacyController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"公告列表";
-    
-    [self initUI];
-    
-    [self initData];
-}
-
-- (void)initUI {
+    NSURL *url = [NSURL URLWithString:_string];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     [self.view addSubview:self.webView];
-    
 }
 
-- (void)initData {
-    kDefineWeakSelf;
-    [XLMineHandle announcementDetailWithAid:self.aid success:^(XLAnnouncement *responseObject) {
-        if (!XLStringIsEmpty(responseObject.content)) {
-            [WeakSelf.webView loadHTMLString:responseObject.content baseURL:nil];
-        }
-    } failure:^(id  _Nonnull result) {
-        
-    }];
+
+- (void)setIsRecharge:(BOOL)isRecharge {
+    _isRecharge = isRecharge;
+    if (_isRecharge) {
+        _string = @"https://www.pidoutv.com/policy_p.html";
+    } else {
+        _string = @"https://www.pidoutv.com/user_services.html";
+    }
 }
 
 #pragma mark - WKUIDelegate
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-     decisionHandler(WKNavigationActionPolicyAllow);
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -61,10 +52,15 @@
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    if (webView.isLoading) {
-        return;
-    }
-    
+    //    if (webView.isLoading) {
+    //        return;
+    //    }
+    //    [webView evaluateJavaScript:@"document.body.offsetHeight" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+    //        CGFloat documentHeight = [result doubleValue];
+    //        CGRect webFrame = webView.frame;
+    //        webFrame.size.height = documentHeight;
+    //        webView.frame = webFrame;
+    //    }];
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
@@ -75,11 +71,8 @@
     XLLog(@"内存消耗巨大");
 }
 
-
-#pragma mark - lazy load
 - (WKWebView *)webView {
     if (!_webView) {
-        
         //以下代码适配大小
         NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         
@@ -95,8 +88,9 @@
         _webView.UIDelegate = self;
         _webView.scrollView.backgroundColor = [UIColor whiteColor];
         _webView.scrollView.bounces = NO;
+        _webView.scrollView.showsVerticalScrollIndicator = NO;
         _webView.scrollView.showsHorizontalScrollIndicator = NO;
-       // _webView.scrollView.scrollEnabled = NO;
+        //  _webView.scrollView.scrollEnabled = NO;
         if (@available(iOS 11.0, *)) {
             _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

@@ -404,6 +404,7 @@
 		54E03E1F22647D3800C97981 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0C22647D3800C97981 /* UIImage+YYWebImage.m */; };
 		54E03E2022647D3800C97981 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */; };
 		54E03E2122647D3800C97981 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0F22647D3800C97981 /* YYWebImageOperation.m */; };
+		64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A77BB622C4DFC100FF715F /* PrivacyController.m */; };
 		64F4F75122BA184A00E75965 /* UIImage+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F4F75022BA184A00E75965 /* UIImage+QRCode.m */; };
 		64F4F75422BA20A700E75965 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F4F75322BA20A700E75965 /* QRCodeViewController.m */; };
 		656AF896C9D3084364ABF8A9 /* libPods-PiDouTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAE2C172209E305851DDD4B /* libPods-PiDouTests.a */; };
@@ -1203,6 +1204,8 @@
 		54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		54E03E0E22647D3800C97981 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		54E03E0F22647D3800C97981 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
+		64A77BB522C4DFC100FF715F /* PrivacyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyController.h; sourceTree = "<group>"; };
+		64A77BB622C4DFC100FF715F /* PrivacyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyController.m; sourceTree = "<group>"; };
 		64F4F74F22BA184A00E75965 /* UIImage+QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QRCode.h"; sourceTree = "<group>"; };
 		64F4F75022BA184A00E75965 /* UIImage+QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QRCode.m"; sourceTree = "<group>"; };
 		64F4F75222BA20A700E75965 /* QRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
@@ -1940,6 +1943,8 @@
 				5449BB472256572F00646FBD /* XLResetPwdController.m */,
 				54E03CE3225F2C7000C97981 /* XLModifyPwdController.h */,
 				54E03CE4225F2C7000C97981 /* XLModifyPwdController.m */,
+				64A77BB522C4DFC100FF715F /* PrivacyController.h */,
+				64A77BB622C4DFC100FF715F /* PrivacyController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3539,6 +3544,7 @@
 				54E03DBB22645B6300C97981 /* HXDownloadProgressView.m in Sources */,
 				54A4C290225C6E220020CD7D /* XLTopicView.m in Sources */,
 				540C492E2257B5EA00D45AAE /* XLRecommendController.m in Sources */,
+				64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */,
 				5449BB0B2254F75200646FBD /* NSString+Encrypt.m in Sources */,
 				54AADA9022740AC600D41EC5 /* XLPaopaoButton.m in Sources */,
 				544382CB225DE77C00EE908B /* XLMineSettingTopCell.m in Sources */,
