@@ -122,7 +122,8 @@
             if (self.tieziModel) {
                 
                 [XLTieziHandle tieziDolikeWithEntityID:self.tieziModel.entity_id success:^(id  _Nonnull responseObject) {
-                    [HUDController hideHUDWithText:responseObject];
+                   // [HUDController hideHUDWithText:responseObject];
+                    [HUDController hideHUD];
                     WeakSelf.zanButton.selected = YES;
                     NSString *do_like_count = [NSString stringWithFormat:@"%ld",[WeakSelf.tieziModel.do_like_count integerValue] + 1];
                     [WeakSelf.zanButton setTitle:do_like_count forState:(UIControlStateNormal)];

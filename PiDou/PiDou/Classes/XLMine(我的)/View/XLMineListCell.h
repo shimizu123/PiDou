@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, XLMineListType) {
 
 @property (nonatomic, copy) NSString *icon;
 
+@property (nonatomic,assign) BOOL isProfile;
+
 @end
 
 NS_ASSUME_NONNULL_END

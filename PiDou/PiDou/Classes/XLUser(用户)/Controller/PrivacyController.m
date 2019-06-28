@@ -30,9 +30,27 @@
 - (void)setIsRecharge:(BOOL)isRecharge {
     _isRecharge = isRecharge;
     if (_isRecharge) {
-        _string = @"https://www.pidoutv.com/policy_p.html";
+        _string = @"http://www.pidoutv.com/dark_convention/Recharge.html";
     } else {
         _string = @"https://www.pidoutv.com/user_services.html";
+    }
+}
+
+- (void)setAid:(NSString *)aid {
+    _aid = aid;
+    switch ([_aid intValue]) {
+        case 1106:
+            _string = @"http://www.pidoutv.com/dark_convention/Convention.html";
+            break;
+        case 1105:
+            _string = @"http://www.pidoutv.com/dark_convention/DavVerify.html";
+            break;
+        case 1104:
+            _string = @"http://www.pidoutv.com/dark_convention/BehaviorRule.html";
+            break;
+        case 1102:
+            _string = @"http://www.pidoutv.com/dark_convention/dark.html";
+            break;
     }
 }
 

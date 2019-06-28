@@ -249,6 +249,7 @@ static NSString *XLMineSettingTopCellID = @"kXLMineSettingTopCell";
     }
     XLMineListCell *listCell = [tableView dequeueReusableCellWithIdentifier:XLMineListCellID forIndexPath:indexPath];
     if (!XLArrayIsEmpty(self.listArr)) {
+        listCell.isProfile = YES;
         listCell.infoDic = self.listArr[row];
     }
     

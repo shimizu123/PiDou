@@ -61,12 +61,12 @@
     [self.iconImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
         make.centerY.equalTo(self.contentView);
-        make.width.height.mas_offset(48 * kWidthRatio6s);
+        make.width.height.mas_offset(30 * kWidthRatio6s);
     }];
     
     [self.titleL mas_makeConstraints:^(MASConstraintMaker *make) {
        // make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
-        make.left.equalTo(self.iconImgV.mas_right).mas_offset(16 * kWidthRatio6s);
+        make.left.equalTo(self.iconImgV.mas_right).mas_offset(10 * kWidthRatio6s);
         make.centerY.equalTo(self.contentView);
         make.right.equalTo(self.descL.mas_left);
         make.height.mas_offset(48 * kWidthRatio6s);
@@ -134,6 +134,18 @@
     self.desName = _infoDic[@"desc"];
     BOOL  type = [_infoDic[@"type"] boolValue];
     self.listType = type;
+}
+
+- (void)setIsProfile:(BOOL)isProfile {
+    _isProfile = isProfile;
+    if (_isProfile) {
+        [self.titleL mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
+        }];
+        [self.iconImgV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_offset(0);
+        }];
+    }
 }
 
 @end

@@ -80,7 +80,7 @@ static NSString * XLWalletHeaderID = @"kXLWalletHeader";
 - (void)tapAction {
     NSLog(@"充值协议");
     PrivacyController *privacyVC = [[PrivacyController alloc] init];
-    privacyVC.isRecharge = false;
+    privacyVC.isRecharge = YES;
     [self.navigationController pushViewController:privacyVC animated:true];
 }
 

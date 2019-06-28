@@ -12,6 +12,7 @@
 #import "XLCircleView.h"
 #import "XLAnnoDetailController.h"
 #import "XLAnnouncement.h"
+#import "PrivacyController.h"
 
 @interface XLMineAdCell () <XLCircleViewDelegate>
 
@@ -88,9 +89,13 @@
 #pragma mark - XLCircleViewDelegate
 - (void)didSelectItemAtIndex:(NSInteger)index {
     XLAnnouncement *advModel = self.advData[index];
-    XLAnnoDetailController *annoDetailVC = [[XLAnnoDetailController alloc] init];
-    annoDetailVC.aid = advModel.aid;
-    [self.navigationController pushViewController:annoDetailVC animated:YES];
+//    XLAnnoDetailController *annoDetailVC = [[XLAnnoDetailController alloc] init];
+//    annoDetailVC.aid = advModel.aid;
+//    [self.navigationController pushViewController:annoDetailVC animated:YES];
+    
+    PrivacyController *privacyVC = [[PrivacyController alloc] init];
+    privacyVC.aid = advModel.aid;
+    [self.navigationController pushViewController:privacyVC animated:true];
 }
 
 @end

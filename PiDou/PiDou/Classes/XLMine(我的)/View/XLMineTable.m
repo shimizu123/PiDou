@@ -272,7 +272,7 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
 
 - (NSArray *)icons {
     if (!_icons) {
-        _icons = [NSArray arrayWithObjects:@"666", @"juice", @"qianbao", @"huangguan", @"666", @"juice", @"qianbao", @"huangguan", @"666", nil];
+        _icons = [NSArray arrayWithObjects:@"icon01", @"icon02", @"icon03", @"icon04", @"icon05", @"icon06", @"icon07", @"icon08", @"icon09", nil];
     }
     return _icons;
 }
