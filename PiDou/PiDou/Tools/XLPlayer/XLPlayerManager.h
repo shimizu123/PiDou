@@ -48,4 +48,6 @@ singleton_h(XLPlayerManager)
 /**一般在页面已经消失的时候调用*/
 + (void)disappear;
 
+- (void)removePlayer;
+
 @end

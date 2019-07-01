@@ -28,7 +28,6 @@
 
 @property (nonatomic, strong) UIImageView *playerBgView;
 @property (nonatomic, strong) UIImageView *playerView;
-@property (nonatomic, strong) UIButton *playButton;
 
 @property (nonatomic, strong) UIView *botKongView;
 
@@ -182,6 +181,8 @@
 
 - (void)setTieziModel:(XLTieziModel *)tieziModel {
     _tieziModel = tieziModel;
+    _videoPath = tieziModel.video_url;
+    _entityId = tieziModel.entity_id;
     
     self.playButton.hidden = NO;
     self.playButton.selected = NO;

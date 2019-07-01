@@ -39,12 +39,15 @@
 }
 
 - (void)initData {
-    kDefineWeakSelf;
-    [XLMineHandle applyAppraiserPageWithSuccess:^(id  _Nonnull responseObject) {
-        [WeakSelf.webView loadHTMLString:responseObject baseURL:nil];
-    } failure:^(id  _Nonnull result) {
-        
-    }];
+//    kDefineWeakSelf;
+//    [XLMineHandle applyAppraiserPageWithSuccess:^(id  _Nonnull responseObject) {
+//        [WeakSelf.webView loadHTMLString:responseObject baseURL:nil];
+//    } failure:^(id  _Nonnull result) {
+//
+//    }];
+    NSString *string = @"http://www.pidoutv.com/dark_convention/GodComment.html";
+    NSURL *url = [NSURL URLWithString:string];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)initUI {
@@ -135,14 +138,14 @@
 - (WKWebView *)webView {
     if (!_webView) {
         //以下代码适配大小
-        NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+      //  NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
         
-        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-        WKUserContentController *wkUController = [[WKUserContentController alloc] init];
-        [wkUController addUserScript:wkUScript];
+//        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+//        WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+//        [wkUController addUserScript:wkUScript];
         
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-        config.userContentController = wkUController;
+        config.userContentController = [[WKUserContentController alloc] init];
         
         _webView = [[WKWebView alloc] initWithFrame:(self.view.bounds) configuration:config];
         _webView.navigationDelegate = self;

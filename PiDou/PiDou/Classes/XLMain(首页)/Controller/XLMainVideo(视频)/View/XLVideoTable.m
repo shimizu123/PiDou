@@ -15,6 +15,9 @@
 static NSString * XLVideoCellID = @"kXLVideoCell";
 @interface XLVideoTable () <UITableViewDelegate, UITableViewDataSource, ZFPlayerControlViewDelagate>
 
+@property (nonatomic, strong) XLVideoCell *playingCell;
+@property (nonatomic, copy) NSString *currentVideoPath;
+
 @end
 
 @implementation XLVideoTable
@@ -50,6 +53,59 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     [_tableView registerClass:[XLVideoCell class] forCellReuseIdentifier:XLVideoCellID];
 }
 
+- (void)handleScroll{
+    // 找到下一个要播放的cell(最在屏幕中心的)
+    XLVideoCell *finnalCell = nil;
+    NSArray *visiableCells = [self.tableView visibleCells];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    CGFloat gap = MAXFLOAT;
+    for (XLVideoCell *cell in visiableCells) {
+        [indexPaths addObject:cell.indexPath];
+        if (cell.videoPath.length > 0) {
+            // 如果这个cell有视频
+            CGPoint coorCenter = [self.tableView convertPoint:cell.center toView:self.tableView.superview];
+            CGFloat delta = fabs(coorCenter.y - self.tableView.superview.xl_h / 2);
+            if (delta < gap) {
+                gap = delta;
+                finnalCell = cell;
+            }
+        }
+    }
+    if (finnalCell != nil && self.playingCell != finnalCell)  {
+        UIButton *button = finnalCell.playButton;
+        button.selected = !button.selected;
+        if (button.selected && !finnalCell.isDetailVC) {
+            button.hidden = YES;
+        }
+        [XLPlayerManager playVideoWithIndexPath:finnalCell.indexPath tag:1314 scrollView:self.tableView videoUrl:finnalCell.videoPath entity_id:finnalCell.entityId];
+        self.playingCell = finnalCell;
+        self.currentVideoPath = finnalCell.videoPath;
+    }
+    // 注意, 如果正在播放的cell和finnalCell是同一个cell, 不应该在播放
+    BOOL isPlayingCellVisiable = YES;
+    if (![indexPaths containsObject:self.playingCell.indexPath]) {
+        isPlayingCellVisiable = NO;
+    }
+    // 当前播放视频的cell移出视线， 或者cell被快速的循环利用了， 都要移除播放器
+    if (!isPlayingCellVisiable || ![self.playingCell.videoPath isEqualToString:self.currentVideoPath]) {
+        [[XLPlayerManager sharedXLPlayerManager] removePlayer];
+    }
+    
+}
+
+// 松手时已经静止,只会调用scrollViewDidEndDragging
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (decelerate == NO) { // scrollView已经完全静止
+        [self handleScroll];
+    }
+}
+
+// 松手时还在运动, 先调用scrollViewDidEndDragging,在调用scrollViewDidEndDecelerating
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self handleScroll];
+}
+
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.data.count;
@@ -63,7 +119,7 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     if (!XLArrayIsEmpty(self.data)) {
         XLTieziModel *tieziModel = self.data[row];
         videoCell.tieziModel = tieziModel;
-//        videoCell.indexPath = indexPath;
+        videoCell.indexPath = indexPath;
 //        videoCell.tableView = tableView;
         kDefineWeakSelf;
         videoCell.complete = ^(NSString *url) {
@@ -80,7 +136,6 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     videoCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return videoCell;
 }
-
 
 
 #pragma mark - UITableViewDelegate

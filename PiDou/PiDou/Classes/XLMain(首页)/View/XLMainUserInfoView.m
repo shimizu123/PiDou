@@ -195,7 +195,8 @@
                 WeakSelf.userInfo.do_liked = @(button.selected);
                 WeakSelf.userInfo.do_like_count = [NSString stringWithFormat:@"%ld",[WeakSelf.userInfo.do_like_count integerValue]+1];
                 [button setTitle:[NSString stringWithFormat:@"%@",WeakSelf.userInfo.do_like_count] forState:(UIControlStateNormal)];
-                [HUDController hideHUDWithText:responseObject];
+               // [HUDController hideHUDWithText:responseObject];
+                [HUDController hideHUD];
                 if (WeakSelf.delegate && [WeakSelf.delegate respondsToSelector:@selector(userInfoView:didSelectedWithIndex:select:count:)]) {
                     [WeakSelf.delegate userInfoView:WeakSelf didSelectedWithIndex:0 select:YES count:WeakSelf.userInfo.do_like_count];
                 }
@@ -270,7 +271,10 @@
     if (_userInfoViewType == XLMainUserInfoViewType_focus) {
         self.isFocus = [_userInfo.followed boolValue];
         if ([self.userInfo.user_id isEqualToString:[XLUserHandle userid]]) {
-            self.focusButton.hidden = YES;
+          //  self.focusButton.hidden = YES;
+            [self.focusButton mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.width.height.mas_offset(0);
+            }];
         }
     } else if (_userInfoViewType == XLMainUserInfoViewType_comment) {
         [self.diamondButton setTitle:[NSString stringWithFormat:@"%@",_userInfo.do_like_count] forState:(UIControlStateNormal)];
@@ -285,6 +289,11 @@
             self.isFocus = [_userInfo.followed boolValue] || [_userInfo.user_id isEqualToString:[XLUserHandle userid]];
             self.focusButton.hidden = NO;
             self.diamondButton.hidden = YES;
+        }
+        if ([_userInfo.user_id isEqualToString:[XLUserHandle userid]]) {
+            [self.focusButton mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.width.height.mas_offset(0);
+            }];
         }
     }
 }

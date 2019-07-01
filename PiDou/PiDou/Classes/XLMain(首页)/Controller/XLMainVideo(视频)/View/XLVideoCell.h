@@ -37,6 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isDetail;
 
+@property (nonatomic, copy) NSString *videoPath;
+@property (nonatomic, copy) NSString *entityId;
+
+@property (nonatomic, strong) UIButton *playButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

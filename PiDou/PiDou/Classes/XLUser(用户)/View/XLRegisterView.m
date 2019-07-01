@@ -52,6 +52,7 @@
     self.accountTF.keyboardType = UIKeyboardTypePhonePad;
     [self addSubview:self.accountTF];
     self.accountTF.delegate = self;
+    self.accountTF.tag = 1101;
     
     self.pwdTF = [[UITextField alloc] init];
     self.pwdTF.textColor = COLOR(0x000000);
@@ -197,6 +198,36 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
   
 }
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.tag == 1101) {
+        NSInteger strLength = textField.text.length - range.length + string.length;
+        if (strLength > 11){
+            return NO;
+        }
+        if (strLength < 11) {
+            self.codeButton.enabled = NO;
+        } else {
+            self.codeButton.enabled = YES;
+        }
+        
+        BOOL res = YES;
+        NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        int i = 0;
+        while (i < string.length) {
+            NSString * str= [string substringWithRange:NSMakeRange(i, 1)];
+            NSRange range = [str rangeOfCharacterFromSet:tmpSet];
+            if (range.length == 0) {
+                res = NO;
+                break;
+            }
+            i++;
+        }
+        return res;
+    }
+    return YES;
+}
+
 
 #pragma mark - getter
 - (NSString *)username {

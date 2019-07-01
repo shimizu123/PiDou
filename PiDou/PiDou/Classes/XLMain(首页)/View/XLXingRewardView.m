@@ -337,14 +337,14 @@ static NSString *XLXingRewardCellID = @"kXLXingRewardCell";
 
 - (NSArray *)data {
     if (!_data) {
-        _data = [NSArray arrayWithObjects:@"10",@"100",@"1000",@"10000", nil].mutableCopy;
+        _data = [NSArray arrayWithObjects:@"10",@"100",@"1000",@"10000", @"30000", nil].mutableCopy;
     }
     return _data;
 }
 
 - (NSArray *)gifts {
     if (!_gifts) {
-        _gifts = [NSArray arrayWithObjects:@"666", @"juice", @"qianbao", @"huangguan", nil];
+        _gifts = [NSArray arrayWithObjects:@"666", @"juice", @"qianbao", @"zuanshi", @"huangguan", nil];
     }
     return _gifts;
 }
