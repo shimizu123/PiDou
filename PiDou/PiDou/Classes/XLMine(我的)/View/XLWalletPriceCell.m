@@ -338,7 +338,7 @@
 - (void)setWalletInfo:(XLWalletInfoModel *)walletInfo {
     _walletInfo = walletInfo;
     self.priceL.text = [NSString stringWithFormat:@"%@",_walletInfo.balance];
-    self.coinNumL.text = [NSString stringWithFormat:@"%@",_walletInfo.pdcoin];
+    self.coinNumL.text = [NSString stringWithFormat:@"%.2f",[_walletInfo.pdcoin floatValue]];
     self.xingNumL.text = [NSString stringWithFormat:@"%@",_walletInfo.coin];
     if ([_walletInfo.join_profit boolValue]) {
         [self.communityButton setTitleColor:COLOR(0xcccccc) forState:(UIControlStateNormal)];

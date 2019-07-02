@@ -225,6 +225,9 @@
         [WeakSelf dismiss];
     } failure:^(id  _Nonnull result) {
         [HUDController xl_hideHUDWithResult:result];
+        if (XLStringIsEmpty(self.validate_token)) {
+            [self sendAuthRequest];
+        }
     }];
 }
 

@@ -91,7 +91,7 @@
     self.moreUserbutton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.topView addSubview:self.moreUserbutton];
     [self.moreUserbutton xl_setImageName:@"search_more" target:self action:@selector(moreUserAction:)];
-    
+
     self.moreLabel = [[UILabel alloc] init];
     [self.topView addSubview:self.moreLabel];
     [self.moreLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:11.f];
@@ -140,11 +140,6 @@
         make.left.equalTo(self.userIcon2.mas_right).mas_offset(16 * kWidthRatio6s);
     }];
     
-    [self.userIcon3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.height.width.equalTo(self.userIcon1);
-        make.left.equalTo(self.userIcon2.mas_right).mas_offset(16 * kWidthRatio6s);
-    }];
-    
     [self.userIcon4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.height.width.equalTo(self.userIcon1);
         make.left.equalTo(self.userIcon3.mas_right).mas_offset(16 * kWidthRatio6s);
@@ -159,8 +154,7 @@
     [self.userLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.userIcon1);
         make.top.equalTo(self.userIcon1.mas_bottom).mas_offset(12 * kWidthRatio6s);
-//        make.height.mas_offset(16 * kWidthRatio6s);
-        make.bottom.equalTo(self.topView);
+//        make.height.mas_offset(16 * kWidthRatio6s);   
     }];
     
     [self.userLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -218,6 +212,7 @@
             case 0:
             {
                 self.userIcon1.url = userModel.avatar;
+                self.userIcon1.user_id = userModel.user_id;
                 self.userLabel1.text = userModel.nickname;
                 self.userIcon1.hidden = NO;
                 
@@ -226,6 +221,7 @@
             case 1:
             {
                 self.userIcon2.url = userModel.avatar;
+                self.userIcon2.user_id = userModel.user_id;
                 self.userLabel2.text = userModel.nickname;
                 self.userIcon2.hidden = NO;
                 
@@ -234,6 +230,7 @@
             case 2:
             {
                 self.userIcon3.url = userModel.avatar;
+                self.userIcon3.user_id = userModel.user_id;
                 self.userLabel3.text = userModel.nickname;
                 self.userIcon3.hidden = NO;
                 
@@ -242,6 +239,7 @@
             case 3:
             {
                 self.userIcon4.url = userModel.avatar;
+                self.userIcon4.user_id = userModel.user_id;
                 self.userLabel4.text = userModel.nickname;
                 self.userIcon4.hidden = NO;
             }
@@ -270,24 +268,33 @@
         self.topView.hidden = NO;
         [self.topView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.equalTo(self.contentView);
+            make.height.mas_offset(85 * kWidthRatio6s);
         }];
     }
     
     if (XLStringIsEmpty(_searchModel.topic.topic_name)) {
-        [self.topicView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
-            make.right.equalTo(self.contentView).mas_offset(-16 * kWidthRatio6s);
-            make.top.equalTo(self.topView.mas_bottom).mas_offset(0);
-            make.height.mas_offset(CGFLOAT_MIN);
+        self.topicView.hidden = YES;
+        self.botKongView.backgroundColor = XL_COLOR_BG;
+        [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.equalTo(self.contentView);
+            make.height.mas_offset(12 * kWidthRatio6s);
+            //  make.top.equalTo(self.topicView.mas_bottom).mas_offset(16 * kWidthRatio6s);
+            make.top.equalTo(self.topView.mas_bottom).mas_offset(16 * kWidthRatio6s);
         }];
-        self.topView.hidden = YES;
+       
     } else {
-        self.topView.hidden = NO;
+        self.topicView.hidden = NO;
         [self.topicView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
             make.right.equalTo(self.contentView).mas_offset(-16 * kWidthRatio6s);
             make.top.equalTo(self.topView.mas_bottom).mas_offset(16 * kWidthRatio6s);
-            //make.bottom.equalTo(self.contentView).mas_offset(-16 * kWidthRatio6s);
+        }];
+        self.botKongView.backgroundColor = XL_COLOR_BG;
+        [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.equalTo(self.contentView);
+            make.height.mas_offset(12 * kWidthRatio6s);
+            make.top.equalTo(self.topicView.mas_bottom).mas_offset(16 * kWidthRatio6s);
+            
         }];
     }
     
@@ -299,12 +306,13 @@
         }];
         self.botKongView.backgroundColor = [UIColor whiteColor];
     } else {
-        self.botKongView.backgroundColor = XL_COLOR_BG;
-        [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.equalTo(self.contentView);
-            make.height.mas_offset(12 * kWidthRatio6s);
-            make.top.equalTo(self.topicView.mas_bottom).mas_offset(16 * kWidthRatio6s);
-        }];
+//        self.botKongView.backgroundColor = XL_COLOR_BG;
+//        [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.bottom.right.equalTo(self.contentView);
+//            make.height.mas_offset(12 * kWidthRatio6s);
+//            make.top.equalTo(self.topicView.mas_bottom).mas_offset(16 * kWidthRatio6s);
+//
+//        }];
     }
 }
 

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *invCode;
 
+@property (nonatomic, copy) void(^didSelectInvite)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

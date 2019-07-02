@@ -261,7 +261,7 @@
 
 #pragma mark - XLSearchNaviBarDelegate
 - (void)searchBar:(XLSearchNaviBar *)searchBar textDidChange:(NSString *)searchText {
-    [self initDataWithSearchText:searchText];
+   // [self initDataWithSearchText:searchText];
 }
 - (void)searchBarDidBeginEditing:(XLSearchNaviBar *)searchBar {
     

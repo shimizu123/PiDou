@@ -117,6 +117,9 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
             inviteCell.invCode = self.userInfo.invitation_code;
         }
         inviteCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        inviteCell.didSelectInvite = ^ {
+            [self shareAction];
+        };
         return inviteCell;
     } else {
         XLMineListCell *listCell = [tableView dequeueReusableCellWithIdentifier:XLMineListCellID forIndexPath:indexPath];
@@ -178,7 +181,7 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
 //        XLInviteDetailController *inviteDetailVC = [[XLInviteDetailController alloc] init];
 //        inviteDetailVC.title = @"皮逗视频下载";
 //        [self.tableView.navigationController pushViewController:inviteDetailVC animated:YES];
-        [self shareAction];
+       // [self shareAction];
     } else {
         if (XLStringIsEmpty([XLUserHandle userid])) {
             [XLLaunchManager goLoginWithTarget:self.tableView.parentController];

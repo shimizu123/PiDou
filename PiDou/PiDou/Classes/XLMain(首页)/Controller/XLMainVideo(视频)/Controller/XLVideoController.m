@@ -85,7 +85,6 @@
     if (!isPlayingCellVisiable || ![self.playingCell.videoPath isEqualToString:self.currentVideoPath]) {
         [[XLPlayerManager sharedXLPlayerManager] removePlayer];
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

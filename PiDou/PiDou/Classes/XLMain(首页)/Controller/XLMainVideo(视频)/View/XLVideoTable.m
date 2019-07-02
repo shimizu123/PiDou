@@ -90,7 +90,6 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     if (!isPlayingCellVisiable || ![self.playingCell.videoPath isEqualToString:self.currentVideoPath]) {
         [[XLPlayerManager sharedXLPlayerManager] removePlayer];
     }
-    
 }
 
 // 松手时已经静止,只会调用scrollViewDidEndDragging

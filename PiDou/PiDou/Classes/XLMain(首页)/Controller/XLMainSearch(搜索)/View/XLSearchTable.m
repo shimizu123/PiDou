@@ -144,7 +144,6 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
     if (!isPlayingCellVisiable || ![self.playingCell.videoPath isEqualToString:self.currentVideoPath]) {
         [[XLPlayerManager sharedXLPlayerManager] removePlayer];
     }
-    
 }
 
 // 松手时已经静止,只会调用scrollViewDidEndDragging
@@ -304,7 +303,7 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if (self.searchType != XLSearchType_topicDetail) {
+        if (self.searchType == XLSearchType_topicDetail) {
             XLTopicDetailController *topicDetailVC = [[XLTopicDetailController alloc] init];
             topicDetailVC.topic_id = self.searchModel.topic.topic_id;
             [self.tableView.navigationController pushViewController:topicDetailVC animated:YES];
