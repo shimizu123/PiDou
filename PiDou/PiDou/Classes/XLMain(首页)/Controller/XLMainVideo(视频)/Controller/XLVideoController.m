@@ -23,6 +23,8 @@
 @property (nonatomic, strong) XLVideoCell *playingCell;
 @property (nonatomic, copy) NSString *currentVideoPath;
 
+@property(nonatomic, assign) BOOL isLoadMore;
+
 @end
 
 @implementation XLVideoController
@@ -114,11 +116,18 @@
 
 
 - (void)didLoadData {
-    _page = 1;
+    _isLoadMore = NO;
+    if (!_page) {
+        _page = 1;
+    } else {
+        _page++;
+    }
+    
     [self initData];
 }
 
 - (void)loadMoreData {
+    _isLoadMore = YES;
     _page++;
     [self initData];
 }
@@ -131,22 +140,37 @@
     }
     [XLTieziHandle tieziListWithPage:self.page category:@"video" success:^(id  _Nonnull responseObject) {
        // [HUDController hideHUD];
-        if (WeakSelf.page > 1) {
+//        if (WeakSelf.page > 1) {
+//            [WeakSelf.table.tableView.mj_footer endRefreshing];
+//            [WeakSelf.data addObjectsFromArray:responseObject];
+//        } else {
+//            [WeakSelf.table.tableView.mj_header endRefreshing];
+//            WeakSelf.data = responseObject;
+//        }
+        if (WeakSelf.isLoadMore) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
         } else {
             [WeakSelf.table.tableView.mj_header endRefreshing];
             WeakSelf.data = responseObject;
         }
+        
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
        // [HUDController xl_hideHUDWithResult:result];
-        if (WeakSelf.page > 1) {
+//        if (WeakSelf.page > 1) {
+//            [WeakSelf.table.tableView.mj_footer endRefreshing];
+//            WeakSelf.page--;
+//        } else {
+//            [WeakSelf.table.tableView.mj_header endRefreshing];
+//        }
+        if (WeakSelf.isLoadMore) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
         } else {
             [WeakSelf.table.tableView.mj_header endRefreshing];
         }
+        
         WeakSelf.table.data = WeakSelf.data;
     }];
     [HUDController hideHUD];

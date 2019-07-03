@@ -225,9 +225,6 @@
         [WeakSelf dismiss];
     } failure:^(id  _Nonnull result) {
         [HUDController xl_hideHUDWithResult:result];
-        if (XLStringIsEmpty(self.validate_token)) {
-            [self sendAuthRequest];
-        }
     }];
 }
 
@@ -243,8 +240,9 @@
 #pragma mark - 点击注册
 - (void)registerAction {
     XLLog(@"点击注册");
-    XLRegisterController *registerVC = [[XLRegisterController alloc] init];
-    [self.navigationController pushViewController:registerVC animated:YES];
+//    XLRegisterController *registerVC = [[XLRegisterController alloc] init];
+//    [self.navigationController pushViewController:registerVC animated:YES];
+    [self sendAuthRequest];
 }
 
 - (void)onWechat:(UIButton *)button {

@@ -60,7 +60,7 @@
         make.centerY.equalTo(self.adviteButton);
         make.right.equalTo(self.adviteButton.mas_left).mas_offset(-10 * kWidthRatio6s);
         make.height.mas_offset(32 * kWidthRatio6s);
-        make.width.mas_offset(72 * kWidthRatio6s);
+        make.width.mas_offset(80 * kWidthRatio6s);
     }];
     
     [self.adviteButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -23,6 +23,8 @@
 @property (nonatomic, strong) XLVideoCell *playingCell;
 @property (nonatomic, copy) NSString *currentVideoPath;
 
+@property(nonatomic, assign) BOOL isLoadMore;
+
 @end
 
 @implementation XLRecommendController
@@ -67,15 +69,18 @@
     NSArray *visiableCells = [self.table.tableView visibleCells];
     NSMutableArray *indexPaths = [NSMutableArray array];
     CGFloat gap = MAXFLOAT;
-    for (XLVideoCell *cell in visiableCells) {
-        [indexPaths addObject:cell.indexPath];
-        if (cell.videoPath.length > 0) {
-            // 如果这个cell有视频
-            CGPoint coorCenter = [self.table.tableView convertPoint:cell.center toView:self.table.tableView.superview];
-            CGFloat delta = fabs(coorCenter.y - SCREEN_HEIGHT / 2);
-            if (delta < gap) {
-                gap = delta;
-                finnalCell = cell;
+    for (id visibleCell in visiableCells) {
+        if ([visibleCell isKindOfClass:[XLVideoCell class]]) {
+            XLVideoCell *cell = (XLVideoCell *)visibleCell;
+            [indexPaths addObject:cell.indexPath];
+            if (cell.videoPath.length > 0) {
+                // 如果这个cell有视频
+                CGPoint coorCenter = [self.table.tableView convertPoint:cell.center toView:self.table.tableView.superview];
+                CGFloat delta = fabs(coorCenter.y - SCREEN_HEIGHT / 2);
+                if (delta < gap) {
+                    gap = delta;
+                    finnalCell = cell;
+                }
             }
         }
     }
@@ -116,11 +121,18 @@
 }
 
 - (void)didLoadData {
-    _page = 1;
+    _isLoadMore = NO;
+    if (!_page) {
+        _page = 1;
+    } else {
+        _page++;
+    }
+    
     [self initData];
 }
 
 - (void)loadMoreData {
+    _isLoadMore = YES;
     _page++;
     [self initData];
 }
@@ -133,22 +145,37 @@
     }
     [XLTieziHandle tieziListWithPage:self.page category:@"" success:^(id  _Nonnull responseObject) {
        // [HUDController hideHUD];
-        if (WeakSelf.page > 1) {
+//        if (WeakSelf.page > 1) {
+//            [WeakSelf.table.tableView.mj_footer endRefreshing];
+//            [WeakSelf.data addObjectsFromArray:responseObject];
+//        } else {
+//            [WeakSelf.table.tableView.mj_header endRefreshing];
+//            WeakSelf.data = responseObject;
+//        }
+        if (WeakSelf.isLoadMore) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             [WeakSelf.data addObjectsFromArray:responseObject];
         } else {
             [WeakSelf.table.tableView.mj_header endRefreshing];
             WeakSelf.data = responseObject;
         }
+        
         WeakSelf.table.data = WeakSelf.data;
     } failure:^(id  _Nonnull result) {
        // [HUDController xl_hideHUDWithResult:result];
-        if (WeakSelf.page > 1) {
+//        if (WeakSelf.page > 1) {
+//            [WeakSelf.table.tableView.mj_footer endRefreshing];
+//            WeakSelf.page--;
+//        } else {
+//            [WeakSelf.table.tableView.mj_header endRefreshing];
+//        }
+        if (WeakSelf.isLoadMore) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
             WeakSelf.page--;
         } else {
             [WeakSelf.table.tableView.mj_header endRefreshing];
         }
+        
         WeakSelf.table.data = WeakSelf.data;
     }];
     [HUDController hideHUD];

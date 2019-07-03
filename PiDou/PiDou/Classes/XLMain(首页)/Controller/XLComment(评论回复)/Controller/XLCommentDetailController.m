@@ -161,6 +161,7 @@
     message.cid = self.cid;
     
     XLShareView *shareView = [XLShareView shareView];
+    shareView.showQRCode = NO;
     shareView.message = message;
     shareView.noDeletebtn = YES;
     [shareView show];
