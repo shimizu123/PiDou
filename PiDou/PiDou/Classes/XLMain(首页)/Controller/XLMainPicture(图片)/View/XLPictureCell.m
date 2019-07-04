@@ -143,7 +143,7 @@
         [self.tagRewardView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView);
             make.top.equalTo(self.godCommentView.mas_bottom).mas_offset(1 * kWidthRatio6s);
-            make.height.mas_offset(CGFLOAT_MIN);
+            make.height.mas_offset(0);
         }];
     } else {
         [self.tagRewardView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -186,7 +186,7 @@
         [self.godCommentView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView);
             make.top.equalTo(self.pictureView.mas_bottom).mas_offset(0);
-            make.height.mas_offset(CGFLOAT_MIN);
+            make.height.mas_offset(0);
         }];
     }
     

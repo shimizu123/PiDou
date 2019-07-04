@@ -154,6 +154,13 @@
             XLLog(@"评论");
             if (!XLStringIsEmpty(self.tieziModel.entity_id)) {
                 XLMainDetailController *mainDetailVC = [[XLMainDetailController alloc] init];
+                if (XLTypeVideo(_tieziModel.category)) {
+                    mainDetailVC.mainType = XLMainType_video;
+                } else if (XLTypePicture(_tieziModel.category)) {
+                    mainDetailVC.mainType = XLMainType_picture;
+                } else {
+                    mainDetailVC.mainType = XLMainType_duanz;
+                }
                 mainDetailVC.entity_id = self.tieziModel.entity_id;
                 [self.navigationController pushViewController:mainDetailVC animated:YES];
             }

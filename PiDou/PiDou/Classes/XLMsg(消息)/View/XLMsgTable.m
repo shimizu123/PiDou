@@ -136,6 +136,13 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
         {
             // 评论内容
             XLMainDetailController *tieziDetailVC = [[XLMainDetailController alloc] init];
+            if (XLTypeVideo(message.entity.category)) {
+                tieziDetailVC.mainType = XLMainType_video;
+            } else if (XLTypePicture(message.entity.category)) {
+                tieziDetailVC.mainType = XLMainType_picture;
+            } else {
+                tieziDetailVC.mainType = XLMainType_duanz;
+            }
             tieziDetailVC.entity_id = message.entity.entity_id;
             [self.tableView.navigationController pushViewController:tieziDetailVC animated:YES];
         }
@@ -153,6 +160,13 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
         {
             // 赞
             XLMainDetailController *tieziDetailVC = [[XLMainDetailController alloc] init];
+            if (XLTypeVideo(message.entity.category)) {
+                tieziDetailVC.mainType = XLMainType_video;
+            } else if (XLTypePicture(message.entity.category)) {
+                tieziDetailVC.mainType = XLMainType_picture;
+            } else {
+                tieziDetailVC.mainType = XLMainType_duanz;
+            }
             tieziDetailVC.entity_id = message.entity.entity_id;
             [self.tableView.navigationController pushViewController:tieziDetailVC animated:YES];
         }

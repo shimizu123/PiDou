@@ -31,6 +31,7 @@
 
 @property (nonatomic, strong) UIView *coinView;
 @property (nonatomic, strong) UILabel *coinTitleL;
+@property (nonatomic, strong) UIButton *wenhao;
 @property (nonatomic, strong) UILabel *coinNumL;
 @property (nonatomic, strong) UIButton *communityButton;
 
@@ -115,6 +116,11 @@
     [self.coinTitleL xl_setTextColor:XL_COLOR_BLACK fontSize:11.f];
     self.coinTitleL.textAlignment = NSTextAlignmentCenter;
     self.coinTitleL.text = @"参与社区回馈PDCoin";
+    
+    self.wenhao = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [self.contentView addSubview:self.wenhao];
+    [self.wenhao xl_setImageName:@"wenhao" target:self action:@selector(notice)];
+   // XLViewRadius(self.wenhao, 11 * kWidthRatio6s);
     
     self.coinNumL = [[UILabel alloc] init];
     [self.contentView addSubview:self.coinNumL];
@@ -226,6 +232,12 @@
         make.height.mas_offset(16 * kWidthRatio6s);
     }];
     
+    [self.wenhao mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.coinTitleL.mas_right).mas_offset(-50 * kWidthRatio6s);
+        make.centerY.equalTo(self.coinTitleL);
+        make.width.height.mas_offset(40);
+    }];
+    
     [self.coinNumL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.coinTitleL);
         make.top.equalTo(self.coinTitleL.mas_bottom).mas_offset(8 * kWidthRatio6s);
@@ -261,6 +273,31 @@
         make.height.mas_offset(12 * kWidthRatio6s);
         make.top.equalTo(self.coinView.mas_bottom);
     }];
+}
+
+- (void)notice {
+    NSString *str = @"1.每日24点按当前所有用户参与回馈\nPDCoin结算当日回馈；\n2.次日依次下发前一日回馈奖励；\n3.当日获得的PDCoin，不参与前一日回馈奖励；";
+    NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:str];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:str preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:action];
+    
+    [msg addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, msg.length)];
+    [msg addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, msg.length)];
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.alignment = NSTextAlignmentLeft;
+    [msg addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, msg.length)];
+    [alertController setValue:msg forKey:@"attributedMessage"];
+    
+    
+    UIView *subview = alertController.view.subviews.firstObject;
+    UIView *alertContentView = subview.subviews.firstObject.subviews.lastObject.subviews.lastObject.subviews.lastObject;
+    alertContentView.backgroundColor = [UIColor colorWithRed:232/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
+    alertContentView.layer.cornerRadius = 12;
+    alertController.view.tintColor = UIColor.whiteColor;
+    [self.parentController presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)onBack {

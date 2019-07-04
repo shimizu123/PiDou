@@ -260,23 +260,23 @@
         self.moreUserbutton.hidden = YES;
         self.moreLabel.hidden = YES;
         
-        [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.right.equalTo(self.contentView);
-            make.height.mas_offset(CGFLOAT_MIN);
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(0);
         }];
     } else {
         self.topView.hidden = NO;
-        [self.topView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.right.equalTo(self.contentView);
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(85 * kWidthRatio6s);
         }];
     }
     
     if (XLStringIsEmpty(_searchModel.topic.topic_name)) {
         self.topicView.hidden = YES;
+        [self.topicView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(0);
+        }];
         self.botKongView.backgroundColor = XL_COLOR_BG;
-        [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.equalTo(self.contentView);
+        [self.botKongView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(12 * kWidthRatio6s);
             //  make.top.equalTo(self.topicView.mas_bottom).mas_offset(16 * kWidthRatio6s);
             make.top.equalTo(self.topView.mas_bottom).mas_offset(16 * kWidthRatio6s);
@@ -290,11 +290,9 @@
             make.top.equalTo(self.topView.mas_bottom).mas_offset(16 * kWidthRatio6s);
         }];
         self.botKongView.backgroundColor = XL_COLOR_BG;
-        [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.equalTo(self.contentView);
+        [self.botKongView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(12 * kWidthRatio6s);
             make.top.equalTo(self.topicView.mas_bottom).mas_offset(16 * kWidthRatio6s);
-            
         }];
     }
     
