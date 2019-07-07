@@ -42,6 +42,7 @@
     if ([self isShowingOnKeyWindow:self]) {
         NSLog(@"刷新图片页面");
         [self.table.tableView.mj_header beginRefreshing];
+        [self.table.tableView setContentOffset:CGPointMake(0, 0)];
     }
 }
 

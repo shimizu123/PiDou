@@ -17,6 +17,7 @@
 #import "XLCircleView.h"
 #import "XLAdvModel.h"
 #import "XLInviteDetailController.h"
+#import "PrivacyController.h"
 
 @interface XLPDCoinController () <XLPDCoinNaviBarDelegate, XLPDCoinDiamondViewDelegate, XLCircleViewDelegate>
 
@@ -241,8 +242,12 @@
 
 #pragma mark - 查看皮逗攻略
 - (void)coinLookAction {
-    XLGainPDCoinController *gainVC = [[XLGainPDCoinController alloc] init];
-    [self.navigationController pushViewController:gainVC animated:YES];
+//    XLGainPDCoinController *gainVC = [[XLGainPDCoinController alloc] init];
+//    [self.navigationController pushViewController:gainVC animated:YES];
+    
+    PrivacyController *privacyVC = [[PrivacyController alloc] init];
+    privacyVC.isPDCoin = YES;
+    [self.navigationController pushViewController:privacyVC animated:YES];
 }
 
 #pragma mark - XLPDCoinNaviBarDelegate

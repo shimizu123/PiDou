@@ -47,6 +47,7 @@
     if ([self isShowingOnKeyWindow:self]) {
         NSLog(@"刷新视频页面");
         [self.table.tableView.mj_header beginRefreshing];
+        [self.table.tableView setContentOffset:CGPointMake(0, 0)];
     }
 }
 
@@ -117,6 +118,7 @@
 
 - (void)didLoadData {
     _isLoadMore = NO;
+    _page = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"page"];
     if (!_page) {
         _page = 1;
     } else {
@@ -138,6 +140,7 @@
         [HUDController xl_showHUD];
         self.onceDidload = YES;
     }
+    [[NSUserDefaults standardUserDefaults] setInteger:_page forKey:@"page"];
     [XLTieziHandle tieziListWithPage:self.page category:@"video" success:^(id  _Nonnull responseObject) {
        // [HUDController hideHUD];
 //        if (WeakSelf.page > 1) {

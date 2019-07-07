@@ -87,7 +87,7 @@ static NSString * XLMineListCellID      = @"kXLMineListCell";
     
     NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
     dic4[@"title"] = @"版本更新";
-    dic4[@"desc"] = @"";
+    dic4[@"desc"] = [self getVersion];
     dic4[@"type"] = @(0);
 
     
@@ -211,5 +211,11 @@ static NSString * XLMineListCellID      = @"kXLMineListCell";
     return _listArr;
 }
 
+- (NSString *)getVersion {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *localAppVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    return localAppVersion;
+}
 
 @end

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isRecharge;
 
 @property (nonatomic, copy) NSString *aid;
+@property (nonatomic, assign) BOOL isPDCoin;
 
 @end
 

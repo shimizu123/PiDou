@@ -26,6 +26,12 @@
     [self.view addSubview:self.webView];
 }
 
+- (void)setIsPDCoin:(BOOL)isPDCoin {
+    _isPDCoin = isPDCoin;
+    if (_isPDCoin) {
+        _string = @"http://www.pidoutv.com/dark_convention/Strategy.html";
+    }
+}
 
 - (void)setIsRecharge:(BOOL)isRecharge {
     _isRecharge = isRecharge;

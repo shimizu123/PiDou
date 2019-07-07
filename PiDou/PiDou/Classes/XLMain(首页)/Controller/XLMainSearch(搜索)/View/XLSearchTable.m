@@ -324,6 +324,13 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
             
             XLMainDetailController *mainDetailVC = [[XLMainDetailController alloc] init];
             XLTieziModel *tieziModel = self.data[indexPath.row];
+            if (XLTypeVideo(tieziModel.category)) {
+                mainDetailVC.mainType = XLMainType_video;
+            } else if (XLTypePicture(tieziModel.category)) {
+                mainDetailVC.mainType = XLMainType_picture;
+            } else {
+                mainDetailVC.mainType = XLMainType_duanz;
+            }
             mainDetailVC.entity_id = tieziModel.entity_id;
             [self.tableView.navigationController pushViewController:mainDetailVC animated:YES];
         }
