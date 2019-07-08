@@ -405,6 +405,11 @@
 		54E03E2022647D3800C97981 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */; };
 		54E03E2122647D3800C97981 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0F22647D3800C97981 /* YYWebImageOperation.m */; };
 		640212B022C8473E00E3778F /* TCWebCodesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640212AF22C8473E00E3778F /* TCWebCodesSDK.framework */; };
+		64428EC322D2E79400CE31AF /* RandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC222D2E79400CE31AF /* RandomString.m */; };
+		64428ED322D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC722D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m */; };
+		64428ED422D36D2900CE31AF /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC922D36D2900CE31AF /* UITabBarItem+WZLBadge.m */; };
+		64428ED522D36D2900CE31AF /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ECC22D36D2900CE31AF /* CAAnimation+WAnimation.m */; };
+		64428ED622D36D2900CE31AF /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */; };
 		64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A77BB622C4DFC100FF715F /* PrivacyController.m */; };
 		64E3DD4022C9DF16003B90CC /* IPAddressConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E3DD3D22C9DF16003B90CC /* IPAddressConfig.m */; };
 		64E3DD4122C9DF16003B90CC /* IPToolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E3DD3F22C9DF16003B90CC /* IPToolManager.m */; };
@@ -1208,6 +1213,18 @@
 		54E03E0E22647D3800C97981 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		54E03E0F22647D3800C97981 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
 		640212AF22C8473E00E3778F /* TCWebCodesSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TCWebCodesSDK.framework; sourceTree = "<group>"; };
+		64428EC122D2E79400CE31AF /* RandomString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomString.h; sourceTree = "<group>"; };
+		64428EC222D2E79400CE31AF /* RandomString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomString.m; sourceTree = "<group>"; };
+		64428EC622D36D2900CE31AF /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
+		64428EC722D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WZLBadge.m"; sourceTree = "<group>"; };
+		64428EC822D36D2900CE31AF /* UITabBarItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WZLBadge.h"; sourceTree = "<group>"; };
+		64428EC922D36D2900CE31AF /* UITabBarItem+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+WZLBadge.m"; sourceTree = "<group>"; };
+		64428ECB22D36D2900CE31AF /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
+		64428ECC22D36D2900CE31AF /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
+		64428ECE22D36D2900CE31AF /* WZLBadgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeProtocol.h; sourceTree = "<group>"; };
+		64428ED022D36D2900CE31AF /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
+		64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
+		64428ED222D36D2900CE31AF /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
 		64A77BB522C4DFC100FF715F /* PrivacyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyController.h; sourceTree = "<group>"; };
 		64A77BB622C4DFC100FF715F /* PrivacyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyController.m; sourceTree = "<group>"; };
 		64E3DD3C22C9DF16003B90CC /* IPAddressConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPAddressConfig.h; sourceTree = "<group>"; };
@@ -2013,6 +2030,8 @@
 		5449BA922254F75100646FBD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				64428EC422D36D2900CE31AF /* WZLBadge */,
+				64428EC022D2E73900CE31AF /* RandomString */,
 				64E3DD3B22C9DF16003B90CC /* IP */,
 				0ACB2823228AB62500991ADB /* XLCircleView */,
 				54A4C252225A382E0020CD7D /* XLPhotoBrowser */,
@@ -3077,6 +3096,64 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		64428EC022D2E73900CE31AF /* RandomString */ = {
+			isa = PBXGroup;
+			children = (
+				64428EC122D2E79400CE31AF /* RandomString.h */,
+				64428EC222D2E79400CE31AF /* RandomString.m */,
+			);
+			path = RandomString;
+			sourceTree = "<group>";
+		};
+		64428EC422D36D2900CE31AF /* WZLBadge */ = {
+			isa = PBXGroup;
+			children = (
+				64428EC522D36D2900CE31AF /* BarItem */,
+				64428ECA22D36D2900CE31AF /* CategorySupport */,
+				64428ECD22D36D2900CE31AF /* Protocol */,
+				64428ECF22D36D2900CE31AF /* View */,
+				64428ED222D36D2900CE31AF /* WZLBadgeImport.h */,
+			);
+			path = WZLBadge;
+			sourceTree = "<group>";
+		};
+		64428EC522D36D2900CE31AF /* BarItem */ = {
+			isa = PBXGroup;
+			children = (
+				64428EC622D36D2900CE31AF /* UIBarButtonItem+WZLBadge.h */,
+				64428EC722D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m */,
+				64428EC822D36D2900CE31AF /* UITabBarItem+WZLBadge.h */,
+				64428EC922D36D2900CE31AF /* UITabBarItem+WZLBadge.m */,
+			);
+			path = BarItem;
+			sourceTree = "<group>";
+		};
+		64428ECA22D36D2900CE31AF /* CategorySupport */ = {
+			isa = PBXGroup;
+			children = (
+				64428ECB22D36D2900CE31AF /* CAAnimation+WAnimation.h */,
+				64428ECC22D36D2900CE31AF /* CAAnimation+WAnimation.m */,
+			);
+			path = CategorySupport;
+			sourceTree = "<group>";
+		};
+		64428ECD22D36D2900CE31AF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				64428ECE22D36D2900CE31AF /* WZLBadgeProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		64428ECF22D36D2900CE31AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64428ED022D36D2900CE31AF /* UIView+WZLBadge.h */,
+				64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		64E3DD3B22C9DF16003B90CC /* IP */ = {
 			isa = PBXGroup;
 			children = (
@@ -3407,6 +3484,7 @@
 				0A1164C1228029C000FF23D0 /* XLMineHandle.m in Sources */,
 				5449BA202254F71800646FBD /* ViewController.m in Sources */,
 				5449BB012254F75200646FBD /* NSMutableAttributedString+TGExtension.m in Sources */,
+				64428ED622D36D2900CE31AF /* UIView+WZLBadge.m in Sources */,
 				5449BB022254F75200646FBD /* UIButton+TG.m in Sources */,
 				5490C8AA226766F400EB9D5D /* XLPlayerProgress.m in Sources */,
 				0A14C8D92276E95000F53F10 /* XLSizeModel.m in Sources */,
@@ -3599,6 +3677,7 @@
 				5449BAFD2254F75200646FBD /* XLUserDefaults.m in Sources */,
 				54AADAB022740C9D00D41EC5 /* UIColor+PlatformIndependence.m in Sources */,
 				54E03D06225F767200C97981 /* XLWalletPriceCell.m in Sources */,
+				64428ED422D36D2900CE31AF /* UITabBarItem+WZLBadge.m in Sources */,
 				54E03E1E22647D3800C97981 /* MKAnnotationView+YYWebImage.m in Sources */,
 				54A4C27B225B93DC0020CD7D /* XLAddkeywordView.m in Sources */,
 				54A4C2392259D0940020CD7D /* XLAudioManager.m in Sources */,
@@ -3674,6 +3753,7 @@
 				54411799228075E000C955A6 /* XLQQModel.m in Sources */,
 				54E03DB922645B6300C97981 /* HXPhotoPreviewBottomView.m in Sources */,
 				5449BAEF2254F75200646FBD /* XLBaseTableView.m in Sources */,
+				64428ED322D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m in Sources */,
 				54A4C27E225B93F10020CD7D /* XLNewsEditTextField.m in Sources */,
 				54E03DE522645B6300C97981 /* HXDatePhotoToolManager.m in Sources */,
 				54E03DC422645B6300C97981 /* NSArray+HXExtension.m in Sources */,
@@ -3691,6 +3771,7 @@
 				0AB11F86228524D600A44FD5 /* XLAnnouncement.m in Sources */,
 				54AADA8D2274048800D41EC5 /* XLSmallDiamondView.m in Sources */,
 				5449BAF82254F75200646FBD /* XLAlertCollectionViewCell.m in Sources */,
+				64428ED522D36D2900CE31AF /* CAAnimation+WAnimation.m in Sources */,
 				54AADAF02278931600D41EC5 /* XLLabTagsView.m in Sources */,
 				54A4C2372259D0940020CD7D /* XLAudioContentView.m in Sources */,
 				0A1164EE22827F1E00FF23D0 /* XLShareManager.m in Sources */,
@@ -3712,6 +3793,7 @@
 				544382A4225CC42200EE908B /* XLUserNaviBar.m in Sources */,
 				5449BB112254F75200646FBD /* UIImage+TGExtension.m in Sources */,
 				54E03E1422647D3800C97981 /* YYMemoryCache.m in Sources */,
+				64428EC322D2E79400CE31AF /* RandomString.m in Sources */,
 				54E03E1C22647D3800C97981 /* UIButton+YYWebImage.m in Sources */,
 				54D693522258F133009D2C4D /* XLPictureCell.m in Sources */,
 				54E03E1622647D3800C97981 /* YYSpriteSheetImage.m in Sources */,

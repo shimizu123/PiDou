@@ -56,6 +56,14 @@ singleton_m(XLAFNetworking)
 - (void)post:(NSString *)url params:(NSDictionary *)params success:(XLSuccess)success failure:(XLError)failure {
     AFHTTPSessionManager * mgr = self.manager;
     
+    
+    NSString *pdversion = [RandomString getPdversion];
+    NSString *pdrandom = [RandomString getRandomString];
+    NSString *pdsign = [RandomString md5WithString:pdrandom];
+    
+    [mgr.requestSerializer setValue:pdversion forHTTPHeaderField:@"pdversion"];
+    [mgr.requestSerializer setValue:pdrandom forHTTPHeaderField:@"pdrandom"];
+    [mgr.requestSerializer setValue:pdsign forHTTPHeaderField:@"pdsign"];
     //从静态库获取协议进行请求接口拼接
     
     //设置网路请求的超时时间
@@ -102,6 +110,14 @@ singleton_m(XLAFNetworking)
 #pragma mark - GET
 - (void)get:(NSString *)url params:(NSDictionary *)params success:(XLSuccess)success failure:(XLError)failure {
     AFHTTPSessionManager *mgr = self.manager;
+    
+    NSString *pdversion = [RandomString getPdversion];
+    NSString *pdrandom = [RandomString getRandomString];
+    NSString *pdsign = [RandomString md5WithString:pdrandom];
+    
+    [mgr.requestSerializer setValue:pdversion forHTTPHeaderField:@"pdversion"];
+    [mgr.requestSerializer setValue:pdrandom forHTTPHeaderField:@"pdrandom"];
+    [mgr.requestSerializer setValue:pdsign forHTTPHeaderField:@"pdsign"];
     
     //设置网路请求的超时时间
 //    AFHTTPRequestSerializer * requestSerializer = [AFHTTPRequestSerializer serializer];

@@ -178,6 +178,29 @@ static NSString * XLMineListCellID      = @"kXLMineListCell";
         case 2:
         {
             // 版本更新
+            NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,Url_Entity];
+            [XLAFNetworking post:url params:nil success:^(id  _Nonnull responseObject) {
+                NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
+                NSString *msg = [responseObject valueForKey:@"msg"];
+               
+                if (code == 440) {
+                    msg = @"有新版本可更新";
+                } else {
+                    msg = @"已是最新版本";
+                }
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                UIAlertAction *sure = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSURL *url = [NSURL URLWithString:@"http://www.pidoutv.com"];
+                    [[UIApplication sharedApplication] openURL:url];
+                }];
+                [alertController addAction:cancel];
+                [alertController addAction:sure];
+                
+                [self presentViewController:alertController animated:true completion:nil];
+            } failure:^(NSError * _Nonnull error) {
+                
+            }];
         }
             break;
             
@@ -212,8 +235,10 @@ static NSString * XLMineListCellID      = @"kXLMineListCell";
 }
 
 - (NSString *)getVersion {
+    //编译版本号 CFBundleVersion
+    //更新版本号 CFBundleShortVersionString
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *localAppVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *localAppVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     
     return localAppVersion;
 }

@@ -25,6 +25,7 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 - (void)setData:(NSMutableArray *)data {
     _data = data;
     [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"badge" object:_data];
 }
 
 - (XLBaseTableView *)tableView {

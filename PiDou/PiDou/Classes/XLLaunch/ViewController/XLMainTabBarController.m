@@ -15,6 +15,7 @@
 #import "XLMineController.h"
 #import "UIImage+TGExtension.h"
 #import "XLLaunchManager.h"
+#import "WZLBadgeImport.h"
 
 @interface XLMainTabBarController () <UITabBarControllerDelegate>
 
@@ -25,12 +26,26 @@
 
 @implementation XLMainTabBarController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.delegate = self;
     
     [self initControllers];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveData:) name:@"badge" object:nil];
+}
+
+- (void)receiveData:(NSNotification *)notification {
+    NSMutableArray *data = notification.object;
+    UITabBarItem *msgItem = self.tabBar.items[3];
+    //it is necessary to adjust badge position
+    msgItem.badgeCenterOffset = CGPointMake(0, 0);
+    [msgItem showBadgeWithStyle:WBadgeStyleNumber value:data.count animationType:WBadgeAnimTypeNone];
 }
 
 
