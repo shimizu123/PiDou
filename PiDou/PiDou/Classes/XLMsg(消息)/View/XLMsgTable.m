@@ -13,10 +13,12 @@
 #import "XLCommentModel.h"
 #import "XLTieziModel.h"
 #import "XLUserDetailController.h"
+#import "WZLBadgeImport.h"
 
 static NSString * XLMsgCellID = @"kXLMsgCellID";
 
 @interface XLMsgTable () <UITableViewDataSource, UITableViewDelegate>
+
 
 @end
 
@@ -25,7 +27,14 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 - (void)setData:(NSMutableArray *)data {
     _data = data;
     [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"badge" object:_data];
+    self.badgeCount = _data.count;
+}
+
+- (void)setBadgeCount:(NSInteger)badgeCount {
+    _badgeCount = badgeCount;
+    [[NSUserDefaults standardUserDefaults] setInteger:_badgeCount forKey:@"badgeCount"];
+    NSNumber *count = [NSNumber numberWithInteger:_badgeCount];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"badge" object:count];
 }
 
 - (XLBaseTableView *)tableView {
@@ -68,7 +77,6 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 //    } else {
 //        msgCell.infoType = arc4random() % 4;
 //    }
-//
     if (!XLArrayIsEmpty(self.data)) {
         msgCell.msgModel = self.data[row];
     }
@@ -131,6 +139,10 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    XLMsgCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.redHot.hidden = YES;
+    self.badgeCount--;
+    
     XLMsgModel *message = self.data[indexPath.row];
     switch ([message.type integerValue]) {
         case 1:
@@ -190,7 +202,6 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
             // 打赏
         }
             break;
-            
         default:
             break;
     }

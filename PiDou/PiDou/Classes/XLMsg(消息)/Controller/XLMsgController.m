@@ -35,6 +35,7 @@
     [self initNaviItem];
     [self initUI];
     
+    [self didLoadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,7 +47,7 @@
         }];
         return;
     }
-    [self didLoadData];
+    
 }
 
 - (void)didLoadData {

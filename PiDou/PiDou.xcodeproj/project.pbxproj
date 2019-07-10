@@ -404,13 +404,15 @@
 		54E03E1F22647D3800C97981 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0C22647D3800C97981 /* UIImage+YYWebImage.m */; };
 		54E03E2022647D3800C97981 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */; };
 		54E03E2122647D3800C97981 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0F22647D3800C97981 /* YYWebImageOperation.m */; };
-		640212B022C8473E00E3778F /* TCWebCodesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640212AF22C8473E00E3778F /* TCWebCodesSDK.framework */; };
 		64428EC322D2E79400CE31AF /* RandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC222D2E79400CE31AF /* RandomString.m */; };
 		64428ED322D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC722D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m */; };
 		64428ED422D36D2900CE31AF /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC922D36D2900CE31AF /* UITabBarItem+WZLBadge.m */; };
 		64428ED522D36D2900CE31AF /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ECC22D36D2900CE31AF /* CAAnimation+WAnimation.m */; };
 		64428ED622D36D2900CE31AF /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */; };
 		64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A77BB622C4DFC100FF715F /* PrivacyController.m */; };
+		64D0E70A22D4B8550055BBB1 /* DXRiskStatic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */; };
+		64D0E70C22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D0E70B22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework */; };
+		64D0E70E22D4D3930055BBB1 /* DingxiangCaptcha.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64D0E70D22D4D3930055BBB1 /* DingxiangCaptcha.bundle */; };
 		64E3DD4022C9DF16003B90CC /* IPAddressConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E3DD3D22C9DF16003B90CC /* IPAddressConfig.m */; };
 		64E3DD4122C9DF16003B90CC /* IPToolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E3DD3F22C9DF16003B90CC /* IPToolManager.m */; };
 		64F4F75122BA184A00E75965 /* UIImage+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F4F75022BA184A00E75965 /* UIImage+QRCode.m */; };
@@ -1212,7 +1214,6 @@
 		54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		54E03E0E22647D3800C97981 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		54E03E0F22647D3800C97981 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
-		640212AF22C8473E00E3778F /* TCWebCodesSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TCWebCodesSDK.framework; sourceTree = "<group>"; };
 		64428EC122D2E79400CE31AF /* RandomString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomString.h; sourceTree = "<group>"; };
 		64428EC222D2E79400CE31AF /* RandomString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomString.m; sourceTree = "<group>"; };
 		64428EC622D36D2900CE31AF /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
@@ -1227,6 +1228,9 @@
 		64428ED222D36D2900CE31AF /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
 		64A77BB522C4DFC100FF715F /* PrivacyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyController.h; sourceTree = "<group>"; };
 		64A77BB622C4DFC100FF715F /* PrivacyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyController.m; sourceTree = "<group>"; };
+		64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DXRiskStatic.framework; sourceTree = "<group>"; };
+		64D0E70B22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DingxiangCaptchaSDKStatic.framework; sourceTree = "<group>"; };
+		64D0E70D22D4D3930055BBB1 /* DingxiangCaptcha.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DingxiangCaptcha.bundle; sourceTree = "<group>"; };
 		64E3DD3C22C9DF16003B90CC /* IPAddressConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPAddressConfig.h; sourceTree = "<group>"; };
 		64E3DD3D22C9DF16003B90CC /* IPAddressConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPAddressConfig.m; sourceTree = "<group>"; };
 		64E3DD3E22C9DF16003B90CC /* IPToolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPToolManager.h; sourceTree = "<group>"; };
@@ -1253,14 +1257,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				54AADAD42274B37D00D41EC5 /* CoreGraphics.framework in Frameworks */,
+				64D0E70C22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework in Frameworks */,
 				54AADAD22274B37600D41EC5 /* CFNetwork.framework in Frameworks */,
 				54AADAD02274B37000D41EC5 /* CoreTelephony.framework in Frameworks */,
 				54AADACE2274B36A00D41EC5 /* Security.framework in Frameworks */,
 				54AADACC2274B36200D41EC5 /* libz.tbd in Frameworks */,
 				54AADACA2274B35A00D41EC5 /* libc++.tbd in Frameworks */,
 				54AADAC82274B34900D41EC5 /* libsqlite3.0.tbd in Frameworks */,
+				64D0E70A22D4B8550055BBB1 /* DXRiskStatic.framework in Frameworks */,
 				54AADAC62274B2DB00D41EC5 /* SystemConfiguration.framework in Frameworks */,
-				640212B022C8473E00E3778F /* TCWebCodesSDK.framework in Frameworks */,
 				0AE66E3A2282BEF800942938 /* TencentOpenAPI.framework in Frameworks */,
 				54AADAC32274B02800D41EC5 /* libWeChatSDK.a in Frameworks */,
 				7AB4503747CCE9654B6F778E /* libPods-PiDou.a in Frameworks */,
@@ -3168,7 +3173,9 @@
 		6EE11AEFFA2C34F8DAB7DB58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				640212AF22C8473E00E3778F /* TCWebCodesSDK.framework */,
+				64D0E70D22D4D3930055BBB1 /* DingxiangCaptcha.bundle */,
+				64D0E70B22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework */,
+				64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */,
 				54AADAD32274B37C00D41EC5 /* CoreGraphics.framework */,
 				54AADAD12274B37600D41EC5 /* CFNetwork.framework */,
 				54AADACF2274B36F00D41EC5 /* CoreTelephony.framework */,
@@ -3326,6 +3333,7 @@
 				54E03DE222645B6300C97981 /* HXPhotoPicker.bundle in Resources */,
 				0A94E2A92293C891006627D1 /* launch3_1242X2688.png in Resources */,
 				0A94E2902293A349006627D1 /* launch4_1242X2208.png in Resources */,
+				64D0E70E22D4D3930055BBB1 /* DingxiangCaptcha.bundle in Resources */,
 				0A94E2802293A349006627D1 /* launch4_750X1334.png in Resources */,
 				0A94E2922293A349006627D1 /* launch2_1242X2208.png in Resources */,
 				0A94E28F2293A349006627D1 /* launch3_1242X2208.png in Resources */,

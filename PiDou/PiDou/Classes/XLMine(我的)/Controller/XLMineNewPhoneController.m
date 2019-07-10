@@ -10,14 +10,18 @@
 #import "XLPwdView.h"
 #import "CALayer+XLExtension.h"
 #import "XLUserLoginHandle.h"
+#import <DingxiangCaptchaSDKStatic/DXCaptchaView.h>
+#import <DingxiangCaptchaSDKStatic/DXCaptchaDelegate.h>
 
 #define LOGIN_BUTTON_HEIGHT 44 * kWidthRatio6s
 
-@interface XLMineNewPhoneController ()  <XLPwdViewDelegate>
+@interface XLMineNewPhoneController ()  <XLPwdViewDelegate, DXCaptchaDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) XLPwdView *pwdView;
 @property (nonatomic, strong) UIButton *loginButton;
+
+@property (nonatomic, copy) NSString *Phone;
 
 @end
 
@@ -109,30 +113,50 @@
 
 - (void)hideKeyBoard {
     [self.view endEditing:YES];
+    [[self.view viewWithTag:1234] removeFromSuperview];
 }
 
 #pragma mark - XLPwdViewDelegate
 - (void)getCodeWithPwdView:(XLPwdView *)pwdView {
     [self.view endEditing:YES];
     
-    NSString *newPhone = self.pwdView.username;
-    if (XLStringIsEmpty(newPhone)) {
+    _Phone = self.pwdView.username;
+    if (XLStringIsEmpty(_Phone)) {
         [HUDController hideHUDWithText:@"请输入新的手机号码"];
         return;
     }
     
-
-    [HUDController xl_showHUD];
-    [XLUserLoginHandle userCodeWithPhoneNum:newPhone success:^(NSString *msg) {
-        [HUDController hideHUDWithText:msg];
-        [pwdView getCodeSuccess];
-    } failure:^(id  _Nonnull result) {
-        [HUDController xl_hideHUDWithResult:result];
-    }];
-    
-    
+    NSMutableDictionary *config = [NSMutableDictionary dictionary];
+    // 以下是私有化配置参数 6c3c4dad1338886f994497c8f7a05eaf
+    [config setObject:@"6c3c4dad1338886f994497c8f7a05eaf" forKey:@"appId"];
+    CGRect frame = CGRectMake(self.view.center.x - 150, self.view.center.y - 250, 300, 200);
+    DXCaptchaView *captchaView = [[DXCaptchaView alloc] initWithConfig:config delegate:self frame:frame];
+    captchaView.tag = 1234;
+    [self.view addSubview:captchaView];
 }
 
+//无感验证代理方法
+- (void) captchaView:(DXCaptchaView *)view didReceiveEvent:(DXCaptchaEventType)eventType arg:(NSDictionary *)dict {
+    switch(eventType) {
+        case DXCaptchaEventSuccess: {
+            NSString *token = dict[@"token"];;
+            kDefineWeakSelf;
+            [XLUserLoginHandle userCodeWithPhoneNum:_Phone token:token success:^(NSString *msg) {
+                [[self.view viewWithTag:1234] removeFromSuperview];
+                [HUDController hideHUDWithText:msg];
+                [WeakSelf.pwdView getCodeSuccess];
+            } failure:^(id  _Nonnull result) {
+                [HUDController xl_hideHUDWithResult:result];
+            }];
+            break;
+        }
+        case DXCaptchaEventFail:
+            //            [[[UIAlertView alloc] initWithTitle:@"验证失败" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            break;
+        default:
+            break;
+    }
+}
 
 
 @end

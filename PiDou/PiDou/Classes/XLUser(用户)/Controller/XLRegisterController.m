@@ -14,18 +14,21 @@
 #import "WXApiRequestHandler.h"
 #import "WXApiManager.h"
 #import "XLWechatHandle.h"
-#import <TCWebCodesSDK/TCWebCodesBridge.h>
 #import "IPToolManager.h"
+#import <DingxiangCaptchaSDKStatic/DXCaptchaView.h>
+#import <DingxiangCaptchaSDKStatic/DXCaptchaDelegate.h>
 
 #define LOGIN_BUTTON_HEIGHT 44 * kWidthRatio6s
 
-@interface XLRegisterController () <XLRegisterViewDelegate, WXApiManagerDelegate>
+@interface XLRegisterController () <XLRegisterViewDelegate, WXApiManagerDelegate, DXCaptchaDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) XLRegisterView *registerView;
 @property (nonatomic, strong) UIButton *loginButton;
 
 @property (nonatomic, strong) XLAppUserModel *user;
+
+@property (nonatomic, copy) NSString *phoneNum;
 
 @end
 
@@ -135,14 +138,15 @@
 
 - (void)hideKeyBoard {
     [self.view endEditing:YES];
+    [[self.view viewWithTag:1234] removeFromSuperview];
 }
 
 #pragma mark - XLRegisterViewDelegate
 #pragma mark - 获取验证码
 - (void)getCodeWithRegisterView:(XLRegisterView *)registerView {
     [self.view endEditing:YES];
-    NSString *phonenum = self.registerView.username;
-    if (XLStringIsEmpty(phonenum)) {
+    _phoneNum = self.registerView.username;
+    if (XLStringIsEmpty(_phoneNum)) {
         [HUDController hideHUDWithText:@"请输入手机号码"];
         return;
     }
@@ -155,63 +159,37 @@
 //        [HUDController xl_hideHUDWithResult:result];
 //    }];
     
-    [[TCWebCodesBridge sharedBridge] setCapOptions:@{@"sdkClose": @YES}];
-    
-    // 加载腾讯验证码
-    [[TCWebCodesBridge sharedBridge] loadTencentCaptcha:self.view appid:@"2060654039" callback:^(NSDictionary *resultJSON) { // appid在验证码接入平台注册申请，此处的1234为测试用appid
-        [self showResultJson:resultJSON phone:phonenum];
-    }];
-    
+    NSMutableDictionary *config = [NSMutableDictionary dictionary];
+    // 以下是私有化配置参数 6c3c4dad1338886f994497c8f7a05eaf
+    [config setObject:@"6c3c4dad1338886f994497c8f7a05eaf" forKey:@"appId"];
+    CGRect frame = CGRectMake(self.view.center.x - 150, self.view.center.y - 250, 300, 200);
+    DXCaptchaView *captchaView = [[DXCaptchaView alloc] initWithConfig:config delegate:self frame:frame];
+    captchaView.tag = 1234;
+    [self.view addSubview:captchaView];
 }
 
-- (void)showResultJson:(NSDictionary*)resultJSON phone:(NSString *)phone {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        if (0 == [resultJSON[@"ret"] intValue]) {
-            
-            //  NSString *appid =  resultJSON[@"appid"];//为回传的业务appid
-            NSString *ticket = resultJSON[@"ticket"];//为验证码票据
-            NSString *randstr =  resultJSON[@"randstr"];//为随机串
-            
-            //此方法获取具体的ip地址
-            IPToolManager *ipManager = [IPToolManager sharedManager];
-            NSString *ip = [ipManager currentIPAdressDetailInfo];
-            
-            NSMutableDictionary *params = [NSMutableDictionary dictionary];
-            params[@"ip"] = ip;
-            params[@"ticket"] = ticket;
-            params[@"randstr"] = randstr;
-            
-            
-            NSString *url = @"http://pdtv.vip/api/v1.0/tiket";
-            
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
-            [manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                NSLog(@"成功进入后台接口 %@", responseObject);
-                kDefineWeakSelf;
-              //  [HUDController xl_showHUD];
-                [XLUserLoginHandle userCodeWithPhoneNum:phone success:^(NSString *msg) {
-                   // [HUDController hideHUDWithText:msg];
-                    [WeakSelf.registerView getCodeSuccess];
-                } failure:^(id  _Nonnull result) {
-                    [HUDController xl_hideHUDWithResult:result];
-                }];
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"请求后台接口失败 %@", error);
+//无感验证代理方法
+- (void) captchaView:(DXCaptchaView *)view didReceiveEvent:(DXCaptchaEventType)eventType arg:(NSDictionary *)dict {
+    switch(eventType) {
+        case DXCaptchaEventSuccess: {
+            NSString *token = dict[@"token"];;
+            kDefineWeakSelf;
+            [XLUserLoginHandle userCodeWithPhoneNum:_phoneNum token:token success:^(NSString *msg) {
+                [[self.view viewWithTag:1234] removeFromSuperview];
+                [HUDController hideHUDWithText:msg];
+                [WeakSelf.registerView getCodeSuccess];
+            } failure:^(id  _Nonnull result) {
+                [HUDController xl_hideHUDWithResult:result];
             }];
-            
-            
-        } else {
-            [[[UIAlertView alloc] initWithTitle:@"验证失败" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            
+            break;
         }
-    });
+        case DXCaptchaEventFail:
+//            [[[UIAlertView alloc] initWithTitle:@"验证失败" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            break;
+        default:
+            break;
+    }
 }
-
-
 
 #pragma mark - 微信登录
 - (void)sendAuthRequest {

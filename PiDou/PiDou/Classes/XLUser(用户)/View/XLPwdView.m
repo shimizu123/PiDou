@@ -10,9 +10,7 @@
 #import "NSMutableAttributedString+TGExtension.h"
 #import "XLVerityBtn.h"
 
-@interface XLPwdView ()
-
-<UITextFieldDelegate>
+@interface XLPwdView () <UITextFieldDelegate>
 
 /**账号*/
 @property (nonatomic, strong) UITextField *accountTF;
@@ -49,7 +47,7 @@
     self.accountTF.keyboardType = UIKeyboardTypePhonePad;
     [self addSubview:self.accountTF];
     self.accountTF.delegate = self;
-    
+    self.accountTF.tag = 1103;
     
     self.accountLineV = [[UIView alloc] init];
     self.accountLineV.backgroundColor = XL_COLOR_LINE;
@@ -135,6 +133,35 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.tag == 1103) {
+        NSInteger strLength = textField.text.length - range.length + string.length;
+        if (strLength > 11){
+            return NO;
+        }
+        if (strLength < 11) {
+            self.codeButton.enabled = NO;
+        } else {
+            self.codeButton.enabled = YES;
+        }
+        
+        BOOL res = YES;
+        NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        int i = 0;
+        while (i < string.length) {
+            NSString * str= [string substringWithRange:NSMakeRange(i, 1)];
+            NSRange range = [str rangeOfCharacterFromSet:tmpSet];
+            if (range.length == 0) {
+                res = NO;
+                break;
+            }
+            i++;
+        }
+        return res;
+    }
+    return YES;
 }
 
 #pragma mark - getter

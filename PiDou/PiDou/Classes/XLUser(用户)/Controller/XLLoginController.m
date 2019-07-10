@@ -240,9 +240,9 @@
 #pragma mark - 点击注册
 - (void)registerAction {
     XLLog(@"点击注册");
-//    XLRegisterController *registerVC = [[XLRegisterController alloc] init];
-//    [self.navigationController pushViewController:registerVC animated:YES];
-    [self sendAuthRequest];
+    XLRegisterController *registerVC = [[XLRegisterController alloc] init];
+    [self.navigationController pushViewController:registerVC animated:YES];
+   // [self sendAuthRequest];
 }
 
 - (void)onWechat:(UIButton *)button {

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) XLBaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *data;
 
+@property (nonatomic, assign) NSInteger badgeCount;
 @end
 
 NS_ASSUME_NONNULL_END

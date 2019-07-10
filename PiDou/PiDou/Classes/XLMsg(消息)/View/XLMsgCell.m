@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UILabel *rightTitleL;
 @property (nonatomic, strong) XLFocusButton *focusButton;
 
+
 @end
 
 @implementation XLMsgCell
@@ -48,6 +49,11 @@
     [self.contentView addSubview:self.iconImgV];
     self.iconImgV.backgroundColor = XL_COLOR_BG;
     XLViewRadius(self.iconImgV, 22 * kWidthRatio6s);
+    
+    self.redHot = [[UILabel alloc] init];
+    [self.contentView addSubview:self.redHot];
+    self.redHot.backgroundColor = UIColor.redColor;
+    XLViewRadius(self.redHot, 5);
     
     self.nameL = [[UILabel alloc] init];
     [self.contentView addSubview:self.nameL];
@@ -107,6 +113,11 @@
         make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
         make.top.equalTo(self.contentView).mas_offset(12 * kWidthRatio6s);
         make.width.height.mas_offset(44 * kWidthRatio6s);
+    }];
+    
+    [self.redHot mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.equalTo(self.iconImgV);
+        make.width.height.mas_offset(10);
     }];
     
     [self.nameL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -406,6 +417,13 @@
         default:
             break;
     }
+}
+
+- (BOOL)unread {
+    if (!_unread) {
+        _unread = YES;
+    }
+    return _unread;
 }
 
 @end

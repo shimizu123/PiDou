@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8" />
+        <style>
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928 {
+            box-sizing: content-box;
+            font-size: 12px;
+            color: #000;
+            line-height: 20px;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928_wrapper {
+            font-size: 12px;
+            line-height: 20px;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            background: #fff;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928-style-embed .dx_captcha_ss_170928_state-box {
+            height: 198px;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 4px;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928_state-box {
+            position: relative;
+            height: 38px;
+            line-height: 38px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #E9E9E9;
+            font-size: 12px;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928-style-embed .dx_captcha_ss_170928_state-box .dx_captcha_ss_170928_state-box-img {
+            display: block;
+            margin: 72px auto 0;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928_state-box .dx_captcha_ss_170928_state-box-img {
+            width: 24px;
+            height: 24px;
+            margin: 0 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        @keyframes dx-captcha-basic-init-loading {
+            0%,
+            100% {
+                background: #4852c6;
+                width: 2px;
+                height: 2px
+            }
+            5% {
+                background: #4852c6;
+                width: 5px;
+                height: 5px
+            }
+            40% {
+                background: #e6e8f7;
+                width: 5px;
+                height: 5px
+            }
+            41% {
+                background: #e6e8f7;
+                width: 8px;
+                height: 8px
+            }
+            99% {
+                background: #4852c6;
+                width: 8px;
+                height: 8px
+            }
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928_smart_checking .dx_captcha_ss_170928_state-box-img:before {
+            content: "";
+            display: block;
+            position: absolute;
+            margin: 12px 0 0 12px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            animation: dx-captcha-basic-init-loading 3s infinite;
+            -moz-animation: dx-captcha-basic-init-loading 3s infinite;
+            -webkit-animation: dx-captcha-basic-init-loading 3s infinite;
+            -o-animation: dx-captcha-basic-init-loading 3s infinite;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928_state-box .dx_captcha_ss_170928_state-box-img img {
+            display: block;
+            width: 24px;
+            height: 24px;
+        }
+        
+        .dx_captcha_snapshot_170928 .dx_captcha_ss_170928-style-embed .dx_captcha_ss_170928_state-box span {
+            display: block;
+            padding-top: 6px;
+        }
+        </style>
+        <script type="text/javascript" charset="utf-8" src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js"></script>
+<!--        <script type="text/javascript" src="http://115.28.242.128:3000/index_3.js"></script>-->
+    </head>
+    
+    <body>
+        <div id="loading_container" class="dx_captcha_snapshot_170928" style="display: block; width: 300px;">
+            <div id="loading" class="dx_captcha dx_captcha_ss_170928 dx_captcha_ss_170928-style-embed">
+                <div class="dx_captcha_ss_170928_wrapper dx_captcha_ss_170928_smart_checking">
+                    <div class="dx_captcha_ss_170928_state-box">
+                        <div class="dx_captcha_ss_170928_state-box-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAABBVBMVEUAAABVccZLX8RNXcRLXcRMXcVMXcVMXMVLadJNXcVMXcVMXcVLXMRNZsxMXcVMXcVVqv9LXcZLXMRMXsZLXcVMXMVLXcVMXMVOXsZPXcdMXcVMXcRRXslOXsVLXcRMXMRMXcVVgNVLXcVOYsRLXMVNXsZMXMVOXcdLXMVNXsdMXcRSZMhLXMVLXcVLXcVRXcdMXsVLX8hNXsZMYMiAgP9LXMRLXcVNXsZNZsxRXslLXcRMXcZPYcpMXMZMXsRLXMRMXcWAgP9NXcVLXcZNXsxMXcVNXcZtbdtMXsZLXsZLXsRMXMROXMZNYcdNXsRNXsVLXcRLXsVLXMVVY8ZMXcRLXcRSZsx9ZaoWAAAAV3RSTlMACU6Pt9vs+RFgr/X/CnzyA2bmG8vKkmExN+SHJlz383YGqhr+ePZS40mGHKbt+imAM0wlBN1YZxQT6pcdbHX7xgJuRx61YwdvYovrSDJklvSIwRLUuhldI39aAAAB2klEQVR4AZTUVZrbMBSG4T9MX0gTZuaUmdv9L6rWQOTQY/m9Fh7SlUQylc5kc7lsJp1KJhQhXyiWCCkVC3ndV65UuVKtlHVbrW64ydRruuGhwZNmq90B6LRbTZ40HnSla7B6/YECAAoM+j0s09WF4QhgPJlKboM1nYwBRsOL9VizuXS5QZrPsM52dEfAYildb7CWC2DUDf3XAKu17m3QegWY089rDWCxVsgGNgrvWACNmp7UAZYK2242W4UtAeqyVDbATBFmgCnLqgDjuSLMx0BFgXwVmCjSBKjmJRWA3lSRpj2gIKkI7OShDxSlRAkYyMMAKCWUBJry0gSSSgEteWkBKaWBti7sD8Yc9rrQBtLKAJ3L9UeA4+WODpBRlheuGA5YHFyh8CKrHG6HnhmwjCvFk1z8DfGe9Grn+2nHL6yOS5wnVxq+/ItPr9+8VaAI9OXhXY7q+xgN9OEj8ClGi34GRl/8h8DXb8D3GGPmAKx++A+ynwC//Edl8jfw56/3MB7+BqoD73H/bwH8n70zsRWKiytY0o3IKsvdA1xl2XviqhS1UCtFL2+wsLwPEdWur5+/iApEyMGYpIpdXsGRlKZDQKAFCY0TlSDzYFQVOJs/ckIhoVrqYRjSAIrmQGZqCbNAAAAAAElFTkSuQmCC" alt=""></div>
+                        <span class="dx_captcha_ss_170928_lang dx_captcha_ss_170928_lang_smart_checking" id="loading_text">智能检测中</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- end: loading div -->
+        <!-- start: loading-fail div -->
+        <div id="failed_container" class="dx_captcha_snapshot_170928" style="display: none;">
+            <div id="failed" class="dx_captcha dx_captcha_ss_170928 dx_captcha_ss_170928-style-embed">
+                <div class="dx_captcha_ss_170928_wrapper">
+                    <div class="dx_captcha_ss_170928_state-box" style="background: #fee">
+                        <div class="dx_captcha_ss_170928_state-box-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAABBVBMVEUAAABVccZLX8RNXcRLXcRMXcVMXcVMXMVLadJNXcVMXcVMXcVLXMRNZsxMXcVMXcVVqv9LXcZLXMRMXsZLXcVMXMVLXcVMXMVOXsZPXcdMXcVMXcRRXslOXsVLXcRMXMRMXcVVgNVLXcVOYsRLXMVNXsZMXMVOXcdLXMVNXsdMXcRSZMhLXMVLXcVLXcVRXcdMXsVLX8hNXsZMYMiAgP9LXMRLXcVNXsZNZsxRXslLXcRMXcZPYcpMXMZMXsRLXMRMXcWAgP9NXcVLXcZNXsxMXcVNXcZtbdtMXsZLXsZLXsRMXMROXMZNYcdNXsRNXsVLXcRLXsVLXMVVY8ZMXcRLXcRSZsx9ZaoWAAAAV3RSTlMACU6Pt9vs+RFgr/X/CnzyA2bmG8vKkmExN+SHJlz383YGqhr+ePZS40mGHKbt+imAM0wlBN1YZxQT6pcdbHX7xgJuRx61YwdvYovrSDJklvSIwRLUuhldI39aAAAB2klEQVR4AZTUVZrbMBSG4T9MX0gTZuaUmdv9L6rWQOTQY/m9Fh7SlUQylc5kc7lsJp1KJhQhXyiWCCkVC3ndV65UuVKtlHVbrW64ydRruuGhwZNmq90B6LRbTZ40HnSla7B6/YECAAoM+j0s09WF4QhgPJlKboM1nYwBRsOL9VizuXS5QZrPsM52dEfAYildb7CWC2DUDf3XAKu17m3QegWY089rDWCxVsgGNgrvWACNmp7UAZYK2242W4UtAeqyVDbATBFmgCnLqgDjuSLMx0BFgXwVmCjSBKjmJRWA3lSRpj2gIKkI7OShDxSlRAkYyMMAKCWUBJry0gSSSgEteWkBKaWBti7sD8Yc9rrQBtLKAJ3L9UeA4+WODpBRlheuGA5YHFyh8CKrHG6HnhmwjCvFk1z8DfGe9Grn+2nHL6yOS5wnVxq+/ItPr9+8VaAI9OXhXY7q+xgN9OEj8ClGi34GRl/8h8DXb8D3GGPmAKx++A+ynwC//Edl8jfw56/3MB7+BqoD73H/bwH8n70zsRWKiytY0o3IKsvdA1xl2XviqhS1UCtFL2+wsLwPEdWur5+/iApEyMGYpIpdXsGRlKZDQKAFCY0TlSDzYFQVOJs/ckIhoVrqYRjSAIrmQGZqCbNAAAAAAElFTkSuQmCC" alt=""></div>
+                        <span class="dx_captcha_ss_170928_lang dx_captcha_ss_170928_lang_smart_checking" id="failed_text">加载失败</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="dx-sdk-vcode"></div>
+        <script>
+                            //test
+       var loading = function(width, language) {
+           document.getElementById("loading").style.width = width + "px";
+           document.getElementById("loading_text").innerText = language == "en" ? "Checking" : "智能检测中";
+           document.getElementById("loading_container").style.display = "block";
+           document.getElementById("failed_container").style.display = "none";
+       }
+        var failed = function(width, language) {
+            document.getElementById("failed").style.width = width + "px";
+            document.getElementById("failed_text").innerText = language == "en" ? "Failed" : "加载失败";
+            document.getElementById("failed_container").style.display = "block";
+            document.getElementById("loading_container").style.display = "none";
+        }
+        var initDXCaptcha = function(config) {
+            config["success"] = function(token) {
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty("Success")) {
+                    window.webkit.messageHandlers["Success"].postMessage({ "token": token });
+                }
+            };
+            config["fail"] = function(error) {
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty("Fail")) {
+                    window.webkit.messageHandlers["Fail"].postMessage({ "error": error });
+                }
+            };
+            if(window.hasOwnProperty("_dx")) {
+                //console.log("----width----" + config["width"]);
+                window.dxVCode = _dx.Captcha(document.getElementById('dx-sdk-vcode'), config);
+                if (config["style"] === 'popup') {
+                    setTimeout(function () {dxVCode.show()}, 0);
+                }
+                //document.getElementById("dx_captcha_basic_link").addEventListener("click",clickLogo);
+                //document.getElementById("dx_captcha_basic_link_4").addEventListener("click",clickLogo);
+            } else {
+                failed(config.width, config.language);
+                var events = ["BeforeLoadFail", "LoadFail", "AfterLoadFail"];
+                for(var i in events) {
+                    var nativeEvent = events[i];
+                    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty(nativeEvent)) {
+                        window.webkit.messageHandlers[nativeEvent].postMessage(undefined);
+                    }
+                }
+            }
+        }
+        var registerEvents = function() {
+            var events = ['render', 'ready', 'loadFail', 'dragStart', 'dragging', 'dragEnd', 'verify', 'verifyDone', 'verifyFail',
+                          'verifySuccess', 'passByServer' ,'renderLoading' ,'loadTooMuch'
+                          ];
+                          for (var i in events) {
+                              ! function(event) {
+                                  var registerEvent = function(event) {
+                                      var nativeEvent = ("_" + event).replace(/_(\w)/g, function(all, letter) { return letter.toUpperCase(); });
+                                      if (event == "verifySuccess" || event == "passByServer") {
+                                          dxVCode.on(event, function(token) {
+                                                     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty(nativeEvent)) {
+                                                     window.webkit.messageHandlers[nativeEvent].postMessage({ "token": token });
+                                                     }
+                                                     });
+                                      }else if (event == "after_renderLoading"){
+                                          document.getElementById("loading_container").style.display = "none";
+                                          dxVCode.on(event, function() {
+                                                     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty(nativeEvent)) {
+                                                     window.webkit.messageHandlers[nativeEvent].postMessage(undefined);
+                                                     }
+                                                     });
+                                      } else {
+                                          dxVCode.on(event, function() {
+                                                     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty(nativeEvent)) {
+                                                     window.webkit.messageHandlers[nativeEvent].postMessage(undefined);
+                                                   }
+                                          });
+                                      }
+                                  };
+                                  registerEvent(event);
+                                  registerEvent("before_" + event);
+                                  registerEvent("after_" + event);
+                              }(events[i]);
+                          }
+                          //添加logo 点击事件回调 ,'tapLogo'
+                          dxVCode.on('tapLogo', function(linkJson) {
+                               if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.hasOwnProperty('TapLogo')) {
+                                     window.webkit.messageHandlers['TapLogo'].postMessage(linkJson.link);
+                               }
+                          });
+                          
+        };
+        var showDXCaptcha = function(config) {
+            initDXCaptcha(config);
+            registerEvents();
+        }
+        
+        var uploadToken = function(tokenValue) {
+            dxVCode._dispatch({token: tokenValue});
+           // clickLogo();
+        }
+        </script>
+    </body>
+    
+</html>

@@ -22,6 +22,8 @@
 /**记录之前点击的tabbaritem*/
 @property (nonatomic, assign) NSInteger preIndex;
 @property (nonatomic, strong) NSDate *lastSelectedDate;
+
+@property (nonatomic, assign) NSInteger badgeCount;
 @end
 
 @implementation XLMainTabBarController
@@ -37,15 +39,23 @@
     
     [self initControllers];
     
+    _badgeCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"badgeCount"];
+    if (!XLStringIsEmpty([XLUserHandle userid])) {
+        [self showBadge];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveData:) name:@"badge" object:nil];
 }
 
 - (void)receiveData:(NSNotification *)notification {
-    NSMutableArray *data = notification.object;
+    _badgeCount = [(NSNumber *)(notification.object) integerValue];
+    [self showBadge];
+}
+
+- (void)showBadge {
     UITabBarItem *msgItem = self.tabBar.items[3];
     //it is necessary to adjust badge position
     msgItem.badgeCenterOffset = CGPointMake(0, 0);
-    [msgItem showBadgeWithStyle:WBadgeStyleNumber value:data.count animationType:WBadgeAnimTypeNone];
+    [msgItem showBadgeWithStyle:WBadgeStyleNumber value:_badgeCount animationType:WBadgeAnimTypeNone];
 }
 
 

@@ -199,7 +199,7 @@
   
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField.tag == 1101) {
         NSInteger strLength = textField.text.length - range.length + string.length;
         if (strLength > 11){

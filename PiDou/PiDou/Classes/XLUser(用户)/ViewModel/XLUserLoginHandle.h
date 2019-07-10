@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param success 成功
  @param failure 失败
  */
-+ (void)userCodeWithPhoneNum:(NSString *)phoneNum success:(XLSuccess)success failure:(XLFailure)failure;
++ (void)userCodeWithPhoneNum:(NSString *)phoneNum token:(NSString *)token success:(XLSuccess)success failure:(XLFailure)failure;
 
 
 

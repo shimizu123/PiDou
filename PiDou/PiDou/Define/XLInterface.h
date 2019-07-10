@@ -30,7 +30,7 @@
 #define Url_Register        @"/register"
 #define Url_BindWechat      @"/bind_wechat"
 #define Url_Login           @"/login"
-#define Url_GetCode         @"/get_sms_code"
+#define Url_GetCode         @"/sms_code"
 #define Url_ChangePassword  @"/change_password"
 #define Url_CheckSmsCode    @"/check_sms_code"
 #define Url_ForgetPassword  @"/forget_password"

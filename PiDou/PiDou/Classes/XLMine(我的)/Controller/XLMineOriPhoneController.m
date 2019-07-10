@@ -12,10 +12,12 @@
 #import "NSMutableAttributedString+TGExtension.h"
 #import "XLMineNewPhoneController.h"
 #import "XLUserLoginHandle.h"
+#import <DingxiangCaptchaSDKStatic/DXCaptchaView.h>
+#import <DingxiangCaptchaSDKStatic/DXCaptchaDelegate.h>
 
 #define LOGIN_BUTTON_HEIGHT 44 * kWidthRatio6s
 
-@interface XLMineOriPhoneController ()
+@interface XLMineOriPhoneController () <DXCaptchaDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *phoneNumL;
@@ -126,19 +128,41 @@
 }
 
 - (void)getCode:(XLVerityBtn *)btn {
-    [HUDController xl_showHUD];
-    [XLUserLoginHandle userCodeWithPhoneNum:self.phoneNum success:^(NSString *msg) {
-        [HUDController hideHUDWithText:msg];
-        [btn getCode];
-    } failure:^(id  _Nonnull result) {
-        [HUDController xl_hideHUDWithResult:result];
-    }];
+    NSMutableDictionary *config = [NSMutableDictionary dictionary];
+    // 以下是私有化配置参数 6c3c4dad1338886f994497c8f7a05eaf
+    [config setObject:@"6c3c4dad1338886f994497c8f7a05eaf" forKey:@"appId"];
+    CGRect frame = CGRectMake(self.view.center.x - 150, self.view.center.y - 250, 300, 200);
+    DXCaptchaView *captchaView = [[DXCaptchaView alloc] initWithConfig:config delegate:self frame:frame];
+    captchaView.tag = 1234;
+    [self.view addSubview:captchaView];
+}
 
-    
+//无感验证代理方法
+- (void) captchaView:(DXCaptchaView *)view didReceiveEvent:(DXCaptchaEventType)eventType arg:(NSDictionary *)dict {
+    switch(eventType) {
+        case DXCaptchaEventSuccess: {
+            NSString *token = dict[@"token"];;
+            kDefineWeakSelf;
+            [XLUserLoginHandle userCodeWithPhoneNum:_phoneNum token:token success:^(NSString *msg) {
+                [[self.view viewWithTag:1234] removeFromSuperview];
+                [HUDController hideHUDWithText:msg];
+                [WeakSelf.codeButton getCode];
+            } failure:^(id  _Nonnull result) {
+                [HUDController xl_hideHUDWithResult:result];
+            }];
+            break;
+        }
+        case DXCaptchaEventFail:
+            //            [[[UIAlertView alloc] initWithTitle:@"验证失败" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)hideKeyBoard {
     [self.view endEditing:YES];
+    [[self.view viewWithTag:1234] removeFromSuperview];
 }
 
 - (void)nextAction:(UIButton *)button {

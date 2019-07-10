@@ -100,9 +100,10 @@
 
 
 #pragma mark - 获取验证码
-+ (void)userCodeWithPhoneNum:(NSString *)phoneNum success:(XLSuccess)success failure:(XLFailure)failure {
++ (void)userCodeWithPhoneNum:(NSString *)phoneNum token:(NSString *)token success:(XLSuccess)success failure:(XLFailure)failure {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"phone_number"] = phoneNum;
+    params[@"token"] = token;
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,Url_GetCode];
     [XLAFNetworking post:url params:params success:^(id  _Nonnull responseObject) {

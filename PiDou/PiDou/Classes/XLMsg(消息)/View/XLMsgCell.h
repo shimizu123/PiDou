@@ -35,7 +35,10 @@ typedef NS_ENUM(NSUInteger, XLMsgInfoType) {
 
 /**消息模型*/
 @property (nonatomic, strong) XLMsgModel *msgModel;
+//未读消息
+@property (nonatomic, assign) BOOL unread;
 
+@property (nonatomic, strong) UILabel *redHot;
 @end
 
 NS_ASSUME_NONNULL_END
