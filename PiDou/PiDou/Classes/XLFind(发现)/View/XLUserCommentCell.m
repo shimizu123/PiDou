@@ -92,7 +92,7 @@
     self.oriTitleL.backgroundColor = COLOR_A(0x000000, 0.4);
     self.oriTitleL.textAlignment = NSTextAlignmentCenter;
     XLViewRadius(self.oriTitleL, 4 * kWidthRatio6s);
-    self.oriTitleL.text = @"原贴";
+    self.oriTitleL.text = @"原帖";
     
     self.actionView = [[XLMainUserActionView alloc] init];
     [self.contentView addSubview:self.actionView];
@@ -260,6 +260,14 @@
 - (void)goTieziDetailTap:(UITapGestureRecognizer *)tap {
     XLMainDetailController *mainDetailVC = [[XLMainDetailController alloc] init];
     mainDetailVC.entity_id = self.commentModel.entity.entity_id;
+    NSString *category = [self.commentModel.entity valueForKey:@"category"];
+    if (XLTypeVideo(category)) {
+        mainDetailVC.mainType = XLMainType_video;
+    } else if (XLTypePicture(category)) {
+        mainDetailVC.mainType = XLMainType_picture;
+    } else {
+        mainDetailVC.mainType = XLMainType_duanz;
+    }
     [self.navigationController pushViewController:mainDetailVC animated:YES];
 }
 

@@ -42,6 +42,8 @@
 
 @property (nonatomic, strong) NSMutableArray *advs;
 
+@property (nonatomic, strong) UIButton *inquiry;
+
 @end
 
 @implementation XLPDCoinController
@@ -109,6 +111,15 @@
     [self.scrollView addSubview:self.diamondView];
     self.diamondView.delegate = self;
     
+    self.inquiry = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [self.scrollView addSubview:self.inquiry];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"PDCoin合约地址查询"];
+    [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, str.length)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, str.length)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.f * kWidthRatio6s] range:NSMakeRange(0, str.length)];
+    [self.inquiry setAttributedTitle:str forState:UIControlStateNormal];
+    [self.inquiry addTarget:self action:@selector(inquiryPDCoin) forControlEvents:UIControlEventTouchUpInside];
+    
     self.coinLookButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.scrollView addSubview:self.coinLookButton];
     [self.coinLookButton xl_setImageName:@"coin_look" target:self action:@selector(coinLookAction)];
@@ -150,7 +161,13 @@
     [self.diamondView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.gainCoinButton.mas_bottom).mas_offset(8 * kWidthRatio6s);
         make.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.coinLookButton.mas_top);
+        make.bottom.equalTo(self.coinLookButton.mas_top).mas_offset(-30 * kWidthRatio6s);
+    }];
+    
+    [self.inquiry mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.gainCoinButton);
+        make.bottom.equalTo(self.coinLookButton.mas_top).mas_offset(-25 * kWidthRatio6s);
+        make.height.mas_offset(20 * kWidthRatio6s);
     }];
     
     [self.coinLookButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -158,7 +175,7 @@
         make.left.equalTo(self.view).mas_offset(32 * kWidthRatio6s);
         make.right.equalTo(self.view).mas_offset(-32 * kWidthRatio6s);
         make.height.mas_offset(96 * kWidthRatio6s);
-        make.bottom.equalTo(self.bgImgV).mas_offset(-XL_HOME_INDICATOR_H - 48 * kWidthRatio6s);
+        make.bottom.equalTo(self.bgImgV).mas_offset(-XL_HOME_INDICATOR_H - 30 * kWidthRatio6s);
     }];
     
     [self.circleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -232,6 +249,12 @@
     }];
     
     
+}
+
+#pragma mark - PDCoin合约地址查询
+- (void)inquiryPDCoin {
+    NSURL *url = [NSURL URLWithString:@"https://etherscan.io/token/0x553b6a3d56940793e414d5a1bc2c0cf1d6ed925f"];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 #pragma mark - 点击获取更多PDCoin

@@ -61,7 +61,7 @@
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame: CGRectMake((SCREEN_WIDTH - 150) / 2, (SCREEN_HEIGHT - 150) / 2 + (90 * kWidthRatio6s), 150, 150)];
+        _imageView = [[UIImageView alloc] initWithFrame: CGRectMake((SCREEN_WIDTH - 114) / 2, (SCREEN_HEIGHT - 114) / 2 + (70 * kWidthRatio6s), 114, 114)];
         _imageView.image = [UIImage qrImgForString:self.pageUrl size:CGSizeMake(100, 100) waterImg:[UIImage imageNamed:@"main_collect_select"]];
     }
     return _imageView;

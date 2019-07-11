@@ -179,7 +179,8 @@
             kDefineWeakSelf;
             [HUDController xl_showHUD];
             [XLTieziHandle tieziDolikeWithEntityID:self.entity_id success:^(id  _Nonnull responseObject) {
-                [HUDController hideHUDWithText:responseObject];
+               // [HUDController hideHUDWithText:responseObject];
+                [HUDController hideHUD];
                 [WeakSelf initData];
             } failure:^(id  _Nonnull result) {
                 [HUDController xl_hideHUDWithResult:result];
