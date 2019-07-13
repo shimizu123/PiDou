@@ -45,15 +45,15 @@
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> *resolutionDic;
 /** 从xx秒开始播放视频(默认0) */
-@property (nonatomic, assign) NSInteger    seekTime;
+@property (nonatomic, assign) NSInteger seekTime;
 // cell播放视频，以下属性必须设置值
 @property (nonatomic, strong) UIScrollView *scrollView;
 /** cell所在的indexPath */
-@property (nonatomic, strong) NSIndexPath  *indexPath;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 /** 
  * cell上播放必须指定
  * 播放器View的父视图tag（根据tag值在cell里查找playerView加到哪里)
  */
-@property (nonatomic, assign) NSInteger    fatherViewTag;
+@property (nonatomic, assign) NSInteger fatherViewTag;
 
 @end

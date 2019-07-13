@@ -93,12 +93,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [XLPlayerManager appear];
-   // [self handleScroll];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [XLPlayerManager disappear];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self handleScroll];
 }
 
 - (void)initUI {

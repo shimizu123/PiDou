@@ -47,7 +47,7 @@
     self.navigationItem.title = @"登录";
     self.fd_interactivePopDisabled = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:XLUserRegistNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:XLUserLoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:XLUpdatePwdNotification object:nil];
     [self initUI];
     

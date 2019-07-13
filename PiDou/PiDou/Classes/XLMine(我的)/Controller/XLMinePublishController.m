@@ -31,7 +31,7 @@
     self.index = 0;
     [self didLoadData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:XLDelMyPublishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadData) name:XLDelMyPublishNotification object:nil];
 }
 
 

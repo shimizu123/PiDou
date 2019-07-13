@@ -87,6 +87,7 @@
         make.top.equalTo(self.nameL.mas_bottom).mas_offset(2 * kWidthRatio6s);
         make.right.equalTo(self.focusButton.mas_left).with.priorityLow();
         make.height.mas_offset(18 * kWidthRatio6s);
+        make.right.equalTo(self).mas_offset(-70 * kWidthRatio6s);
     }];
     
     [self.fansNumL mas_makeConstraints:^(MASConstraintMaker *make) {
