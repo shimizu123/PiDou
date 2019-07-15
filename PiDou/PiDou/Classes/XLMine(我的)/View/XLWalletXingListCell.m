@@ -42,6 +42,7 @@
     self.priceButton.backgroundColor = XL_COLOR_RED;
     [self.priceButton xl_setTitle:@"¥ 100" color:[UIColor whiteColor] size:14.f target:self action:@selector(buyAction:)];
     XLViewRadius(self.priceButton, 14 * kWidthRatio6s);
+    self.priceButton.userInteractionEnabled = NO;
     
     self.hLine = [[UIView alloc] init];
     [self.contentView addSubview:self.hLine];

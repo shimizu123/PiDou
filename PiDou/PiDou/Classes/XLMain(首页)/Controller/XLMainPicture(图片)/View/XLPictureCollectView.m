@@ -73,10 +73,10 @@ static NSString * XLPictureCollectionCellID = @"kXLPictureCollectionCell";
         cell.complete = ^(id  _Nonnull result) {
 //            if (WeakSelf.imagesArr.count < indexPath.item+1) {
 //            }
-            [WeakSelf.imagesDic setObject:result forKey:@(indexPath.row)];
+            [WeakSelf.imagesDic setObject:result forKey:@(indexPath.item)];
             //[WeakSelf.imagesArr addObject:result];
         };
-        cell.url = [self.pictures[indexPath.row] valueForKey:@"url"];
+        cell.url = [self.pictures[indexPath.item] valueForKey:@"url"];
         
         
     }
@@ -89,11 +89,12 @@ static NSString * XLPictureCollectionCellID = @"kXLPictureCollectionCell";
     for (int i = 0; i < self.pictures.count; i++) {
         UIImage *image = [self.imagesDic objectForKey:@(i)];
         if (image == nil) {
-            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.pictures[i] valueForKey:@"url"]]]];
+           // image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.pictures[i] valueForKey:@"url"]]]];
+            image = [UIImage imageNamed:@"wenhao"];
         }
-        if (image != nil) {
-            [self.imagesArr addObject:image];
-        }
+        
+        [self.imagesArr addObject:image];
+        
     }
     
     NSLog(@"点击图片%ld",indexPath.item);
@@ -111,7 +112,7 @@ static NSString * XLPictureCollectionCellID = @"kXLPictureCollectionCell";
     if (XLArrayIsEmpty(self.pictures)) {
         return CGSizeZero;
     }
-    NSDictionary *dic = self.pictures[indexPath.row];
+    NSDictionary *dic = self.pictures[indexPath.item];
     return CGSizeMake([dic[@"width"] floatValue] - 0.1, [dic[@"height"] floatValue] - 0.1);
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -131,8 +132,8 @@ static NSString * XLPictureCollectionCellID = @"kXLPictureCollectionCell";
     if (!_collectionView) {
         UICollectionViewLeftAlignedLayout *flowLayout = [[UICollectionViewLeftAlignedLayout alloc] init];
         //UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumLineSpacing = MinSpacing;
-        flowLayout.minimumInteritemSpacing = MinSpacing;
+//        flowLayout.minimumLineSpacing = MinSpacing;
+//        flowLayout.minimumInteritemSpacing = MinSpacing;
         _collectionView = [[XLBaseCollectionView alloc] initWithFrame:(CGRectZero) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;

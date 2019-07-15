@@ -227,12 +227,13 @@
             make.top.bottom.equalTo(self.playerBgView);
             make.width.mas_offset(videoW);
         }];
+        kDefineWeakSelf;
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             [self.playerView sd_setImageWithURL:[NSURL URLWithString:self.tieziModel.video_image.url] placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     UIImage *blurImage = [image blur];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        self.playerBgView.image = blurImage;
+                        WeakSelf.playerBgView.image = blurImage;
                     });
                 });
             }];

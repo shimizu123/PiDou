@@ -158,7 +158,7 @@
         _contentView.alpha = 0;
         [UIView animateWithDuration:0.2 animations:^{
             // 将点击的临时imageview动画放大到和目标imageview一样大
-            _photoBrowserView.alpha = 1;
+            self.photoBrowserView.alpha = 1;
             _contentView.alpha = 1;
         } completion:^(BOOL finished) {
             _hasShowedFistView = YES;
@@ -313,15 +313,15 @@
     self.window.windowLevel = UIWindowLevelNormal;//显示状态栏
     [UIView animateWithDuration:XLPhotoBrowserHideImageAnimationDuration animations:^{
         if (self.sourceImagesContainerView) {
-            _tempView.transform = CGAffineTransformInvert(self.transform);
+            self.tempView.transform = CGAffineTransformInvert(CGAffineTransformIdentity);
         }
-        _coverView.alpha = 0;
-        _tempView.frame = targetTemp;
+        self.coverView.alpha = 0;
+        self.tempView.frame = targetTemp;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
-        [_tempView removeFromSuperview];
+        [self.tempView removeFromSuperview];
         [_contentView removeFromSuperview];
-        _tempView = nil;
+        self.tempView = nil;
         _contentView = nil;
         sourceView.hidden = NO;
     }];
@@ -351,14 +351,14 @@
     self.userInteractionEnabled = NO;
     [UIView animateWithDuration:XLPhotoBrowserHideImageAnimationDuration animations:^{
         self.tempView.transform = CGAffineTransformIdentity;
-        _coverView.alpha = 1;
+        self.coverView.alpha = 1;
     } completion:^(BOOL finished) {
         self.userInteractionEnabled = YES;
-        [_tempView removeFromSuperview];
-        [_coverView removeFromSuperview];
-        _tempView = nil;
-        _coverView = nil;
-        _photoBrowserView.hidden = NO;
+        [self.tempView removeFromSuperview];
+        [self.coverView removeFromSuperview];
+        self.tempView = nil;
+        self.coverView = nil;
+        self.photoBrowserView.hidden = NO;
         self.backgroundColor = [UIColor blackColor];
         _contentView.backgroundColor = [UIColor blackColor];
         UIView *view = [self getSourceView];

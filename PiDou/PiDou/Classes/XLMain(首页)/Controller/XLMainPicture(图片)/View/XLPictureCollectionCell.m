@@ -25,6 +25,7 @@
 }
 
 - (void)setup {
+    self.backgroundColor = UIColor.blackColor;
     self.imgView = [[UIImageView alloc] init];
     [self.contentView addSubview:self.imgView];
     self.imgView.contentMode = UIViewContentModeScaleAspectFill;

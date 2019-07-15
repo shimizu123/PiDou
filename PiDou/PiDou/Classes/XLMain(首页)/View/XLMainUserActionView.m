@@ -14,6 +14,7 @@
 #import "XLLaunchManager.h"
 #import "XLMainDetailController.h"
 #import "XLShareView.h"
+#import "AdNoticeView.h"
 
 @interface XLMainUserActionView ()
 
@@ -215,6 +216,11 @@
         default:
             break;
     }
+}
+
+- (void)adNotice {
+    AdNoticeView *noticeView = [[AdNoticeView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 320) / 2, (SCREEN_HEIGHT - 113) / 2, 320, 113)];
+    [noticeView show];
 }
 
 - (void)shareAction {

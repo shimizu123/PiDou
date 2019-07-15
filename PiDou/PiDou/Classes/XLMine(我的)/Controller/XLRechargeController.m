@@ -179,6 +179,7 @@ static NSString * XLWalletHeaderID = @"kXLWalletHeader";
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2) {
     XLWalletInfoModel *xingCoin1 = self.xingCoinsData[indexPath.row];
     
     [HUDController xl_showHUD];
@@ -193,8 +194,7 @@ static NSString * XLWalletHeaderID = @"kXLWalletHeader";
     } failure:^(id  _Nonnull result) {
         [HUDController xl_hideHUDWithResult:result];
     }];
-    
-    
+    }
 }
 
 - (void)initCoinData {

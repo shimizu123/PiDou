@@ -20,7 +20,7 @@
     if (scrollView.contentOffset.y <= 0) {
         [self setContentOffset:(CGPointZero) animated:NO];
         // 告知副视图已经滑倒顶部，切换到主视图
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kcellScrollToTop" object:self userInfo:nil];
+       // [[NSNotificationCenter defaultCenter] postNotificationName:@"kcellScrollToTop" object:self userInfo:nil];
     } else {
     }
     if (!self.canScroll) {
