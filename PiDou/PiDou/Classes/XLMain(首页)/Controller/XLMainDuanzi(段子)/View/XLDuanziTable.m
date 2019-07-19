@@ -9,11 +9,12 @@
 #import "XLDuanziTable.h"
 #import "XLDuanziCell.h"
 #import "XLMainDetailController.h"
+#import "XLDuanziController.h"
 
 static NSString * XLDuanziCellID = @"kXLDuanziCell";
 @interface XLDuanziTable () <UITableViewDelegate, UITableViewDataSource>
 
-
+@property (nonatomic, strong) XLDuanziController *duanziCtrl;
 
 @end
 
@@ -49,6 +50,9 @@ static NSString * XLDuanziCellID = @"kXLDuanziCell";
 
 - (void)registerCell {
     [_tableView registerClass:[XLDuanziCell class] forCellReuseIdentifier:XLDuanziCellID];
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"MTGNativeAdsViewCell" bundle:nil] forCellReuseIdentifier:@"MTGNativeAdsViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"MTGNativeVideoCell" bundle:nil] forCellReuseIdentifier:@"MTGNativeVideoCell"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -59,6 +63,33 @@ static NSString * XLDuanziCellID = @"kXLDuanziCell";
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        MTGCampaign *campaign = (MTGCampaign *)model;
+        UITableViewCell * cell;
+        if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MTGNativeAdsViewCell"];
+            if (cell) {
+                MTGNativeAdsViewCell *mediaViewCell = (MTGNativeAdsViewCell *)cell;
+                [mediaViewCell updateCellWithCampaign:campaign unitId:KNativeUnitID];
+                [self.nativeVideoAdManager registerViewForInteraction:mediaViewCell.contentView withCampaign:campaign];
+            }
+        } else if (indexPath.row % 3 == 1) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MTGNativeVideoCell"];
+            if (cell) {
+                MTGNativeVideoCell *nativeVideoCell = (MTGNativeVideoCell *)cell;
+                [nativeVideoCell updateCellWithCampaign:campaign unitId:KNativeUnitID];
+                nativeVideoCell.MTGMediaView.delegate = (id<MTGMediaViewDelegate>)_duanziCtrl;
+                [self.nativeVideoAdManager registerViewForInteraction:nativeVideoCell.adCallButton withCampaign:campaign];
+            }
+        } 
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }
+    
+    
+    
     NSInteger row = indexPath.row;
     XLDuanziCell *duanziCell = [tableView dequeueReusableCellWithIdentifier:XLDuanziCellID forIndexPath:indexPath];
     if (!XLArrayIsEmpty(self.data)) {
@@ -79,6 +110,19 @@ static NSString * XLDuanziCellID = @"kXLDuanziCell";
     return 246 * kWidthRatio6s;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+            return 60.0f + SCREEN_WIDTH * (627.0f/1200.0f);
+        } else if (indexPath.row % 3 == 1) {
+            return 130.0f + SCREEN_WIDTH * (9.0f/16.0f);
+        }
+    }
+    
+    return UITableViewAutomaticDimension;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
@@ -96,6 +140,11 @@ static NSString * XLDuanziCellID = @"kXLDuanziCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        return;
+    }
+    
     XLMainDetailController *detailVC = [[XLMainDetailController alloc] init];
     detailVC.mainType = XLMainType_duanz;
     if (!XLArrayIsEmpty(self.data)) {

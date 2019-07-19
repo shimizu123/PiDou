@@ -132,7 +132,7 @@
     [self.contentView addSubview:self.communityButton];
     [self.communityButton xl_setTitle:@"参与社区回馈" color:XL_COLOR_RED size:12.f];
     XLViewBorderRadius(self.communityButton, 14 * kWidthRatio6s, 1, XL_COLOR_RED.CGColor);
-    [self.communityButton addTarget:self action:@selector(communityAction) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.communityButton addTarget:self action:@selector(note) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.xingView = [[UIView alloc] init];
     [self.contentView addSubview:self.xingView];
@@ -302,6 +302,10 @@
 
 - (void)onBack {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)note {
+    [HUDController showTextOnly:@"此功能暂未开放"];
 }
 
 #pragma mark - 兑换

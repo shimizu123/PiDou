@@ -120,6 +120,7 @@
         make.bottom.equalTo(self.userIcon).mas_offset(1);
         make.right.equalTo(self.focusButton.mas_left).with.priorityLow();
         make.height.mas_offset(14);
+        make.right.equalTo(self.focusButton.mas_left).mas_offset(-10 * kWidthRatio6s);
     }];
     
     [self.focusButton mas_makeConstraints:^(MASConstraintMaker *make) {

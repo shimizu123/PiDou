@@ -22,7 +22,7 @@
 #import "XLTopicModel.h"
 #import "XLSearchModel.h"
 #import "XLFansModel.h"
-
+#import "XLRecommendController.h"
 
 static NSString * XLVideoCellID           = @"kXLVideoCell";
 static NSString * XLPictureCellID         = @"kXLPictureCell";
@@ -36,6 +36,7 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
 
 @property (nonatomic, strong) XLVideoCell *playingCell;
 @property (nonatomic, copy) NSString *currentVideoPath;
+@property (nonatomic, strong) XLRecommendController *recommendCtrl;
 
 @end
 
@@ -102,6 +103,9 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
     [_tableView registerClass:[XLSearchUserCell class] forCellReuseIdentifier:XLSearchUserCellID];
     [_tableView registerClass:[XLTopicCell class] forCellReuseIdentifier:XLTopicCellID];
     [_tableView registerClass:[XLTopicDetailTopCell class] forCellReuseIdentifier:XLTopicDetailTopCellID];
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"MTGNativeAdsViewCell" bundle:nil] forCellReuseIdentifier:@"MTGNativeAdsViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"MTGNativeVideoCell" bundle:nil] forCellReuseIdentifier:@"MTGNativeVideoCell"];
 }
 
 - (void)handleScroll{
@@ -198,6 +202,32 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
         topCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return topCell;
     } else {
+        id model = self.data[indexPath.row];
+        if ([model isKindOfClass:[MTGCampaign class]]) {
+            MTGCampaign *campaign = (MTGCampaign *)model;
+            UITableViewCell * cell;
+            if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"MTGNativeAdsViewCell"];
+                if (cell) {
+                    MTGNativeAdsViewCell *mediaViewCell = (MTGNativeAdsViewCell *)cell;
+                    [mediaViewCell updateCellWithCampaign:campaign unitId:KNativeUnitID];
+                    [self.nativeVideoAdManager registerViewForInteraction:mediaViewCell.contentView withCampaign:campaign];
+                }
+            } else if (indexPath.row % 3 == 1) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"MTGNativeVideoCell"];
+                if (cell) {
+                    MTGNativeVideoCell *nativeVideoCell = (MTGNativeVideoCell *)cell;
+                    [nativeVideoCell updateCellWithCampaign:campaign unitId:KNativeUnitID];
+                    nativeVideoCell.MTGMediaView.delegate = (id<MTGMediaViewDelegate>)_recommendCtrl;
+                    [self.nativeVideoAdManager registerViewForInteraction:nativeVideoCell.adCallButton withCampaign:campaign];
+                }
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
+        
+        
 
         if (self.searchType == XLSearchType_user) {
             XLSearchUserCell *userCell = [tableView dequeueReusableCellWithIdentifier:XLSearchUserCellID forIndexPath:indexPath];
@@ -285,6 +315,19 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
     return 246 * kWidthRatio6s;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+            return 60.0f + SCREEN_WIDTH * (627.0f/1200.0f);
+        } else if (indexPath.row % 3 == 1) {
+            return 130.0f + SCREEN_WIDTH * (9.0f/16.0f);
+        }
+    }
+    
+    return UITableViewAutomaticDimension;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
@@ -309,6 +352,10 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
             [self.tableView.navigationController pushViewController:topicDetailVC animated:YES];
         }
     } else {
+        id model = self.data[indexPath.row];
+        if ([model isKindOfClass:[MTGCampaign class]]) {
+            return;
+        }
         
         if (self.searchType == XLSearchType_user) {
             XLUserDetailController *userDetailVC = [[XLUserDetailController alloc] init];

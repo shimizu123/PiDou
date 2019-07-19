@@ -48,6 +48,8 @@ typedef NS_ENUM(NSUInteger, XLSearchType) {
 
 @property (nonatomic, copy) XLFinishBlock reloadDataBlock;
 
+@property (nonatomic, strong) MTGNativeAdManager *nativeVideoAdManager;
+
 @end
 
 NS_ASSUME_NONNULL_END

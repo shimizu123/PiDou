@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, copy) XLFinishBlock reloadDataBlock;
 
+@property (nonatomic, strong) MTGNativeAdManager *nativeVideoAdManager;
+
 @end
 
 NS_ASSUME_NONNULL_END

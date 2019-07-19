@@ -10,7 +10,7 @@
 #import "XLDuanziTable.h"
 #import "XLTieziHandle.h"
 
-@interface XLDuanziController ()
+@interface XLDuanziController () <MTGNativeAdManagerDelegate, MTGMediaViewDelegate>
 
 @property (nonatomic, strong) XLDuanziTable *table;
 @property (nonatomic, strong) NSMutableArray *data;
@@ -19,6 +19,9 @@
 @property (nonatomic, assign) BOOL onceDidload;
 
 @property(nonatomic, assign) BOOL isLoadMore;
+
+@property (nonatomic, strong) MTGNativeAdManager *nativeVideoAdManager;
+@property (nonatomic, assign) NSInteger adCount;
 
 @end
 
@@ -46,6 +49,31 @@
         [self.table.tableView.mj_header beginRefreshing];
         [self.table.tableView setContentOffset:CGPointMake(0, 0)];
     }
+}
+
+#pragma mark AdManger delegate
+- (void)nativeAdsLoaded:(NSArray *)nativeAds nativeManager:(nonnull MTGNativeAdManager *)nativeManager {
+    NSLog(@"加载原生广告成功");
+    for (MTGCampaign *model in nativeAds) {
+        NSInteger dataCount = self.data.count;
+        NSUInteger index;
+        if (dataCount >= 120) {
+            index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + 3);
+        } else {
+            index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + _adCount);
+        }
+        
+        if (index < self.data.count) {
+            [self.data insertObject:model atIndex:index];
+            _adCount++;
+        }
+    }
+    
+    [self.table.tableView reloadData];
+}
+
+- (void)nativeAdsFailedToLoadWithError:(NSError *)error nativeManager:(nonnull MTGNativeAdManager *)nativeManager {
+    NSLog(@"加载原生广告失败 unitid = %@,Failed to load ads, error:%@",nativeManager.currentUnitId, error);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,6 +136,8 @@
         }
         
         WeakSelf.table.data = WeakSelf.data;
+        
+        [self.nativeVideoAdManager loadAds];
     } failure:^(id  _Nonnull result) {
        // [HUDController xl_hideHUDWithResult:result];
 //        if (WeakSelf.page > 1) {
@@ -136,6 +166,7 @@
 //        _table.reloadDataBlock = ^{
 //            [WeakSelf initData];
 //        };
+        _table.nativeVideoAdManager = self.nativeVideoAdManager;
     }
     return _table;
 }
@@ -145,6 +176,16 @@
         _data = [NSMutableArray array];
     }
     return _data;
+}
+
+- (MTGNativeAdManager *)nativeVideoAdManager {
+    //If the native ad manager is not existed, init it now.
+    if (_nativeVideoAdManager == nil) {
+        _nativeVideoAdManager = [[MTGNativeAdManager alloc] initWithUnitID:KNativeUnitID fbPlacementId:@"" supportedTemplates:@[[MTGTemplate templateWithType:MTGAD_TEMPLATE_BIG_IMAGE adsNum:1]] autoCacheImage:NO adCategory:0 presentingViewController:self];
+        _nativeVideoAdManager.showLoadingView = YES;
+        _nativeVideoAdManager.delegate = self;
+    }
+    return _nativeVideoAdManager;
 }
 
 @end

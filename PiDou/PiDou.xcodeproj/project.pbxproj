@@ -404,22 +404,25 @@
 		54E03E1F22647D3800C97981 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0C22647D3800C97981 /* UIImage+YYWebImage.m */; };
 		54E03E2022647D3800C97981 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */; };
 		54E03E2122647D3800C97981 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0F22647D3800C97981 /* YYWebImageOperation.m */; };
+		64051E7222E1C6390070B643 /* MTGSDKReward.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64051E7122E1C6390070B643 /* MTGSDKReward.framework */; };
+		643B033E22DFFEFB0074C21A /* MTGSDKAppWall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643B033C22DFFEFA0074C21A /* MTGSDKAppWall.framework */; };
+		643B033F22DFFEFB0074C21A /* MTGSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643B033D22DFFEFB0074C21A /* MTGSDK.framework */; };
+		643B034922E029460074C21A /* MTGNativeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 643B034422E029460074C21A /* MTGNativeVideoCell.m */; };
+		643B034A22E029460074C21A /* MTGNativeAdsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 643B034522E029460074C21A /* MTGNativeAdsViewCell.m */; };
+		643B034B22E029460074C21A /* MTGNativeVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643B034622E029460074C21A /* MTGNativeVideoCell.xib */; };
+		643B034C22E029460074C21A /* MTGNativeAdsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643B034722E029460074C21A /* MTGNativeAdsViewCell.xib */; };
 		64428EC322D2E79400CE31AF /* RandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC222D2E79400CE31AF /* RandomString.m */; };
 		64428ED322D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC722D36D2900CE31AF /* UIBarButtonItem+WZLBadge.m */; };
 		64428ED422D36D2900CE31AF /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC922D36D2900CE31AF /* UITabBarItem+WZLBadge.m */; };
 		64428ED522D36D2900CE31AF /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ECC22D36D2900CE31AF /* CAAnimation+WAnimation.m */; };
 		64428ED622D36D2900CE31AF /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */; };
+		648873C122DF2FCB00A12D1A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648873C022DF2FCB00A12D1A /* Accelerate.framework */; };
 		64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A77BB622C4DFC100FF715F /* PrivacyController.m */; };
-		64B0C3E522D9DC4500AACEC4 /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3E422D9DC4500AACEC4 /* BUAdSDK.framework */; };
-		64B0C3E722D9DC6B00AACEC4 /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64B0C3E622D9DC6B00AACEC4 /* BUAdSDK.bundle */; };
 		64B0C3E922D9DDF600AACEC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3E822D9DDF600AACEC4 /* StoreKit.framework */; };
 		64B0C3EB22D9DE1400AACEC4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3EA22D9DE1400AACEC4 /* MobileCoreServices.framework */; };
 		64B0C3ED22D9DE3000AACEC4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3EC22D9DE3000AACEC4 /* WebKit.framework */; };
-		64B0C3EF22D9DE4A00AACEC4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3EE22D9DE4A00AACEC4 /* MediaPlayer.framework */; };
-		64B0C3F122D9DE6D00AACEC4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F022D9DE6D00AACEC4 /* CoreMedia.framework */; };
 		64B0C3F322D9DE8700AACEC4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F222D9DE8600AACEC4 /* AVFoundation.framework */; };
 		64B0C3F522D9DEF700AACEC4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F422D9DEF600AACEC4 /* AdSupport.framework */; };
-		64B0C3F722D9DF0500AACEC4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F622D9DF0500AACEC4 /* CoreMotion.framework */; };
 		64B0C3F922D9DF4000AACEC4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F822D9DF4000AACEC4 /* libresolv.9.tbd */; };
 		64BA235822DC428800C8271A /* AdNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BA235722DC428800C8271A /* AdNoticeView.m */; };
 		64D0E70A22D4B8550055BBB1 /* DXRiskStatic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */; };
@@ -1226,6 +1229,15 @@
 		54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		54E03E0E22647D3800C97981 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		54E03E0F22647D3800C97981 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
+		64051E7122E1C6390070B643 /* MTGSDKReward.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDKReward.framework; sourceTree = "<group>"; };
+		643B033C22DFFEFA0074C21A /* MTGSDKAppWall.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDKAppWall.framework; sourceTree = "<group>"; };
+		643B033D22DFFEFB0074C21A /* MTGSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDK.framework; sourceTree = "<group>"; };
+		643B034322E029460074C21A /* MTGNativeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGNativeVideoCell.h; sourceTree = "<group>"; };
+		643B034422E029460074C21A /* MTGNativeVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTGNativeVideoCell.m; sourceTree = "<group>"; };
+		643B034522E029460074C21A /* MTGNativeAdsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTGNativeAdsViewCell.m; sourceTree = "<group>"; };
+		643B034622E029460074C21A /* MTGNativeVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTGNativeVideoCell.xib; sourceTree = "<group>"; };
+		643B034722E029460074C21A /* MTGNativeAdsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MTGNativeAdsViewCell.xib; sourceTree = "<group>"; };
+		643B034822E029460074C21A /* MTGNativeAdsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGNativeAdsViewCell.h; sourceTree = "<group>"; };
 		64428EC122D2E79400CE31AF /* RandomString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RandomString.h; sourceTree = "<group>"; };
 		64428EC222D2E79400CE31AF /* RandomString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RandomString.m; sourceTree = "<group>"; };
 		64428EC622D36D2900CE31AF /* UIBarButtonItem+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WZLBadge.h"; sourceTree = "<group>"; };
@@ -1238,10 +1250,9 @@
 		64428ED022D36D2900CE31AF /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
 		64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		64428ED222D36D2900CE31AF /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
+		648873C022DF2FCB00A12D1A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		64A77BB522C4DFC100FF715F /* PrivacyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyController.h; sourceTree = "<group>"; };
 		64A77BB622C4DFC100FF715F /* PrivacyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyController.m; sourceTree = "<group>"; };
-		64B0C3E422D9DC4500AACEC4 /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
-		64B0C3E622D9DC6B00AACEC4 /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
 		64B0C3E822D9DDF600AACEC4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64B0C3EA22D9DE1400AACEC4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		64B0C3EC22D9DE3000AACEC4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -1283,29 +1294,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648873C122DF2FCB00A12D1A /* Accelerate.framework in Frameworks */,
 				64B0C3F922D9DF4000AACEC4 /* libresolv.9.tbd in Frameworks */,
-				64B0C3F722D9DF0500AACEC4 /* CoreMotion.framework in Frameworks */,
 				64B0C3F522D9DEF700AACEC4 /* AdSupport.framework in Frameworks */,
 				64B0C3F322D9DE8700AACEC4 /* AVFoundation.framework in Frameworks */,
-				64B0C3F122D9DE6D00AACEC4 /* CoreMedia.framework in Frameworks */,
-				64B0C3EF22D9DE4A00AACEC4 /* MediaPlayer.framework in Frameworks */,
 				64B0C3ED22D9DE3000AACEC4 /* WebKit.framework in Frameworks */,
 				64B0C3EB22D9DE1400AACEC4 /* MobileCoreServices.framework in Frameworks */,
 				64B0C3E922D9DDF600AACEC4 /* StoreKit.framework in Frameworks */,
 				54AADAD42274B37D00D41EC5 /* CoreGraphics.framework in Frameworks */,
+				643B033F22DFFEFB0074C21A /* MTGSDK.framework in Frameworks */,
 				64D0E70C22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework in Frameworks */,
 				54AADAD22274B37600D41EC5 /* CFNetwork.framework in Frameworks */,
 				54AADAD02274B37000D41EC5 /* CoreTelephony.framework in Frameworks */,
 				54AADACE2274B36A00D41EC5 /* Security.framework in Frameworks */,
 				54AADACC2274B36200D41EC5 /* libz.tbd in Frameworks */,
 				54AADACA2274B35A00D41EC5 /* libc++.tbd in Frameworks */,
-				64B0C3E522D9DC4500AACEC4 /* BUAdSDK.framework in Frameworks */,
 				54AADAC82274B34900D41EC5 /* libsqlite3.0.tbd in Frameworks */,
 				64D0E70A22D4B8550055BBB1 /* DXRiskStatic.framework in Frameworks */,
 				54AADAC62274B2DB00D41EC5 /* SystemConfiguration.framework in Frameworks */,
 				0AE66E3A2282BEF800942938 /* TencentOpenAPI.framework in Frameworks */,
+				64051E7222E1C6390070B643 /* MTGSDKReward.framework in Frameworks */,
 				54AADAC32274B02800D41EC5 /* libWeChatSDK.a in Frameworks */,
 				7AB4503747CCE9654B6F778E /* libPods-PiDou.a in Frameworks */,
+				643B033E22DFFEFB0074C21A /* MTGSDKAppWall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2417,6 +2428,12 @@
 				544117AF2288465800C955A6 /* XLXingRewardCell.m */,
 				64BA235622DC428800C8271A /* AdNoticeView.h */,
 				64BA235722DC428800C8271A /* AdNoticeView.m */,
+				643B034822E029460074C21A /* MTGNativeAdsViewCell.h */,
+				643B034522E029460074C21A /* MTGNativeAdsViewCell.m */,
+				643B034722E029460074C21A /* MTGNativeAdsViewCell.xib */,
+				643B034322E029460074C21A /* MTGNativeVideoCell.h */,
+				643B034422E029460074C21A /* MTGNativeVideoCell.m */,
+				643B034622E029460074C21A /* MTGNativeVideoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3212,6 +3229,10 @@
 		6EE11AEFFA2C34F8DAB7DB58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64051E7122E1C6390070B643 /* MTGSDKReward.framework */,
+				643B033D22DFFEFB0074C21A /* MTGSDK.framework */,
+				643B033C22DFFEFA0074C21A /* MTGSDKAppWall.framework */,
+				648873C022DF2FCB00A12D1A /* Accelerate.framework */,
 				64B0C3F822D9DF4000AACEC4 /* libresolv.9.tbd */,
 				64B0C3F622D9DF0500AACEC4 /* CoreMotion.framework */,
 				64B0C3F422D9DEF600AACEC4 /* AdSupport.framework */,
@@ -3221,8 +3242,6 @@
 				64B0C3EC22D9DE3000AACEC4 /* WebKit.framework */,
 				64B0C3EA22D9DE1400AACEC4 /* MobileCoreServices.framework */,
 				64B0C3E822D9DDF600AACEC4 /* StoreKit.framework */,
-				64B0C3E622D9DC6B00AACEC4 /* BUAdSDK.bundle */,
-				64B0C3E422D9DC4500AACEC4 /* BUAdSDK.framework */,
 				64D0E70D22D4D3930055BBB1 /* DingxiangCaptcha.bundle */,
 				64D0E70B22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework */,
 				64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */,
@@ -3373,9 +3392,11 @@
 				0A94E2A82293C891006627D1 /* launch4_1242X2688.png in Resources */,
 				0A94E2942293A349006627D1 /* launch1_640X1136.png in Resources */,
 				0A94E2882293A349006627D1 /* launch1_640X960.png in Resources */,
+				643B034B22E029460074C21A /* MTGNativeVideoCell.xib in Resources */,
 				0A94E2AB2293C891006627D1 /* launch4_828X1792.png in Resources */,
 				0A94E2962293A349006627D1 /* launch3_640X1136.png in Resources */,
 				0A94E28A2293A349006627D1 /* launch1_1125X2436.png in Resources */,
+				643B034C22E029460074C21A /* MTGNativeAdsViewCell.xib in Resources */,
 				0A94E2A62293C891006627D1 /* launch1_1242X2688.png in Resources */,
 				54AADAAA22740C9D00D41EC5 /* RBBAnimation-Info.plist in Resources */,
 				0A94E2812293A349006627D1 /* launch3_750X1334.png in Resources */,
@@ -3401,7 +3422,6 @@
 				0A94E2AC2293C891006627D1 /* launch3_828X1792.png in Resources */,
 				0A94E2862293A349006627D1 /* launch3_640X960.png in Resources */,
 				0A94E2A52293C891006627D1 /* launch2_1242X2688.png in Resources */,
-				64B0C3E722D9DC6B00AACEC4 /* BUAdSDK.bundle in Resources */,
 				5449BA232254F71800646FBD /* Main.storyboard in Resources */,
 				0A94E2AA2293C891006627D1 /* launch1_828X1792.png in Resources */,
 				0A94E2892293A349006627D1 /* launch2_640X960.png in Resources */,
@@ -3705,6 +3725,7 @@
 				54E03DBB22645B6300C97981 /* HXDownloadProgressView.m in Sources */,
 				54A4C290225C6E220020CD7D /* XLTopicView.m in Sources */,
 				540C492E2257B5EA00D45AAE /* XLRecommendController.m in Sources */,
+				643B034922E029460074C21A /* MTGNativeVideoCell.m in Sources */,
 				64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */,
 				5449BB0B2254F75200646FBD /* NSString+Encrypt.m in Sources */,
 				54AADA9022740AC600D41EC5 /* XLPaopaoButton.m in Sources */,
@@ -3799,6 +3820,7 @@
 				54E03CE2225F27C700C97981 /* XLMineSecurityController.m in Sources */,
 				540C495D225849AE00D45AAE /* XLDuanziCell.m in Sources */,
 				5449BB122254F75200646FBD /* UIImage+XLBlurGlass.m in Sources */,
+				643B034A22E029460074C21A /* MTGNativeAdsViewCell.m in Sources */,
 				54E03D09225F76F100C97981 /* XLWalletSegmentHeader.m in Sources */,
 				544382AA225CD3BE00EE908B /* XLUserDetailTable.m in Sources */,
 				0A1164F82282ABE700FF23D0 /* XLShareModel.m in Sources */,

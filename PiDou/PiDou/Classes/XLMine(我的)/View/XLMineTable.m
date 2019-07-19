@@ -27,6 +27,8 @@
 #import "XLInviteDetailController.h"
 #import "XLLaunchManager.h"
 #import "XLShareView.h"
+#import <MTGSDK/MTGSDK.h>
+#import <MTGSDKAppWall/MTGWallAdManager.h>
 
 static NSString * XLMineTopCellID      = @"kXLMineTopCell";
 static NSString * XLMineAdCellID       = @"kXLMineAdCell";
@@ -206,7 +208,12 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
             case 2:
             {
                 // 小游戏
-                [HUDController hideHUDWithText:@"敬请期待"];
+                // [HUDController hideHUDWithText:@"敬请期待"];
+//                SmallGameController *smallGameVC = [[SmallGameController alloc] init];
+//                [self.tableView.navigationController pushViewController:smallGameVC animated:NO];
+                [[MTGSDK sharedInstance] preloadAppWallAdsWithUnitId:@"121625"];
+                MTGWallAdManager *wallAdManager = [[MTGWallAdManager alloc] initWithUnitID:@"121625" presentingViewController:self.tableView.parentController];
+                [wallAdManager showAppWall];
             }
                 break;
             case 3:

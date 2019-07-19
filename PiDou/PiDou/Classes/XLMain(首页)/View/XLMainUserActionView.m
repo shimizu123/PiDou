@@ -132,7 +132,11 @@
                         [WeakSelf.delegate actonView:WeakSelf didSelectedWithIndex:tag select:YES count:do_like_count];
                     }
                 } failure:^(id  _Nonnull result) {
-                    [HUDController xl_hideHUDWithResult:result];
+                    if ([result isKindOfClass:[NSNumber class]]) {
+                        
+                    } else {
+                        [HUDController xl_hideHUDWithResult:result];
+                    }
                 }];
             } else if (self.commentModel) {
                 [XLCommentHandle doLikeCommentWithCid:self.commentModel.cid success:^(id  _Nonnull responseObject) {

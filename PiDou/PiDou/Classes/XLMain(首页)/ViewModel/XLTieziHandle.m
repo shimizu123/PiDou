@@ -87,6 +87,10 @@
             if (success) {
                 success(msg);
             }
+        } else if (code == 777) {
+            if (failure) {
+                failure([NSNumber numberWithInteger:code]);
+            }
         } else {
             if (failure) {
                 failure(msg);

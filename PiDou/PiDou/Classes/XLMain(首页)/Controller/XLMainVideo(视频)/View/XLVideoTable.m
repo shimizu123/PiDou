@@ -11,6 +11,7 @@
 #import "XLPlayerManager.h"
 #import "XLMainDetailController.h"
 #import "XLTieziModel.h"
+#import "XLVideoController.h"
 
 static NSString * XLVideoCellID = @"kXLVideoCell";
 @interface XLVideoTable () <UITableViewDelegate, UITableViewDataSource, ZFPlayerControlViewDelagate>
@@ -18,6 +19,7 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
 @property (nonatomic, strong) XLVideoCell *playingCell;
 @property (nonatomic, copy) NSString *currentVideoPath;
 
+@property (nonatomic, strong) XLVideoController *videoCtrl;
 @end
 
 @implementation XLVideoTable
@@ -51,6 +53,9 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
 
 - (void)registerCell {
     [_tableView registerClass:[XLVideoCell class] forCellReuseIdentifier:XLVideoCellID];
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"MTGNativeAdsViewCell" bundle:nil] forCellReuseIdentifier:@"MTGNativeAdsViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"MTGNativeVideoCell" bundle:nil] forCellReuseIdentifier:@"MTGNativeVideoCell"];
 }
 
 - (void)handleScroll{
@@ -59,15 +64,18 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     NSArray *visiableCells = [self.tableView visibleCells];
     NSMutableArray *indexPaths = [NSMutableArray array];
     CGFloat gap = MAXFLOAT;
-    for (XLVideoCell *cell in visiableCells) {
-        [indexPaths addObject:cell.indexPath];
-        if (cell.videoPath.length > 0) {
-            // 如果这个cell有视频
-            CGPoint coorCenter = [self.tableView convertPoint:cell.center toView:self.tableView.superview];
-            CGFloat delta = fabs(coorCenter.y - self.tableView.superview.xl_h / 2);
-            if (delta < gap) {
-                gap = delta;
-                finnalCell = cell;
+    for (id visibleCell in visiableCells) {
+        if ([visibleCell isKindOfClass:[XLVideoCell class]]) {
+            XLVideoCell *cell = (XLVideoCell *)visibleCell;
+            [indexPaths addObject:cell.indexPath];
+            if (cell.videoPath.length > 0) {
+                // 如果这个cell有视频
+                CGPoint coorCenter = [self.tableView convertPoint:cell.center toView:self.tableView.superview];
+                CGFloat delta = fabs(coorCenter.y - self.tableView.superview.xl_h / 2);
+                if (delta < gap) {
+                    gap = delta;
+                    finnalCell = cell;
+                }
             }
         }
     }
@@ -113,6 +121,34 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        MTGCampaign *campaign = (MTGCampaign *)model;
+        UITableViewCell * cell;
+        if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MTGNativeAdsViewCell"];
+            if (cell) {
+                MTGNativeAdsViewCell *mediaViewCell = (MTGNativeAdsViewCell *)cell;
+                [mediaViewCell updateCellWithCampaign:campaign unitId:KNativeUnitID];
+                [self.nativeVideoAdManager registerViewForInteraction:mediaViewCell.contentView withCampaign:campaign];
+            }
+        } else if (indexPath.row % 3 == 1) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MTGNativeVideoCell"];
+            if (cell) {
+                MTGNativeVideoCell *nativeVideoCell = (MTGNativeVideoCell *)cell;
+                [nativeVideoCell updateCellWithCampaign:campaign unitId:KNativeUnitID];
+                nativeVideoCell.MTGMediaView.delegate = (id<MTGMediaViewDelegate>)_videoCtrl;
+                [self.nativeVideoAdManager registerViewForInteraction:nativeVideoCell.adCallButton withCampaign:campaign];
+            }
+        } 
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        return cell;
+    }
+    
+    
+    
     NSInteger row = indexPath.row;
     XLVideoCell *videoCell = [tableView dequeueReusableCellWithIdentifier:XLVideoCellID forIndexPath:indexPath];
     if (!XLArrayIsEmpty(self.data)) {
@@ -142,6 +178,19 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
     return 246 * kWidthRatio6s;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+            return 60.0f + SCREEN_WIDTH * (627.0f/1200.0f);
+        } else if (indexPath.row % 3 == 1) {
+            return 130.0f + SCREEN_WIDTH * (9.0f/16.0f);
+        }
+    }
+
+    return UITableViewAutomaticDimension;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
@@ -159,6 +208,11 @@ static NSString * XLVideoCellID = @"kXLVideoCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id model = self.data[indexPath.row];
+    if ([model isKindOfClass:[MTGCampaign class]]) {
+        return;
+    }
+    
     XLMainDetailController *detailVC = [[XLMainDetailController alloc] init];
     detailVC.mainType = XLMainType_video;
     if (!XLArrayIsEmpty(self.data)) {

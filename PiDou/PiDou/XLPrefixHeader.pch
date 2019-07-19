@@ -60,4 +60,11 @@
 // 随机数
 #import "RandomString.h"
 
+//广告UnitId 测试id 21316, 121692
+#define KNativeUnitID @"121692"
+#import <MTGSDK/MTGSDK.h>
+#import <MTGSDK/MTGNativeAdManager.h>
+#import "MTGNativeAdsViewCell.h"
+#import "MTGNativeVideoCell.h"
+
 #endif /* XLPrefixHeader_pch */
