@@ -59,6 +59,9 @@
         NSUInteger index;
         if (dataCount >= 120) {
             index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + 4);
+        } else if (dataCount < 13) {
+            _adCount = 0;
+            index = arc4random() % 10 + (dataCount / 10 - 1) * 10;
         } else {
             index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + _adCount);
         }
