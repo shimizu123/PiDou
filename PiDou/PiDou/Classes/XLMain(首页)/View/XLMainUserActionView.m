@@ -133,7 +133,8 @@
                     }
                 } failure:^(id  _Nonnull result) {
                     if ([result isKindOfClass:[NSNumber class]]) {
-                        
+                        [HUDController hideHUD];
+                        [self adNotice];
                     } else {
                         [HUDController xl_hideHUDWithResult:result];
                     }
@@ -223,7 +224,7 @@
 }
 
 - (void)adNotice {
-    AdNoticeView *noticeView = [[AdNoticeView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 320) / 2, (SCREEN_HEIGHT - 113) / 2, 320, 113)];
+    AdNoticeView *noticeView = [[AdNoticeView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300 * kWidthRatio6s) / 2, (SCREEN_HEIGHT - 100 * kWidthRatio6s) / 2, 300 * kWidthRatio6s, 100 * kWidthRatio6s)];
     [noticeView show];
 }
 

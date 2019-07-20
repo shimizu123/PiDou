@@ -119,8 +119,9 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
             inviteCell.invCode = self.userInfo.invitation_code;
         }
         inviteCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        kDefineWeakSelf;
         inviteCell.didSelectInvite = ^ {
-            [self shareAction];
+            [WeakSelf shareAction];
         };
         return inviteCell;
     } else {

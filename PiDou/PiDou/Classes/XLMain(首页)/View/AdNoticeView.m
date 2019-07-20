@@ -17,6 +17,7 @@
 @end
 
 @implementation AdNoticeView
+singleton_m(AdNoticeView)
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -49,6 +50,7 @@
     [self addSubview:self.watchVideo];
     [self.watchVideo xl_setTitle:@"观看视频" color:UIColor.whiteColor size:11.f];
     self.watchVideo.backgroundColor = XL_COLOR_DARKGRAY;
+    [self.watchVideo addTarget:self action:@selector(watchRewardVideo) forControlEvents:UIControlEventTouchUpInside];
     XLViewRadius(self.watchVideo, 10 * kWidthRatio6s);
     
     [self initLayout];
@@ -93,5 +95,11 @@
         [self removeFromSuperview];
     }];
 }
+
+- (void)watchRewardVideo {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"rewardVideo" object:nil];
+}
+
+
 
 @end

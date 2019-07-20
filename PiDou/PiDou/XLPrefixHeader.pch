@@ -62,9 +62,13 @@
 
 //广告UnitId 测试id 21316, 121692
 #define KNativeUnitID @"121692"
+#define KRewardUnitID @"121693"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDK/MTGNativeAdManager.h>
+#import <MTGSDKReward/MTGRewardAdManager.h>
 #import "MTGNativeAdsViewCell.h"
 #import "MTGNativeVideoCell.h"
+
+#define HostUrl @"120.27.70.141"
 
 #endif /* XLPrefixHeader_pch */

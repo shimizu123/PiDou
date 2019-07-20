@@ -11,9 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdNoticeView : UIView
+singleton_h(AdNoticeView)
 
 - (void)show;
-
+- (void)dismiss;
 @end
 
 NS_ASSUME_NONNULL_END

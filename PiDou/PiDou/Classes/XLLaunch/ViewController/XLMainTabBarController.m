@@ -16,8 +16,9 @@
 #import "UIImage+TGExtension.h"
 #import "XLLaunchManager.h"
 #import "WZLBadgeImport.h"
+#import "AdNoticeView.h"
 
-@interface XLMainTabBarController () <UITabBarControllerDelegate>
+@interface XLMainTabBarController () <UITabBarControllerDelegate, MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate>
 
 /**记录之前点击的tabbaritem*/
 @property (nonatomic, assign) NSInteger preIndex;
@@ -44,6 +45,9 @@
         [self showBadge];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveData:) name:@"badge" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rewardVideo) name:@"rewardVideo" object:nil];
+    [[MTGRewardAdManager sharedInstance] loadVideo:KRewardUnitID delegate:self];
 }
 
 - (void)receiveData:(NSNotification *)notification {
@@ -178,5 +182,41 @@
     }
     return (index == 2 && [viewController isKindOfClass:[XLAddController class]]);
 }
+
+#pragma mark - MTGRewardAdShowDelegate Delegate
+
+//Show Reward Video Ad Success Delegate
+- (void)onVideoAdShowSuccess:(NSString *)unitId {
+    
+}
+
+//Show Reward Video Ad Failed Delegate
+- (void)onVideoAdShowFailed:(NSString *)unitId withError:(NSError *)error {
+    
+}
+
+//About RewardInfo Delegate
+- (void)onVideoAdDismissed:(NSString *)unitId withConverted:(BOOL)converted withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
+    if (rewardInfo) {
+        
+    }
+    else {
+        
+    }
+}
+
+- (void)rewardVideo {
+    [[AdNoticeView sharedAdNoticeView] dismiss];
+    
+    //Check isReady before you show a reward video
+    if ([[MTGRewardAdManager sharedInstance] isVideoReadyToPlay:KRewardUnitID]) {
+        [[MTGRewardAdManager sharedInstance] showVideo:KRewardUnitID withRewardId:@"1" userId:@"" delegate:self viewController:self];
+    }
+    else {
+        //We will help you to load automatically when isReady is NO
+        [HUDController showTextOnly:@"没有广告"];
+    }
+}
+
 
 @end

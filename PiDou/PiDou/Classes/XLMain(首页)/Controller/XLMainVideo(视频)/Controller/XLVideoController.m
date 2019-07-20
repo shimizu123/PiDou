@@ -61,7 +61,7 @@
         NSInteger dataCount = self.data.count;
         NSUInteger index;
         if (dataCount >= 120) {
-            index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + 3);
+            index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + 4);
         } else {
             index = arc4random() % 10 + ((dataCount / 10 - 1) * 10 + _adCount);
         }

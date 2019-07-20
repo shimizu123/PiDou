@@ -217,11 +217,11 @@
 - (void)setMessage:(XLShareModel *)message {
     _message = message;
     if (!XLStringIsEmpty(self.message.entity_id)) {
-        self.message.pageUrl = [NSString stringWithFormat:@"http://pdtv.vip/h5/#/post?entity_id=%@",self.message.entity_id];
+        self.message.pageUrl = [NSString stringWithFormat:@"http://%@/h5/#/post?entity_id=%@", HostUrl, self.message.entity_id];
     } else if (!XLStringIsEmpty(self.message.cid)) {
-        self.message.pageUrl = [NSString stringWithFormat:@"http://pdtv.vip/h5/#/shareEva?cid=%@",self.message.cid];
+        self.message.pageUrl = [NSString stringWithFormat:@"http://%@/h5/#/shareEva?cid=%@", HostUrl, self.message.cid];
     } else {
-        self.message.pageUrl = [NSString stringWithFormat:@"http://pdtv.vip/h5/#/register?invitation_code=%@",self.message.text];
+        self.message.pageUrl = [NSString stringWithFormat:@"http://%@/h5/#/register?invitation_code=%@", HostUrl, self.message.text];
     }
 }
 
