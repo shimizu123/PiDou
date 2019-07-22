@@ -18,6 +18,7 @@
 #import "XLTieziModel.h"
 #import "XLPlayerManager.h"
 #import "UIImage+TGExtension.h"
+#import "AdNoticeView.h"
 
 @interface XLMainDetailController () <XLCommentBotViewDelegate, XLMainDetailTableDelegate, XLCommentInputViewDelegate, HXPhotoViewDelegate>
 
@@ -505,7 +506,12 @@
                 [HUDController hideHUDWithText:responseObject];
                 [WeakSelf initData];
             } failure:^(id  _Nonnull result) {
-                [HUDController xl_hideHUDWithResult:result];
+                if ([result isKindOfClass:[NSNumber class]]) {
+                    [HUDController hideHUD];
+                    [self adNotice];
+                } else {
+                    [HUDController xl_hideHUDWithResult:result];
+                }
             }];
         }
             break;
@@ -568,6 +574,11 @@
         _data = [NSMutableArray array];
     }
     return _data;
+}
+
+- (void)adNotice {
+    AdNoticeView *noticeView = [[AdNoticeView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300 * kWidthRatio6s) / 2, (SCREEN_HEIGHT - 100 * kWidthRatio6s) / 2, 300 * kWidthRatio6s, 100 * kWidthRatio6s)];
+    [noticeView show];
 }
 
 @end

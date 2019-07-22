@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RefreshView : UIView
+@interface RefreshButton : UIButton
 
-+ (instancetype)refreshView;
++ (instancetype)refreshButton;
 
 - (void)showView;
 - (void)removeView;

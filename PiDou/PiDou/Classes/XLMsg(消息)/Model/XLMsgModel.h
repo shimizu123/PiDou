@@ -36,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**金额 冻结PDcoin和打赏时有值*/
 @property (nonatomic, copy) NSString *amount;
 
+//已读消息
+@property (nonatomic, copy) NSString *isread;
+@property (nonatomic, copy) NSString *message_id;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -40,4 +40,54 @@
     }];
 }
 
++ (void)unreadMessageCount:(XLSuccess)success failure:(XLFailure)failure {
+    NSString *url = [NSString stringWithFormat:@"%@%@", BaseUrl, Url_TotalMessage];
+    [XLAFNetworking post:url params:nil success:^(id  _Nonnull responseObject) {
+        NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
+        NSString *msg = [responseObject valueForKey:@"msg"];
+        NSString *data = [responseObject valueForKey:@"data"];
+        
+        if (code == 200) {
+            if (success) {
+                success(data);
+            }
+        } else {
+            if (failure) {
+                failure(msg);
+            }
+        }
+    } failure:^(NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+}
+
++ (void)messageReaded:(NSString *)messageId success:(XLSuccess)success failure:(XLFailure)failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"cid"] = messageId;
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", BaseUrl, Url_MessageReaded];
+    [XLAFNetworking post:url params:params success:^(id  _Nonnull responseObject) {
+        NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
+        NSString *msg = [responseObject valueForKey:@"msg"];
+        
+        if (code == 200) {
+            if (success) {
+                success(msg);
+            }
+        } else {
+            if (failure) {
+                failure(msg);
+            }
+        }
+    } failure:^(NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+}
+
 @end

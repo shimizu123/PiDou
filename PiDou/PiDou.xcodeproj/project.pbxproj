@@ -405,7 +405,7 @@
 		54E03E2022647D3800C97981 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */; };
 		54E03E2122647D3800C97981 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0F22647D3800C97981 /* YYWebImageOperation.m */; };
 		64051E7222E1C6390070B643 /* MTGSDKReward.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64051E7122E1C6390070B643 /* MTGSDKReward.framework */; };
-		64051E7522E312D80070B643 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64051E7422E312D80070B643 /* RefreshView.m */; };
+		64051E7522E312D80070B643 /* RefreshButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64051E7422E312D80070B643 /* RefreshButton.m */; };
 		643B033E22DFFEFB0074C21A /* MTGSDKAppWall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643B033C22DFFEFA0074C21A /* MTGSDKAppWall.framework */; };
 		643B033F22DFFEFB0074C21A /* MTGSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643B033D22DFFEFB0074C21A /* MTGSDK.framework */; };
 		643B034922E029460074C21A /* MTGNativeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 643B034422E029460074C21A /* MTGNativeVideoCell.m */; };
@@ -1231,8 +1231,8 @@
 		54E03E0E22647D3800C97981 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		54E03E0F22647D3800C97981 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
 		64051E7122E1C6390070B643 /* MTGSDKReward.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDKReward.framework; sourceTree = "<group>"; };
-		64051E7322E312D80070B643 /* RefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
-		64051E7422E312D80070B643 /* RefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
+		64051E7322E312D80070B643 /* RefreshButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshButton.h; sourceTree = "<group>"; };
+		64051E7422E312D80070B643 /* RefreshButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshButton.m; sourceTree = "<group>"; };
 		643B033C22DFFEFA0074C21A /* MTGSDKAppWall.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDKAppWall.framework; sourceTree = "<group>"; };
 		643B033D22DFFEFB0074C21A /* MTGSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDK.framework; sourceTree = "<group>"; };
 		643B034322E029460074C21A /* MTGNativeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGNativeVideoCell.h; sourceTree = "<group>"; };
@@ -2437,8 +2437,8 @@
 				643B034322E029460074C21A /* MTGNativeVideoCell.h */,
 				643B034422E029460074C21A /* MTGNativeVideoCell.m */,
 				643B034622E029460074C21A /* MTGNativeVideoCell.xib */,
-				64051E7322E312D80070B643 /* RefreshView.h */,
-				64051E7422E312D80070B643 /* RefreshView.m */,
+				64051E7322E312D80070B643 /* RefreshButton.h */,
+				64051E7422E312D80070B643 /* RefreshButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3659,7 +3659,7 @@
 				5449BB3C22550EAC00646FBD /* XLMineController.m in Sources */,
 				5441179C228075F900C955A6 /* XLQRCodeModel.m in Sources */,
 				54E03DDB22645B6300C97981 /* HXPhotoView.m in Sources */,
-				64051E7522E312D80070B643 /* RefreshView.m in Sources */,
+				64051E7522E312D80070B643 /* RefreshButton.m in Sources */,
 				0A1164E82282791700FF23D0 /* XLGodCommentView.m in Sources */,
 				540C490D2256F63C00D45AAE /* XLResetPwdView.m in Sources */,
 				54E03DE422645B6300C97981 /* HXPhotoEditViewController.m in Sources */,

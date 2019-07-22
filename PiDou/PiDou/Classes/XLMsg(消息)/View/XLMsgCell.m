@@ -298,6 +298,15 @@
 - (void)setMsgModel:(XLMsgModel *)msgModel {
     _msgModel = msgModel;
     NSInteger type = [_msgModel.type integerValue];
+    
+    
+    NSString *isRead = _msgModel.isread;
+    // 0为未读，1为已读
+    if ([isRead isEqualToString:@"0"]) {
+        self.redHot.hidden = NO;
+    } else {
+        self.redHot.hidden = YES;
+    }
 
     /**
      类型 详细见下文
@@ -419,11 +428,6 @@
     }
 }
 
-- (BOOL)unread {
-    if (!_unread) {
-        _unread = YES;
-    }
-    return _unread;
-}
+
 
 @end

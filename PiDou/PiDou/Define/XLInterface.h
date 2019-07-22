@@ -104,4 +104,8 @@
 #define Url_WechatPrePay    @"/pre_pay"
 #define Url_Adv             @"/ad"
 
+
+#define Url_TotalMessage    @"/total_message"
+#define Url_MessageReaded   @"/message_readed"
+
 #endif /* XLInterface_h */

@@ -291,6 +291,8 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     
     UIImage *thumbnailImage = thumbnailImageRef ? [[UIImage alloc] initWithCGImage: thumbnailImageRef] : nil;
     
+    CGImageRelease(thumbnailImageRef);
+    
     return thumbnailImage;
 }
 

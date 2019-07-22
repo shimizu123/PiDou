@@ -17,6 +17,7 @@
 #import "XLLaunchManager.h"
 #import "WZLBadgeImport.h"
 #import "AdNoticeView.h"
+#import "XLMgsHandle.h"
 
 @interface XLMainTabBarController () <UITabBarControllerDelegate, MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate>
 
@@ -40,9 +41,8 @@
     
     [self initControllers];
     
-    _badgeCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"badgeCount"];
     if (!XLStringIsEmpty([XLUserHandle userid])) {
-        [self showBadge];
+        [self unreadMessageCount];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveData:) name:@"badge" object:nil];
     
@@ -58,8 +58,22 @@
 - (void)showBadge {
     UITabBarItem *msgItem = self.tabBar.items[3];
     //it is necessary to adjust badge position
-    msgItem.badgeCenterOffset = CGPointMake(0, 0);
+    msgItem.badgeCenterOffset = CGPointMake(0, 1);
     [msgItem showBadgeWithStyle:WBadgeStyleNumber value:_badgeCount animationType:WBadgeAnimTypeNone];
+}
+
+- (void)unreadMessageCount {
+    kDefineWeakSelf;
+    [XLMgsHandle unreadMessageCount:^(NSString *data) {
+        WeakSelf.badgeCount = [data integerValue];
+    } failure:^(id  _Nonnull result) {
+        
+    }];
+}
+
+- (void)setBadgeCount:(NSInteger)badgeCount {
+    _badgeCount = badgeCount;
+    [self showBadge];
 }
 
 

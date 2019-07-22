@@ -14,6 +14,8 @@
 #import "XLTieziModel.h"
 #import "XLUserDetailController.h"
 #import "WZLBadgeImport.h"
+#import "XLMsgModel.h"
+#import "XLMgsHandle.h"
 
 static NSString * XLMsgCellID = @"kXLMsgCellID";
 
@@ -27,7 +29,6 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 - (void)setData:(NSMutableArray *)data {
     _data = data;
     [self.tableView reloadData];
-    self.badgeCount = _data.count;
 }
 
 - (void)setBadgeCount:(NSInteger)badgeCount {
@@ -139,9 +140,18 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    XLMsgModel *model = self.data[indexPath.row];
     XLMsgCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.redHot.hidden = YES;
-    self.badgeCount--;
+    if ([model.isread isEqualToString:@"0"]) { //未读
+        cell.redHot.hidden = YES;
+        self.badgeCount--;
+        NSString *cid = model.message_id;
+        [XLMgsHandle messageReaded:cid success:^(id  _Nonnull responseObject) {
+            
+        } failure:^(id  _Nonnull result) {
+            
+        }];
+    }
     
     XLMsgModel *message = self.data[indexPath.row];
     switch ([message.type integerValue]) {

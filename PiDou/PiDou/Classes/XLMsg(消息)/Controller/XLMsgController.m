@@ -34,8 +34,6 @@
     self.type = 0;
     [self initNaviItem];
     [self initUI];
-    
-    [self didLoadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,7 +45,16 @@
         }];
         return;
     }
-    
+    [self didLoadData];
+}
+
+- (void)unreadMessageCount {
+    kDefineWeakSelf;
+    [XLMgsHandle unreadMessageCount:^(NSString *data) {
+        WeakSelf.table.badgeCount = [data integerValue];
+    } failure:^(id  _Nonnull result) {
+        
+    }];
 }
 
 - (void)didLoadData {
@@ -124,6 +131,8 @@
             WeakSelf.data = data;
         }
         WeakSelf.table.data = WeakSelf.data;
+        
+        [self unreadMessageCount];
     } failure:^(id  _Nonnull result) {
        // [HUDController xl_hideHUDWithResult:result];
         if (WeakSelf.page > 1) {
