@@ -45,7 +45,7 @@
     [XLAFNetworking post:url params:nil success:^(id  _Nonnull responseObject) {
         NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
         NSString *msg = [responseObject valueForKey:@"msg"];
-        NSString *data = [responseObject valueForKey:@"data"];
+        NSDictionary *data = [responseObject valueForKey:@"data"];
         
         if (code == 200) {
             if (success) {

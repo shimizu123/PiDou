@@ -13,6 +13,7 @@
 #import "XLWalletInfoModel.h"
 #import "XLGainPDCoinController.h"
 #import "XLPDCoinHandle.h"
+#import "AdNoticeView.h"
 
 @interface XLWalletPriceCell () 
 
@@ -305,7 +306,9 @@
 }
 
 - (void)note {
-    [HUDController showTextOnly:@"此功能暂未开放"];
+    AdNoticeView *noticeView = [[AdNoticeView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300 * kWidthRatio6s) / 2, (SCREEN_HEIGHT - 100 * kWidthRatio6s) / 2, 300 * kWidthRatio6s, 100 * kWidthRatio6s)];
+    noticeView.isCommunity = YES;
+    [noticeView show];
 }
 
 #pragma mark - 兑换

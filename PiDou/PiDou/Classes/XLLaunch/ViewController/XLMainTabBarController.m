@@ -64,8 +64,8 @@
 
 - (void)unreadMessageCount {
     kDefineWeakSelf;
-    [XLMgsHandle unreadMessageCount:^(NSString *data) {
-        WeakSelf.badgeCount = [data integerValue];
+    [XLMgsHandle unreadMessageCount:^(NSDictionary *data) {
+        WeakSelf.badgeCount = [[data valueForKey:@"count"] integerValue];
     } failure:^(id  _Nonnull result) {
         
     }];
