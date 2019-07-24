@@ -103,6 +103,7 @@ singleton_m(AdNoticeView)
 - (void)setIsCommunity:(BOOL)isCommunity {
     _isCommunity = isCommunity;
     self.label.text = _isCommunity ? @"观看视频之后才可参与回馈" : @"您已点赞次数超过每天限制个数，观看视频可免费获得3个点赞次数";
+    self.label.textAlignment = NSTextAlignmentCenter;
 }
 
 @end
