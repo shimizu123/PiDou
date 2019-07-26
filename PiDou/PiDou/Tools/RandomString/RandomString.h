@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RandomString : NSObject
+singleton_h(RandomString)
 
 + (NSString *)getPdversion;
 
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)md5WithString:(NSString *)pdrandom;
 
 + (NSString *)getVersion;
+
++ (NSString *)getPdsign:(NSDictionary *)dict;
 
 @end
 

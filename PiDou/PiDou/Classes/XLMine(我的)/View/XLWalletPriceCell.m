@@ -47,6 +47,7 @@
 @end
 
 @implementation XLWalletPriceCell
+singleton_m(XLWalletPriceCell)
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -127,7 +128,7 @@
     [self.contentView addSubview:self.coinNumL];
     [self.coinNumL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:24.f];
     self.coinNumL.textAlignment = NSTextAlignmentCenter;
-    self.coinNumL.text = @"0";
+    self.coinNumL.text = @"";
     
     self.communityButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.contentView addSubview:self.communityButton];

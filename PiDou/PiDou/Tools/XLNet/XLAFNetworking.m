@@ -59,6 +59,7 @@ singleton_m(XLAFNetworking)
     
     NSString *pdversion = [RandomString getPdversion];
     NSString *pdrandom = [RandomString getRandomString];
+   // NSString *pdsign = [RandomString getPdsign:params];
     NSString *pdsign = [RandomString md5WithString:pdrandom];
     
     [mgr.requestSerializer setValue:pdversion forHTTPHeaderField:@"pdversion"];
@@ -112,11 +113,11 @@ singleton_m(XLAFNetworking)
     AFHTTPSessionManager *mgr = self.manager;
     
     NSString *pdversion = [RandomString getPdversion];
-    NSString *pdrandom = [RandomString getRandomString];
-    NSString *pdsign = [RandomString md5WithString:pdrandom];
+   // NSString *pdrandom = [RandomString getRandomString];
+    NSString *pdsign = [RandomString getPdsign:params];
     
     [mgr.requestSerializer setValue:pdversion forHTTPHeaderField:@"pdversion"];
-    [mgr.requestSerializer setValue:pdrandom forHTTPHeaderField:@"pdrandom"];
+   // [mgr.requestSerializer setValue:pdrandom forHTTPHeaderField:@"pdrandom"];
     [mgr.requestSerializer setValue:pdsign forHTTPHeaderField:@"pdsign"];
     
     //设置网路请求的超时时间

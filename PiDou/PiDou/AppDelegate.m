@@ -30,7 +30,7 @@
 //    [sdmanager setValue:[XLUserHandle token] forHTTPHeaderField:@"Authorization"];
     
     [[MTGSDK sharedInstance] setAppID:@"117062" ApiKey:@"b70f9ed43e0c52d3206d4d9178646d66"];
-    [[MTGSDK sharedInstance] preloadNativeAdsWithUnitId:KNativeUnitID fbPlacementId:@"" forNumAdsRequested:1];
+    [[MTGSDK sharedInstance] preloadNativeAdsWithUnitId:KNativeUnitID fbPlacementId:@"" supportedTemplates:@[[MTGTemplate templateWithType:MTGAD_TEMPLATE_BIG_IMAGE adsNum:1]] autoCacheImage:NO adCategory:0];
     
    // [[MTGSDK sharedInstance] setAppID:@"92763" ApiKey:@"936dcbdd57fe235fd7cf61c2e93da3c4"];
 

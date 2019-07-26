@@ -18,6 +18,7 @@
 #import "WZLBadgeImport.h"
 #import "AdNoticeView.h"
 #import "XLMgsHandle.h"
+#import "XLWalletPriceCell.h"
 
 @interface XLMainTabBarController () <UITabBarControllerDelegate, MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate>
 
@@ -211,12 +212,7 @@
 
 //About RewardInfo Delegate
 - (void)onVideoAdDismissed:(NSString *)unitId withConverted:(BOOL)converted withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
-    if (rewardInfo) {
-        
-    }
-    else {
-        
-    }
+   // [[XLWalletPriceCell sharedXLWalletPriceCell] communityAction];
 }
 
 - (void)rewardVideo {
@@ -224,9 +220,8 @@
     
     //Check isReady before you show a reward video
     if ([[MTGRewardAdManager sharedInstance] isVideoReadyToPlay:KRewardUnitID]) {
-        [[MTGRewardAdManager sharedInstance] showVideo:KRewardUnitID withRewardId:@"1" userId:@"" delegate:self viewController:self];
-    }
-    else {
+        [[MTGRewardAdManager sharedInstance] showVideo:KRewardUnitID withRewardId:@"3" userId:@"shimizu" delegate:self viewController:self];
+    } else {
         //We will help you to load automatically when isReady is NO
         [HUDController showTextOnly:@"没有广告"];
     }

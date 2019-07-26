@@ -10,6 +10,7 @@
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation RandomString
+singleton_m(RandomString)
 
 + (NSString *)getPdversion {
     NSString *version = [RandomString getVersion];
@@ -38,8 +39,38 @@
     
     NSString *fixedStr = @"igxitxurigxurxigxutxitxut";
     NSString *totalStr = [fixedStr stringByAppendingString:pdrandom];
+
+    return [[self sharedRandomString] md5:totalStr];
+}
+
++ (NSString *)getVersion {
+    //编译版本号 CFBundleVersion
+    //更新版本号 CFBundleShortVersionString
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *localAppVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+    
+    return localAppVersion;
+}
+
++ (NSString *)getPdsign:(NSDictionary *)dict {
+    NSArray *sortArray = [dict.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
+    NSMutableArray *valueArray = [NSMutableArray array];
+    for (NSString *key in sortArray) {
+        NSString *valueString = [dict objectForKey:key];
+        [valueArray addObject:valueString];
+    }
+    NSString *Str = [valueArray componentsJoinedByString:@""];
+    NSString *fixedStr = @"igxitxurigxurxigxutxitxut";
+    NSString *totalStr = [fixedStr stringByAppendingString:Str];
+    
+    return [[self sharedRandomString] md5:totalStr];
+}
+
+- (NSString *)md5:(NSString *)str {
     // MD5加密都是通过C级别的函数来计算，所以需要将加密的字符串转换为C语言的字符串
-    const char *cstring = totalStr.UTF8String;
+    const char *cstring = str.UTF8String;
     // 创建一个C语言的字符数组，用来接收加密结束之后的字符
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     //MD5计算（也就是加密）
@@ -54,17 +85,9 @@
     for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
         [md5String appendFormat:@"%02x", result[i]];
     }
-
+    
     return md5String;
 }
 
-+ (NSString *)getVersion {
-    //编译版本号 CFBundleVersion
-    //更新版本号 CFBundleShortVersionString
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *localAppVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
-    
-    return localAppVersion;
-}
 
 @end

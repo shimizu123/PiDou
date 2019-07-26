@@ -48,6 +48,8 @@
     [self initBaseUI];
     
     [self.diamondView showView];
+    
+    [self checkVersion];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,6 +84,31 @@
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+}
+
+// 版本更新
+- (void)checkVersion {
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,Url_Entity];
+    [XLAFNetworking post:url params:nil success:^(id  _Nonnull responseObject) {
+        NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
+        NSString *msg = [responseObject valueForKey:@"msg"];
+        
+        if (code == 440) {
+            msg = @"有新版本可更新";
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *sure = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSURL *url = [NSURL URLWithString:@"http://www.pidoutv.com"];
+                [[UIApplication sharedApplication] openURL:url];
+            }];
+            [alertController addAction:cancel];
+            [alertController addAction:sure];
+            
+            [self presentViewController:alertController animated:true completion:nil];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 #pragma mark - XLGroupBarDelegate
