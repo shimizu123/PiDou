@@ -220,7 +220,7 @@
     
     //Check isReady before you show a reward video
     if ([[MTGRewardAdManager sharedInstance] isVideoReadyToPlay:KRewardUnitID]) {
-        [[MTGRewardAdManager sharedInstance] showVideo:KRewardUnitID withRewardId:@"3" userId:@"shimizu" delegate:self viewController:self];
+        [[MTGRewardAdManager sharedInstance] showVideo:KRewardUnitID withRewardId:@"3" userId:[XLUserHandle userid] delegate:self viewController:self];
     } else {
         //We will help you to load automatically when isReady is NO
         [HUDController showTextOnly:@"没有广告"];

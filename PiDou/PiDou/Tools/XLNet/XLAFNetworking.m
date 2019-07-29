@@ -58,12 +58,12 @@ singleton_m(XLAFNetworking)
     
     
     NSString *pdversion = [RandomString getPdversion];
-    NSString *pdrandom = [RandomString getRandomString];
-   // NSString *pdsign = [RandomString getPdsign:params];
-    NSString *pdsign = [RandomString md5WithString:pdrandom];
+   // NSString *pdrandom = [RandomString getRandomString];
+    NSString *pdsign = [RandomString getPdsign:params];
+   // NSString *pdsign = [RandomString md5WithString:pdrandom];
     
     [mgr.requestSerializer setValue:pdversion forHTTPHeaderField:@"pdversion"];
-    [mgr.requestSerializer setValue:pdrandom forHTTPHeaderField:@"pdrandom"];
+   // [mgr.requestSerializer setValue:pdrandom forHTTPHeaderField:@"pdrandom"];
     [mgr.requestSerializer setValue:pdsign forHTTPHeaderField:@"pdsign"];
     //从静态库获取协议进行请求接口拼接
     

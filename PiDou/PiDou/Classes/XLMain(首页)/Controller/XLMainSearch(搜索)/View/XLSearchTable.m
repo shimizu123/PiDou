@@ -316,12 +316,14 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id model = self.data[indexPath.row];
-    if ([model isKindOfClass:[MTGCampaign class]]) {
-        if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
-            return 60.0f + SCREEN_WIDTH * (627.0f/1200.0f);
-        } else if (indexPath.row % 3 == 1) {
-            return 130.0f + SCREEN_WIDTH * (9.0f/16.0f);
+    if (self.data.count > 0) {
+        id model = self.data[indexPath.row];
+        if ([model isKindOfClass:[MTGCampaign class]]) {
+            if (indexPath.row % 3 == 0 || indexPath.row % 3 == 2) {
+                return 60.0f + SCREEN_WIDTH * (627.0f/1200.0f);
+            } else if (indexPath.row % 3 == 1) {
+                return 130.0f + SCREEN_WIDTH * (9.0f/16.0f);
+            }
         }
     }
     

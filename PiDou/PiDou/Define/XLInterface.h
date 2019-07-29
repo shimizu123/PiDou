@@ -10,7 +10,7 @@
 #define XLInterface_h
 
 
-//#define TEST_URL // 注释这一行则运行正式服，没有注释这一行则运行测试服
+#define TEST_URL // 注释这一行则运行正式服，没有注释这一行则运行测试服
 
 #ifdef TEST_URL
 #pragma mark - =================测试环境==================
