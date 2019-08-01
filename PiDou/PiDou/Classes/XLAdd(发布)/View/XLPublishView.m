@@ -13,7 +13,7 @@
 
 #define BTN_W       48 * kWidthRatio6s
 #define BTN_H       70 * kWidthRatio6s
-#define ROW_NUM     3
+#define ROW_NUM     4
 #define ROW_SPACING (SCREEN_WIDTH - ROW_NUM * BTN_W) / (2 * ROW_NUM)
 @interface XLPublishView ()
 

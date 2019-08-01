@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AdNoticeView : UIView
 singleton_h(AdNoticeView)
 
++ (instancetype)adNoticeView;
 //参与社区回馈
 @property (nonatomic, assign) BOOL isCommunity;
 

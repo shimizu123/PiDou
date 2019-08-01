@@ -10,6 +10,7 @@
 
 @interface AdNoticeView ()
 
+@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *nextWatch;
 @property (nonatomic, strong) UIButton *watchVideo;
@@ -18,6 +19,10 @@
 
 @implementation AdNoticeView
 singleton_m(AdNoticeView)
+
++ (instancetype)adNoticeView {
+    return [[self alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -29,25 +34,29 @@ singleton_m(AdNoticeView)
 }
 
 - (void)setup {
-    self.backgroundColor = UIColor.whiteColor;
-    XLViewRadius(self, 5 * kWidthRatio6s);
+    self.backgroundColor = COLOR_A(0x000000, 0.4);
+    
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300 * kWidthRatio6s) / 2, (SCREEN_HEIGHT - 100 * kWidthRatio6s) / 2, 300 * kWidthRatio6s, 100 * kWidthRatio6s)];
+    [self addSubview:self.contentView];
+    self.contentView.backgroundColor = UIColor.whiteColor;
+    XLViewRadius(self.contentView, 5 * kWidthRatio6s);
     
     self.label = [[UILabel alloc] init];
-    [self addSubview:self.label];
+    [self.contentView addSubview:self.label];
     [self.label xl_setTextColor:XL_COLOR_DARKBLACK fontSize:14.f];
     self.label.text = @"您已点赞次数超过每天限制个数，观看视频可免费获得3个点赞次数";
     self.label.textAlignment = NSTextAlignmentLeft;
     self.label.numberOfLines = 0;
     
     self.nextWatch = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self addSubview:self.nextWatch];
+    [self.contentView addSubview:self.nextWatch];
     [self.nextWatch xl_setTitle:@"下次再看" color:UIColor.whiteColor size:11.f];
     self.nextWatch.backgroundColor = XL_COLOR_DARKGRAY;
     [self.nextWatch addTarget:self action:@selector(dismiss) forControlEvents:(UIControlEventTouchUpInside)];
     XLViewRadius(self.nextWatch, 10 * kWidthRatio6s);
     
     self.watchVideo = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self addSubview:self.watchVideo];
+    [self.contentView addSubview:self.watchVideo];
     [self.watchVideo xl_setTitle:@"观看视频" color:UIColor.whiteColor size:11.f];
     self.watchVideo.backgroundColor = XL_COLOR_DARKGRAY;
     [self.watchVideo addTarget:self action:@selector(watchRewardVideo) forControlEvents:UIControlEventTouchUpInside];
@@ -58,22 +67,22 @@ singleton_m(AdNoticeView)
 
 - (void)initLayout {
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).mas_offset(30 * kWidthRatio6s);
-        make.right.equalTo(self).mas_offset(-30 * kWidthRatio6s);
-        make.top.equalTo(self).mas_offset(10 * kWidthRatio6s);
+        make.left.equalTo(self.contentView).mas_offset(30 * kWidthRatio6s);
+        make.right.equalTo(self.contentView).mas_offset(-30 * kWidthRatio6s);
+        make.top.equalTo(self.contentView).mas_offset(10 * kWidthRatio6s);
         make.height.mas_offset(34 * kWidthRatio6s);
     }];
     
     [self.nextWatch mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).mas_offset(30 * kWidthRatio6s);
-        make.bottom.equalTo(self).mas_offset(-11 * kWidthRatio6s);
+        make.left.equalTo(self.contentView).mas_offset(30 * kWidthRatio6s);
+        make.bottom.equalTo(self.contentView).mas_offset(-11 * kWidthRatio6s);
         make.width.mas_offset(70 * kWidthRatio6s);
         make.height.mas_offset(20 * kWidthRatio6s);
     }];
     
     [self.watchVideo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).mas_offset(-30 * kWidthRatio6s);
-        make.bottom.equalTo(self).mas_offset(-11 * kWidthRatio6s);
+        make.right.equalTo(self.contentView).mas_offset(-30 * kWidthRatio6s);
+        make.bottom.equalTo(self.contentView).mas_offset(-11 * kWidthRatio6s);
         make.width.mas_offset(70 * kWidthRatio6s);
         make.height.mas_offset(20 * kWidthRatio6s);
     }];

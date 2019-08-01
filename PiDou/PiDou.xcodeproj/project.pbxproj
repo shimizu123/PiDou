@@ -417,6 +417,7 @@
 		64428ED422D36D2900CE31AF /* UITabBarItem+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428EC922D36D2900CE31AF /* UITabBarItem+WZLBadge.m */; };
 		64428ED522D36D2900CE31AF /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ECC22D36D2900CE31AF /* CAAnimation+WAnimation.m */; };
 		64428ED622D36D2900CE31AF /* UIView+WZLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */; };
+		647107AF22F152F000CDC992 /* PublishLinkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 647107AE22F152F000CDC992 /* PublishLinkHandler.m */; };
 		648873C122DF2FCB00A12D1A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648873C022DF2FCB00A12D1A /* Accelerate.framework */; };
 		64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A77BB622C4DFC100FF715F /* PrivacyController.m */; };
 		64B0C3E922D9DDF600AACEC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3E822D9DDF600AACEC4 /* StoreKit.framework */; };
@@ -1253,6 +1254,8 @@
 		64428ED022D36D2900CE31AF /* UIView+WZLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WZLBadge.h"; sourceTree = "<group>"; };
 		64428ED122D36D2900CE31AF /* UIView+WZLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WZLBadge.m"; sourceTree = "<group>"; };
 		64428ED222D36D2900CE31AF /* WZLBadgeImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLBadgeImport.h; sourceTree = "<group>"; };
+		647107AD22F152F000CDC992 /* PublishLinkHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishLinkHandler.h; sourceTree = "<group>"; };
+		647107AE22F152F000CDC992 /* PublishLinkHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishLinkHandler.m; sourceTree = "<group>"; };
 		648873C022DF2FCB00A12D1A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		64A77BB522C4DFC100FF715F /* PrivacyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyController.h; sourceTree = "<group>"; };
 		64A77BB622C4DFC100FF715F /* PrivacyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyController.m; sourceTree = "<group>"; };
@@ -1444,6 +1447,8 @@
 			children = (
 				0A14C8CF2276DF8B00F53F10 /* XLPublishHandle.h */,
 				0A14C8CE2276DF8B00F53F10 /* XLPublishHandle.m */,
+				647107AD22F152F000CDC992 /* PublishLinkHandler.h */,
+				647107AE22F152F000CDC992 /* PublishLinkHandler.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2372,6 +2377,7 @@
 		5449BB1922550D3600646FBD /* XLAdd(发布) */ = {
 			isa = PBXGroup;
 			children = (
+				647107A922F14D5900CDC992 /* Model */,
 				0A14C8CD2276DF8B00F53F10 /* ViewModel */,
 				54E03D2822620BFE00C97981 /* View */,
 				5449BB2522550DBB00646FBD /* Controller */,
@@ -3220,6 +3226,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		647107A922F14D5900CDC992 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		64E3DD3B22C9DF16003B90CC /* IP */ = {
 			isa = PBXGroup;
 			children = (
@@ -3615,6 +3628,7 @@
 				54E03CD9225E233900C97981 /* XLMineFocusController.m in Sources */,
 				54A4C2292259D0640020CD7D /* ASValuePopUpView.m in Sources */,
 				5449BAEC2254F75200646FBD /* XLMulTableView.m in Sources */,
+				647107AF22F152F000CDC992 /* PublishLinkHandler.m in Sources */,
 				5449BAE42254F75200646FBD /* XLRootManager.m in Sources */,
 				54E03D24226205AD00C97981 /* XLMineShenController.m in Sources */,
 				0ACB2822228AA49100991ADB /* XLLineProgress.m in Sources */,

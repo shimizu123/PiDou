@@ -140,20 +140,22 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    XLMsgModel *model = self.data[indexPath.row];
-    XLMsgCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([model.isread isEqualToString:@"0"]) { //未读
-        cell.redHot.hidden = YES;
-        self.badgeCount--;
-        NSString *cid = model.message_id;
-        [XLMgsHandle messageReaded:cid success:^(id  _Nonnull responseObject) {
-            
-        } failure:^(id  _Nonnull result) {
-            
-        }];
-    }
+    if (indexPath.row < self.data.count) {
+        XLMsgModel *message = self.data[indexPath.row];
+        
+        XLMsgCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([message.isread isEqualToString:@"0"]) { //未读
+            cell.redHot.hidden = YES;
+            self.badgeCount--;
+            NSString *cid = message.message_id;
+            [XLMgsHandle messageReaded:cid success:^(id  _Nonnull responseObject) {
+                
+            } failure:^(id  _Nonnull result) {
+                
+            }];
+        }
     
-    XLMsgModel *message = self.data[indexPath.row];
+    
     switch ([message.type integerValue]) {
         case 1:
         {
@@ -215,7 +217,7 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
         default:
             break;
     }
-    
+  }
 }
 
 @end

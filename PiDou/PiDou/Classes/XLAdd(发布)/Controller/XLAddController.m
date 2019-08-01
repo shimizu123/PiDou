@@ -23,7 +23,7 @@
 @end
 
 @implementation XLAddController
-
+singleton_m(XLAddController)
 
 
 - (void)viewDidLoad {
@@ -40,7 +40,7 @@
     [super viewWillAppear:animated];
     
     kDefineWeakSelf;
-    self.publishView = [[XLPublishView alloc] initWithFrame:[UIScreen mainScreen].bounds titles:@[@"发视频",@"发图片"/*,@"发链接"*/,@"发文字"] images:@[@"public_video",@"public_photo"/*,@"public_link"*/,@"public_text"] complete:^(id result){
+    self.publishView = [[XLPublishView alloc] initWithFrame:[UIScreen mainScreen].bounds titles:@[@"发视频",@"发图片",@"发链接",@"发文字"] images:@[@"public_video",@"public_photo",@"public_link",@"public_text"] complete:^(id result){
         [WeakSelf didPushVCWithIndex:[result integerValue]];
     }];
     
@@ -85,13 +85,13 @@
             [self goPhotoVC];
         }
             break;
-//        case 2:
-//        {
-//           // 点击链接
-//            [self goLinkVC];
-//        }
-//            break;
         case 2:
+        {
+           // 点击链接
+            [self goLinkVC];
+        }
+            break;
+        case 3:
         {
             // 点击文字
             [self goTextVC];
@@ -128,8 +128,8 @@
 #pragma mark - 链接
 - (void)goLinkVC {
     kDefineWeakSelf;
-    XLPublishVideoPhotoController *linkVC = [[XLPublishVideoPhotoController alloc] init];
-    linkVC.publishVCType = XLPublishVideoPhotoType_link;
+    XLPublishLinkController *linkVC = [[XLPublishLinkController alloc] init];
+  //  linkVC.publishVCType = XLPublishVideoPhotoType_link;
     XLBaseNavigationController *baseNaviC = [[XLBaseNavigationController alloc] initWithRootViewController:linkVC];
     [self.navigationController presentViewController:baseNaviC animated:YES completion:^{
         [WeakSelf goTabBarItem];
