@@ -354,6 +354,10 @@
     }
 }
 
+- (void)actonView:(XLMainUserActionView *)actionView didSelectedWithIndex:(NSInteger)index {
+    [[DialogView sharedDialogView] showView:self];
+}
+
 
 #pragma mark - lazy load
 - (NSMutableArray *)pictureItemInfos {

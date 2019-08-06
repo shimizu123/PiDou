@@ -27,6 +27,9 @@ typedef NS_ENUM(NSUInteger, XLMainUserActionType) {
  */
 - (void)actonView:(XLMainUserActionView *)actionView didSelectedWithIndex:(NSInteger)index select:(BOOL)select count:(NSString *)count;
 
+//点赞提示s对话框
+- (void)actonView:(XLMainUserActionView *)actionView didSelectedWithIndex:(NSInteger)index;
+
 @end
 
 @interface XLMainUserActionView : UIView

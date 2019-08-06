@@ -10,14 +10,16 @@
 #import "XLTextView.h"
 #import "XLTopBotButton.h"
 #import "PublishLinkHandler.h"
-#import "HXPhotoManager.h"
 #import "XLAddController.h"
 #import "XLPublishVideoPhotoController.h"
 #import "XLBaseNavigationController.h"
+#import <Photos/Photos.h>
+#import <WebKit/WebKit.h>
+#import "TFHpple.h"
 
 #define Btn_H 101 * kWidthRatio6s
 
-@interface XLPublishLinkController ()
+@interface XLPublishLinkController () <WKNavigationDelegate, WKUIDelegate>
 
 @property (nonatomic, strong) XLTextView *linkTV;
 @property (nonatomic, strong) UILabel *desLabel;
@@ -25,7 +27,7 @@
 @property (nonatomic, strong) XLTopBotButton *ppxBtn;
 @property (nonatomic, strong) XLTopBotButton *ppgxBtn;
 @property (nonatomic, strong) XLTopBotButton *watermelonBtn;
-
+@property (nonatomic, strong) WKWebView *webView;
 
 @end
 
@@ -143,7 +145,16 @@
         } else if ([self.linkTV.text containsString:@"ippzone"]) {
            // link = @"http://share.ippzone.com/pp/post/118839858";
             [self parsePPgx:self.linkTV.text];
+        } else if ([self.linkTV.text containsString:@"xigua"]) {
+            [self parseWatermelon:self.linkTV.text];
         }
+        
+        //测试代码
+//        NSString *link = @"https://m.ixigua.com/group/6720142777243438350/?app=video_article&timestamp=1564966720&tt_from=copy_link&utm_source=copy_link&utm_medium=ios&utm_campaign=client_share";
+//        [self parseWatermelon:link];
+        
+    } else {
+        [HUDController showTextOnly:@"请输入合法链接"];
     }
 }
 
@@ -208,6 +219,12 @@
     }];
 }
 
+- (void)parseWatermelon:(NSString *)link {
+    NSString *str = [NSString stringWithContentsOfURL:[NSURL URLWithString:link] encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadHTMLString:str baseURL:nil];
+
+}
+
 
 - (void)download:(NSString *)urlStr manager:(AFHTTPSessionManager *)manager {
     NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
@@ -246,6 +263,61 @@
     [task resume];
 }
 
+- (WKWebView *)webView {
+    if (!_webView) {
+        // document.getElementById("xigua-video-player").select("video").get(0).select("source").get(0).attr("src")
+        NSString *jScript = @"";
+        
+        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+        [wkUController addUserScript:wkUScript];
+        
+        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+        config.userContentController = wkUController;
+        
+        _webView = [[WKWebView alloc] initWithFrame:(self.view.bounds) configuration:config];
+        _webView.navigationDelegate = self;
+        _webView.UIDelegate = self;
+        _webView.scrollView.backgroundColor = [UIColor whiteColor];
+        _webView.scrollView.bounces = NO;
+        _webView.scrollView.showsVerticalScrollIndicator = NO;
+        _webView.scrollView.showsHorizontalScrollIndicator = NO;
+        //  _webView.scrollView.scrollEnabled = NO;
+        if (@available(iOS 11.0, *)) {
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            
+        }
+    }
+    return _webView;
+}
 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [webView evaluateJavaScript:@"document.getElementsByTagName('html')[0].innerHTML" completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        response = [NSString stringWithFormat:@"<head>%@</head>", response];
+        NSLog(@"%@", response);
+        NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
+        TFHpple *hpple = [[TFHpple alloc] initWithHTMLData:data];
+        // document.getElementById("xigua-video-player").select("video").get(0).select("source").get(0).attr("src")
+        
+        NSArray *elements = [hpple searchWithXPathQuery:@"//div"];
+        for (TFHppleElement *element in elements) {
+            if ([[element objectForKey:@"id"] isEqualToString:@"xigua-video-player"]) {
+                NSLog(@"%@", [element raw]);
+                if ([element hasChildren]) {
+                    for (TFHppleElement *subElement in [element children]) {
+                        if ([[subElement tagName] isEqualToString:@"video"]) {
+                            TFHppleElement *ele = [[subElement firstChild] searchWithXPathQuery:@"//source"].firstObject;
+                            NSString *src = ele.attributes[@"src"];
+                            NSLog(@"%@", src);
+                            [HUDController hideHUDWithText:@"解析成功"];
+                        }
+                    }
+                }
+            }
+            [HUDController hideHUDWithText:@"解析失败"];
+        }
+    }];
+}
 
 @end

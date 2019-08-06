@@ -212,7 +212,19 @@
 
 //About RewardInfo Delegate
 - (void)onVideoAdDismissed:(NSString *)unitId withConverted:(BOOL)converted withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
-   // [[XLWalletPriceCell sharedXLWalletPriceCell] communityAction];
+    if (rewardInfo) {
+        NSString *transId = [RandomString getRandomString];
+        NSString *sign = [[RandomString sharedRandomString] md5:[NSString stringWithFormat:@"%@_1_%@_jqffr7a3vsa068iu", [XLUserHandle userid], transId]];
+        NSString *url = [NSString stringWithFormat:@"http://%@/apple?user_id={%@}&trans_id={%@}&reward_amount={1}&reward_name={VirtualItem}&sign={%@}&unit_id={121693}", HostUrl, [XLUserHandle userid], transId, sign];
+        //把请求url进行 UTF-8编码
+        NSString *path = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        
+        [XLAFNetworking get:path params:nil success:^(id  _Nonnull responseObject) {
+            NSLog(@"增加点赞次数成功");
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    }
 }
 
 - (void)rewardVideo {

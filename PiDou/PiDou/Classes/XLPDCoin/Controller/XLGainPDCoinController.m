@@ -136,6 +136,7 @@ static NSString * XLCoinKongFooterID = @"kXLCoinKongFooter";
         XLShareView *shareView = [XLShareView shareView];
         shareView.message = message;
         shareView.noDeletebtn = YES;
+        shareView.showQRCode = YES;
         [shareView show];
     } failure:^(id  _Nonnull result) {
         [HUDController xl_hideHUDWithResult:result];
@@ -207,7 +208,7 @@ static NSString * XLCoinKongFooterID = @"kXLCoinKongFooter";
     if (indexPath.section != 0) {
         return;
     }
-    switch (indexPath.row) {
+    switch (indexPath.item) {
         case 0:
         {
             [self shareAction];

@@ -23,6 +23,8 @@ singleton_h(RandomString)
 
 + (NSString *)getPdsign:(NSDictionary *)dict;
 
+- (NSString *)md5:(NSString *)str;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,6 +16,7 @@
 #import "XLGroupBar.h"
 #import "XLDiamondView.h"
 #import "XLPlayerManager.h"
+#import "AnnouncementView.h"
 
 @interface XLMainController () <XLGroupBarDelegate, UIScrollViewDelegate>
 
@@ -50,6 +51,7 @@
     [self.diamondView showView];
     
     [self checkVersion];
+   // [self announcement];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,6 +111,12 @@
     } failure:^(NSError * _Nonnull error) {
         
     }];
+}
+
+// 公告
+- (void)announcement {
+    AnnouncementView *announce = [AnnouncementView announcementView];
+    [announce show];
 }
 
 #pragma mark - XLGroupBarDelegate

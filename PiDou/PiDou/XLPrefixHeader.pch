@@ -69,6 +69,6 @@
 #import "MTGNativeAdsViewCell.h"
 #import "MTGNativeVideoCell.h"
 
-#define HostUrl @"120.27.70.141"
+#import "DialogView.h"
 
 #endif /* XLPrefixHeader_pch */

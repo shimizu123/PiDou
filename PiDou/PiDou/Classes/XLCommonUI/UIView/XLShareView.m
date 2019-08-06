@@ -29,6 +29,7 @@
 @property (nonatomic, strong) XLTopBotButton *wechatFriendBtn;
 @property (nonatomic, strong) XLTopBotButton *qqBtn;
 @property (nonatomic, strong) XLTopBotButton *QRCodeBtn;
+@property (nonatomic, strong) XLTopBotButton *fuzhiBtn;
 @property (nonatomic, strong) XLTopBotButton *deleteBtn;
 
 @property (nonatomic, strong) UIView *lineV;
@@ -110,6 +111,11 @@
     [self.QRCodeBtn setImage:[UIImage imageNamed:@"sao_yi_sao"] forState:(UIControlStateNormal)];
     [self.topV addSubview:self.QRCodeBtn];
     
+    self.fuzhiBtn = [XLTopBotButton buttonWithType:UIButtonTypeCustom];
+    [self.fuzhiBtn xl_setTitle:@"复制链接" color:XL_COLOR_BLACK size:14.f target:self action:@selector(fuzhiLink)];
+    [self.fuzhiBtn setImage:[UIImage imageNamed:@"public_link"] forState:UIControlStateNormal];
+    [self.topV addSubview:self.fuzhiBtn];
+    
     self.deleteBtn = [XLTopBotButton buttonWithType:(UIButtonTypeCustom)];
     [self.deleteBtn xl_setTitle:@"删除" color:XL_COLOR_BLACK size:14.f target:self action:@selector(clickDelete)];
     [self.deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:(UIControlStateNormal)];
@@ -181,8 +187,7 @@
     //修改约束
     [self.weixinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.bottom.equalTo(self.topV);
-       // make.width.mas_offset(80 * kWidthRatio6s);
-        make.width.mas_offset(60 * kWidthRatio6s);
+        make.width.mas_offset(80 * kWidthRatio6s);
     }];
     
     [self.wechatFriendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,12 +201,6 @@
         make.left.equalTo(self.wechatFriendBtn.mas_right);
     }];
     
-    //二维码
-    [self.QRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.width.equalTo(self.weixinBtn);
-        make.left.equalTo(self.qqBtn.mas_right);
-        make.right.equalTo(self.topV);
-    }];
     
     [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.bottom.equalTo(self.botV);
@@ -227,18 +226,23 @@
 
 - (void)setShowQRCode:(BOOL)showQRCode {
     _showQRCode = showQRCode;
-    self.QRCodeBtn.hidden = !_showQRCode;
     if (_showQRCode) {
         [self.weixinBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_offset(60 * kWidthRatio6s);
+            make.width.mas_offset(48 * kWidthRatio6s);
         }];
         [self.wechatFriendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.width.equalTo(self.weixinBtn);
             make.left.equalTo(self.weixinBtn.mas_right);
         }];
+        //二维码
         [self.QRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.width.equalTo(self.weixinBtn);
             make.left.equalTo(self.qqBtn.mas_right);
+        }];
+        //复制链接
+        [self.fuzhiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.width.equalTo(self.weixinBtn);
+            make.left.equalTo(self.QRCodeBtn.mas_right);
             make.right.equalTo(self.topV);
         }];
     } else {
@@ -248,7 +252,10 @@
         [self.wechatFriendBtn mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.shareView);
         }];
-        [self.QRCodeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [self.QRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_offset(0);
+        }];
+        [self.fuzhiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_offset(0);
         }];
     }
@@ -299,6 +306,13 @@
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:QRCodeVC animated:false completion:nil];
     
     [self dismiss];
+}
+
+#pragma mark - 复制链接
+- (void)fuzhiLink {
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    pboard.string = [NSString stringWithFormat:@"皮逗视频，一个由区块链技术驱动的轻幽默内容自治娱乐社区。旨在传播快乐，分享快乐生活！我的邀请码：%@ 点击马上下载：https://fir.im/pidou", self.message.text];
+    [HUDController hideHUDWithText:@"复制成功"];
 }
 
 #pragma mark - 点击删除

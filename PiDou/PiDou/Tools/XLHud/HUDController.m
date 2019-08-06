@@ -96,7 +96,11 @@
 
 + (void)xl_hideHUDWithResult:(id)result {
     if (![result isKindOfClass:[NSError class]]) {
-        [self hideHUDWithText:result];
+        if ([result isEqualToString:@"参数错误1"]) {
+            [self hideHUDWithText:@"请登录"];
+        } else {
+            [self hideHUDWithText:result];
+        }
     } else {
         [self hideHUDWithText:@"网络异常，请检查您的网络"];
     }

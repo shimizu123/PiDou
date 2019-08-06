@@ -149,7 +149,9 @@ static NSInteger const PaopaoMaxNum = 5;
 
 - (void)paopaoClick:(XLPaopaoButton *)sender {
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        sender.frame = CGRectMake(sender.frame.origin.x, -70, sender.frame.size.width, sender.frame.size.height);
+       // sender.frame = CGRectMake(sender.frame.origin.x, -70, sender.frame.size.width, sender.frame.size.height);
+        sender.alpha = 0;
+        sender.frame = CGRectMake(SCREEN_WIDTH / 2, self.superview.xl_y + 3 * kWidthRatio6s, 0, 0);
     } completion:^(BOOL finished) {
         if (finished) {
             sender.hidden = YES;

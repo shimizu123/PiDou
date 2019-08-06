@@ -220,4 +220,9 @@
         self.didSelectedAction(@{@"index":@(index),@"select":@(select),@"count":count});
     }
 }
+
+- (void)actonView:(XLMainUserActionView *)actionView didSelectedWithIndex:(NSInteger)index {
+    [[DialogView sharedDialogView] showView:self];
+}
+
 @end

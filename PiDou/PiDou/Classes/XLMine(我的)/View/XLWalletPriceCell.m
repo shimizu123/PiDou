@@ -128,13 +128,13 @@ singleton_m(XLWalletPriceCell)
     [self.contentView addSubview:self.coinNumL];
     [self.coinNumL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:24.f];
     self.coinNumL.textAlignment = NSTextAlignmentCenter;
-    self.coinNumL.text = @"";
+    self.coinNumL.text = @"0";
     
     self.communityButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.contentView addSubview:self.communityButton];
     [self.communityButton xl_setTitle:@"参与社区回馈" color:XL_COLOR_RED size:12.f];
     XLViewBorderRadius(self.communityButton, 14 * kWidthRatio6s, 1, XL_COLOR_RED.CGColor);
-    [self.communityButton addTarget:self action:@selector(note) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.communityButton addTarget:self action:@selector(communityAction) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.xingView = [[UIView alloc] init];
     [self.contentView addSubview:self.xingView];

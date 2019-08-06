@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) XLXingRewardView *rewardView;
 
+@property (nonatomic, strong) NSDate *lastSelectedDate;
+
 @end
 
 @implementation XLMainUserActionView
@@ -118,6 +120,18 @@
             // 点赞
             XLLog(@"点赞");
             kDefineWeakSelf;
+            
+            // 获取当前点击时间
+            NSDate *currentDate = [NSDate date];
+            CGFloat timeInterval = currentDate.timeIntervalSince1970 - _lastSelectedDate.timeIntervalSince1970;
+            if (timeInterval <= 10) {
+                if (self.delegate && [self.delegate respondsToSelector:@selector(actonView:didSelectedWithIndex:)]) {
+                    [self.delegate actonView:self didSelectedWithIndex:tag];
+                }
+                return;
+            }
+            _lastSelectedDate = currentDate;
+            
             
             [HUDController xl_showHUD];
             if (self.tieziModel) {
@@ -308,5 +322,8 @@
     return _rewardView;
 }
 
+- (void)dealloc {
+    
+}
 
 @end
