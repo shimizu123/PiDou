@@ -55,10 +55,9 @@
     
     self.contentLabel = [[UILabel alloc] init];
     [self.contentView addSubview:self.contentLabel];
-    self.contentLabel.text = @"1.每日24点按当前所有用户参与回馈\nPDCoin结算当日回馈；\n2.次日依次下发前一日回馈奖励；\n3.当日获得的PDCoin，不参与前一日回馈奖励；";
     [self.contentLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:13.f];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
-    self.contentLabel.numberOfLines = 0;
+    self.contentLabel.numberOfLines = 6;
     
     self.separatorLine = [[UIView alloc] init];
     [self.contentView addSubview:self.separatorLine];
@@ -84,7 +83,7 @@
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.banner.mas_bottom).mas_offset(20 * kWidthRatio6s);
+        make.top.equalTo(self.banner.mas_bottom).mas_offset(18 * kWidthRatio6s);
         make.left.equalTo(self.contentView).mas_offset(30 * kWidthRatio6s);
         make.right.equalTo(self.contentView).mas_offset(-30 * kWidthRatio6s);
     }];
@@ -92,12 +91,11 @@
     [self.separatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.contentView);
         make.height.mas_offset(1 * kWidthRatio6s);
-        make.bottom.equalTo(self.sureBtn.mas_top).mas_offset(-5 * kWidthRatio6s);
+        make.bottom.equalTo(self.sureBtn.mas_top);
     }];
     
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView);
-        make.bottom.equalTo(self.contentView).mas_offset(-5 * kWidthRatio6s);
+        make.left.right.bottom.equalTo(self.contentView);
     }];
 }
 
@@ -117,6 +115,12 @@
         [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [self removeFromSuperview];
     }];
+}
+
+- (void)setContent:(NSString *)content {
+    _content = content;
+    NSString *str = [_content stringByReplacingOccurrencesOfString:@";" withString:@"\n"];
+    self.contentLabel.text = str;
 }
 
 @end

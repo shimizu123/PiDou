@@ -128,7 +128,7 @@ singleton_m(XLWalletPriceCell)
     [self.contentView addSubview:self.coinNumL];
     [self.coinNumL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:24.f];
     self.coinNumL.textAlignment = NSTextAlignmentCenter;
-    self.coinNumL.text = @"0";
+    self.coinNumL.text = @"";
     
     self.communityButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.contentView addSubview:self.communityButton];
@@ -149,7 +149,7 @@ singleton_m(XLWalletPriceCell)
     [self.contentView addSubview:self.xingNumL];
     [self.xingNumL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:24.f];
     self.xingNumL.textAlignment = NSTextAlignmentCenter;
-    self.xingNumL.text = @"0";
+    self.xingNumL.text = @"";
     
     self.rechargeButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
    // self.rechargeButton.hidden = YES;
@@ -384,7 +384,7 @@ singleton_m(XLWalletPriceCell)
     _walletInfo = walletInfo;
     self.priceL.text = [NSString stringWithFormat:@"%@",_walletInfo.balance];
     self.coinNumL.text = [NSString stringWithFormat:@"%.2f",[_walletInfo.pdcoin floatValue]];
-    self.xingNumL.text = [NSString stringWithFormat:@"%@",_walletInfo.coin];
+    self.xingNumL.text = [NSString stringWithFormat:@"%.2f",[_walletInfo.coin floatValue]];
     if ([_walletInfo.join_profit boolValue]) {
         [self.communityButton setTitleColor:COLOR(0xcccccc) forState:(UIControlStateNormal)];
         XLViewBorderRadius(self.communityButton, 14 * kWidthRatio6s, 1, COLOR(0xcccccc).CGColor);

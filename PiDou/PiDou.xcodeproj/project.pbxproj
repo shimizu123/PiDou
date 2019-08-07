@@ -426,6 +426,7 @@
 		64A5F7FE22F91ADC00067BD7 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A5F7FD22F91ADC00067BD7 /* libxml2.2.tbd */; };
 		64A5F80122F968B000067BD7 /* DialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A5F80022F968B000067BD7 /* DialogView.m */; };
 		64A77BB722C4DFC100FF715F /* PrivacyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A77BB622C4DFC100FF715F /* PrivacyController.m */; };
+		64AA11A822FA55B50054020F /* GeneralHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 64AA11A722FA55B50054020F /* GeneralHandle.m */; };
 		64B0C3E922D9DDF600AACEC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3E822D9DDF600AACEC4 /* StoreKit.framework */; };
 		64B0C3EB22D9DE1400AACEC4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3EA22D9DE1400AACEC4 /* MobileCoreServices.framework */; };
 		64B0C3ED22D9DE3000AACEC4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3EC22D9DE3000AACEC4 /* WebKit.framework */; };
@@ -1276,6 +1277,8 @@
 		64A5F80022F968B000067BD7 /* DialogView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogView.m; sourceTree = "<group>"; };
 		64A77BB522C4DFC100FF715F /* PrivacyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyController.h; sourceTree = "<group>"; };
 		64A77BB622C4DFC100FF715F /* PrivacyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyController.m; sourceTree = "<group>"; };
+		64AA11A622FA55B50054020F /* GeneralHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneralHandle.h; sourceTree = "<group>"; };
+		64AA11A722FA55B50054020F /* GeneralHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneralHandle.m; sourceTree = "<group>"; };
 		64B0C3E822D9DDF600AACEC4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64B0C3EA22D9DE1400AACEC4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		64B0C3EC22D9DE3000AACEC4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -2429,6 +2432,8 @@
 			children = (
 				54AADAE5227878B300D41EC5 /* XLTieziHandle.h */,
 				54AADAE6227878B400D41EC5 /* XLTieziHandle.m */,
+				64AA11A622FA55B50054020F /* GeneralHandle.h */,
+				64AA11A722FA55B50054020F /* GeneralHandle.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3714,6 +3719,7 @@
 				5441179C228075F900C955A6 /* XLQRCodeModel.m in Sources */,
 				54E03DDB22645B6300C97981 /* HXPhotoView.m in Sources */,
 				64051E7522E312D80070B643 /* RefreshButton.m in Sources */,
+				64AA11A822FA55B50054020F /* GeneralHandle.m in Sources */,
 				0A1164E82282791700FF23D0 /* XLGodCommentView.m in Sources */,
 				540C490D2256F63C00D45AAE /* XLResetPwdView.m in Sources */,
 				54E03DE422645B6300C97981 /* HXPhotoEditViewController.m in Sources */,

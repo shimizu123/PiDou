@@ -53,6 +53,9 @@
 
 @property (nonatomic, copy) NSString *validate_token;
 
+/*1 优质内容贡献者、2 神评鉴定师、3 皮逗音乐达人、4 皮逗搞笑达人、5 皮逗正能量传播者，6 皮逗军事达人*/
+@property (nonatomic, copy) NSArray *biaoqian;
+
 ///**1官方标识,0非官方*/
 //@property (nonatomic, assign) NSInteger user_sign;
 ///***/

@@ -27,8 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**参与日期*/
 @property (nonatomic, copy) NSString *join_date;
-/**是否已分红  0否 1是*/
-@property (nonatomic, strong) NSNumber *status;
+/**提现状态 -1 全部/ 0 待处理 / 1 提现成功 / 2 驳回 / 3 提现失败*/
+@property (nonatomic, copy) NSString *status;
 /**交易日期*/
 @property (nonatomic, copy) NSString *date;
 

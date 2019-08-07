@@ -246,7 +246,7 @@
         self.nameL.text = @"登录/注册";
         self.nameL.font = [UIFont xl_mediumFontOfSiz:18.f];
         self.desL.text = @"欢迎来到皮逗";
-        self.userIcon.url = nil;
+        self.userIcon.url = @"";
     }
 }
 
@@ -255,8 +255,18 @@
     if (_userInfo) {
         self.nameL.font = [UIFont xl_mediumFontOfSiz:14.f];
     }
+    
+    NSString *des = @"";
+    NSArray *biaoqian = _userInfo.biaoqian;
+    if (biaoqian.count > 1) {
+        des = [NSString stringWithFormat:@"%@  %@", [self desType:biaoqian[0]], [self desType:biaoqian[1]]];
+    } else if (biaoqian.count == 1) {
+        des = [self desType:biaoqian[0]];
+    }
+    
+    
     self.nameL.text = _userInfo.nickname;
-    self.desL.text = _userInfo.sign;
+    self.desL.text = des;
     self.shenImgV.hidden = ![_userInfo.appraiser boolValue];
     
     
@@ -358,6 +368,36 @@
         [self.nameL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:18.f];
         
     }
+}
+
+
+- (NSString *)desType:(NSString *)str {
+    NSString *type;
+    switch ([str integerValue]) {
+        case 1:
+            type = @"优质内容贡献者";
+            break;
+        case 2:
+            type = @"神评鉴定师";
+            break;
+        case 3:
+            type = @"皮逗音乐达人";
+            break;
+        case 4:
+            type = @"皮逗搞笑达人";
+            break;
+        case 5:
+            type = @"皮逗正能量传播者";
+            break;
+        case 6:
+            type = @"皮逗军事达人";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return type;
 }
 
 @end

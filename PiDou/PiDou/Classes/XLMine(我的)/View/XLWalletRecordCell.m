@@ -16,6 +16,9 @@
 @property (nonatomic, strong) UILabel *timeL;
 
 @property (nonatomic, strong) UIView *hLine;
+
+@property (nonatomic, strong) UILabel *statusL;
+
 @end
 
 @implementation XLWalletRecordCell
@@ -37,6 +40,11 @@
     self.numL = [[UILabel alloc] init];
     [self.contentView addSubview:self.numL];
     [self.numL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:14.f];
+    
+    
+    self.statusL = [[UILabel alloc] init];
+    [self.contentView addSubview:self.statusL];
+    [self.statusL xl_setTextColor:XL_COLOR_RED fontSize:10.f];
     
     
     self.timeL = [[UILabel alloc] init];
@@ -81,6 +89,24 @@
 
 - (void)setRecordModel:(XLPDRecordModel *)recordModel {
     _recordModel = recordModel;
+    
+    if ([_recordModel.type integerValue] == 2) {
+        [self.statusL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView);
+            make.left.equalTo(self.numL.mas_right).mas_offset(10 * kWidthRatio6s);
+        }];
+        if ([_recordModel.status isEqualToString:@"0"]) {
+            self.statusL.text = @"(提现中...)";
+        } else if ([_recordModel.status isEqualToString:@"1"]) {
+            self.statusL.text = @"(提现成功)";
+        } else if ([_recordModel.status isEqualToString:@"3"]) { 
+            self.statusL.text = @"(提现失败)";
+        }
+    } else {
+        [self.statusL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_offset(0);
+        }];
+    }
     
     self.timeL.text = !XLStringIsEmpty(_recordModel.created) ? _recordModel.created : (!XLStringIsEmpty(_recordModel.date) ? _recordModel.date :_recordModel.join_date);
     self.titleL.text = _recordModel.typeStr;

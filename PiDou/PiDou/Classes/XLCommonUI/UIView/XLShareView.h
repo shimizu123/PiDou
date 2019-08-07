@@ -22,7 +22,7 @@
 - (void)show;
 - (void)dismiss;
 
-/**是否显示w二维码*/
+/**是否显示二维码*/
 @property (nonatomic, assign) BOOL showQRCode;
 
 /**没有删除按钮*/

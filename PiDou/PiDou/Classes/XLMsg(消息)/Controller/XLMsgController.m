@@ -24,6 +24,9 @@
 
 @property (nonatomic, assign) int page;
 
+@property(nonatomic, assign) BOOL isLoaded;
+@property(nonatomic, assign) BOOL isCustom;
+
 @end
 
 @implementation XLMsgController
@@ -45,7 +48,13 @@
         }];
         return;
     }
-    [self didLoadData];
+    
+    if (!_isLoaded) {
+        [self didLoadData];
+    } else {
+        [self initData];
+        _isCustom = YES;
+    }
 }
 
 - (void)unreadMessageCount {
@@ -58,12 +67,15 @@
 }
 
 - (void)didLoadData {
+    _isLoaded = YES;
+    
     _page = 1;
     [self.data removeAllObjects];
     [self initData];
 }
 
 - (void)loadMoreData {
+    _isCustom = NO;
     _page++;
     [self initData];
 }
@@ -125,7 +137,12 @@
        // [HUDController hideHUD];
         if (WeakSelf.page > 1) {
             [WeakSelf.table.tableView.mj_footer endRefreshing];
-            [WeakSelf.data addObjectsFromArray:data];
+            if (!WeakSelf.isCustom) {
+                [WeakSelf.data addObjectsFromArray:data];
+            } else {
+                NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange((WeakSelf.page - 1) * data.count, data.count)];
+                [WeakSelf.data replaceObjectsAtIndexes:indexSet withObjects:data];
+            }
         } else {
             [WeakSelf.table.tableView.mj_header endRefreshing];
             WeakSelf.data = data;
