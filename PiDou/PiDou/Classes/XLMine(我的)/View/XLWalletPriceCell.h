@@ -22,6 +22,8 @@ singleton_h(XLWalletPriceCell)
 
 // 参与社区活动
 - (void)communityAction;
+// 提现
+- (void)withdrawAction;
 
 @end
 

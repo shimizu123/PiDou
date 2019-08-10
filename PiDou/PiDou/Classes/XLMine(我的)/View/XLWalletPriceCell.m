@@ -103,7 +103,7 @@ singleton_m(XLWalletPriceCell)
     [self.contentView addSubview:self.withdrawButton];
     [self.withdrawButton xl_setTitle:@"提现" color:[UIColor whiteColor] size:14.f];
     XLViewBorderRadius(self.withdrawButton, 14 * kWidthRatio6s, 1, [UIColor whiteColor].CGColor);
-    [self.withdrawButton addTarget:self action:@selector(withdrawAction) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.withdrawButton addTarget:self action:@selector(note:) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.kongMidLine = [[UIView alloc] init];
     [self.contentView addSubview:self.kongMidLine];
@@ -306,9 +306,9 @@ singleton_m(XLWalletPriceCell)
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)note {
+- (void)note:(UIButton *)sender {
     AdNoticeView *noticeView = [AdNoticeView adNoticeView];
-    noticeView.isCommunity = YES;
+    noticeView.isWithdraw = YES;
     [noticeView show];
 }
 

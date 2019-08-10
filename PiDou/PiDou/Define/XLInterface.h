@@ -22,7 +22,7 @@
 #pragma mark - =================正式环境==================
 
 #define BaseUrl             @"http://pdtv.vip/api/v1.0"
-#define HostUrl @"pdtv.vip"
+#define HostUrl @"pdtv.xn--3ds443g"
 /**--------------------------------------------------------------------------*/
 #endif
 

@@ -121,6 +121,7 @@
             XLLog(@"点赞");
             kDefineWeakSelf;
             
+            _lastSelectedDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"lastDialogDate"];
             // 获取当前点击时间
             NSDate *currentDate = [NSDate date];
             CGFloat timeInterval = currentDate.timeIntervalSince1970 - _lastSelectedDate.timeIntervalSince1970;
@@ -131,6 +132,7 @@
                 return;
             }
             _lastSelectedDate = currentDate;
+            [[NSUserDefaults standardUserDefaults] setValue:_lastSelectedDate forKey:@"lastDialogDate"];
             
             
             [HUDController xl_showHUD];

@@ -250,23 +250,24 @@
     }
 }
 
-- (void)setUserInfo:(XLAppUserModel *)userInfo {
-    _userInfo = userInfo;
-    if (_userInfo) {
-        self.nameL.font = [UIFont xl_mediumFontOfSiz:14.f];
-    }
-    
+- (NSString *)desContent:(NSArray *)biaoqian {
     NSString *des = @"";
-    NSArray *biaoqian = _userInfo.biaoqian;
     if (biaoqian.count > 1) {
         des = [NSString stringWithFormat:@"%@  %@", [self desType:biaoqian[0]], [self desType:biaoqian[1]]];
     } else if (biaoqian.count == 1) {
         des = [self desType:biaoqian[0]];
     }
     
-    
+    return des;
+}
+
+- (void)setUserInfo:(XLAppUserModel *)userInfo {
+    _userInfo = userInfo;
+    if (_userInfo) {
+        self.nameL.font = [UIFont xl_mediumFontOfSiz:14.f];
+    }
     self.nameL.text = _userInfo.nickname;
-    self.desL.text = des;
+    self.desL.text = [self desContent:_userInfo.biaoqian];
     self.shenImgV.hidden = ![_userInfo.appraiser boolValue];
     
     
@@ -294,6 +295,7 @@
         } else {
             [self.diamondButton setTitleColor:XL_COLOR_DARKGRAY forState:(UIControlStateNormal)];
         }
+        self.desL.text = @"";
     } else if(_userInfoViewType == XLMainUserInfoViewType_main) {
         if (!_userInfo.pdcoin_count) {
             self.isFocus = [_userInfo.followed boolValue] || [_userInfo.user_id isEqualToString:[XLUserHandle userid]];
@@ -311,10 +313,10 @@
 - (void)setCreatTime:(NSString *)creatTime {
     _creatTime = creatTime;
     NSString *time = [NSDate messageTimeWithMilliSecondsSince1970:[_creatTime doubleValue]];
-    if (XLStringIsEmpty(_userInfo.sign) || self.userInfoViewType == XLMainUserInfoViewType_comment) {
+    if (XLArrayIsEmpty(_userInfo.biaoqian) || self.userInfoViewType == XLMainUserInfoViewType_comment) {
         self.desL.text = time;
     } else {
-        self.desL.text = [NSString stringWithFormat:@"%@ · %@",time,_userInfo.sign];
+        self.desL.text = [NSString stringWithFormat:@"%@ · %@",time,[self desContent:_userInfo.biaoqian]];
     }
 }
 

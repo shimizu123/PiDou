@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UIView *banner;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIView *separatorLine;
 @property (nonatomic, strong) UIButton *sureBtn;
@@ -53,11 +54,14 @@
     self.title.text = @"公告";
     [self.title xl_setTextColor:UIColor.whiteColor fontSize:18.f];
     
+    self.scrollView = [[UIScrollView alloc] init];
+    [self.contentView addSubview:self.scrollView];
+    
     self.contentLabel = [[UILabel alloc] init];
-    [self.contentView addSubview:self.contentLabel];
-    [self.contentLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:13.f];
+    [self.scrollView addSubview:self.contentLabel];
+    [self.contentLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:14.f];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
-    self.contentLabel.numberOfLines = 6;
+    self.contentLabel.numberOfLines = 0;
     
     self.separatorLine = [[UIView alloc] init];
     [self.contentView addSubview:self.separatorLine];
@@ -65,7 +69,7 @@
     
     self.sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:self.sureBtn];
-    [self.sureBtn xl_setTitle:@"确定" color:XL_COLOR_DARKBLACK size:14.f target:self action:@selector(dismiss)];
+    [self.sureBtn xl_setTitle:@"确定" color:XL_COLOR_RED size:15.f target:self action:@selector(dismiss)];
     
     
     [self initLayout];
@@ -75,20 +79,25 @@
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
         make.width.mas_offset(300 * kWidthRatio6s);
-        make.height.mas_offset(190 * kWidthRatio6s);
+        make.height.mas_offset(220 * kWidthRatio6s);
     }];
     
     [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.banner);
     }];
     
-    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.banner.mas_bottom).mas_offset(18 * kWidthRatio6s);
         make.left.equalTo(self.contentView).mas_offset(30 * kWidthRatio6s);
         make.right.equalTo(self.contentView).mas_offset(-30 * kWidthRatio6s);
     }];
     
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.width.equalTo(self.scrollView);
+    }];
+    
     [self.separatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.scrollView.mas_bottom).mas_offset(5 * kWidthRatio6s);
         make.left.right.equalTo(self.contentView);
         make.height.mas_offset(1 * kWidthRatio6s);
         make.bottom.equalTo(self.sureBtn.mas_top);
@@ -96,6 +105,7 @@
     
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.contentView);
+        make.height.mas_offset(40 * kWidthRatio6s);
     }];
 }
 
@@ -119,7 +129,7 @@
 
 - (void)setContent:(NSString *)content {
     _content = content;
-    NSString *str = [_content stringByReplacingOccurrencesOfString:@";" withString:@"\n"];
+    NSString *str = [_content stringByReplacingOccurrencesOfString:@";" withString:@";\n"];
     self.contentLabel.text = str;
 }
 

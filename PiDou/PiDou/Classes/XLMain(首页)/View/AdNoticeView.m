@@ -106,13 +106,28 @@ singleton_m(AdNoticeView)
 }
 
 - (void)watchRewardVideo {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"rewardVideo" object:nil];
+    if (_isWithdraw) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"withdrawReward" object:nil];
+        _isWithdraw = NO;
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"rewardVideo" object:nil];
+    }
 }
 
 - (void)setIsCommunity:(BOOL)isCommunity {
     _isCommunity = isCommunity;
-    self.label.text = _isCommunity ? @"观看视频之后才可参与回馈" : @"您已点赞次数超过每天限制个数，观看视频可免费获得3个点赞次数";
-    self.label.textAlignment = NSTextAlignmentCenter;
+    if (_isCommunity) {
+        self.label.text = @"观看视频之后才可参与回馈";
+        self.label.textAlignment = NSTextAlignmentCenter;
+    }
+}
+
+- (void)setIsWithdraw:(BOOL)isWithdraw {
+    _isWithdraw = isWithdraw;
+    if (_isWithdraw) {
+        self.label.text = @"观看视频之后才可提现";
+        self.label.textAlignment = NSTextAlignmentCenter;
+    }
 }
 
 @end

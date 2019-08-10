@@ -44,7 +44,7 @@
     
     self.statusL = [[UILabel alloc] init];
     [self.contentView addSubview:self.statusL];
-    [self.statusL xl_setTextColor:XL_COLOR_RED fontSize:10.f];
+    [self.statusL xl_setTextColor:XL_COLOR_RED fontSize:12.f];
     
     
     self.timeL = [[UILabel alloc] init];

@@ -179,6 +179,7 @@ static NSInteger const PaopaoMaxNum = 5;
     for (XLPaopaoButton *sender in self.paopaoBtnArray) {
         if (!sender.isHidden) {
             [self paopaoClick:sender];
+            break;
         }
     }
 }

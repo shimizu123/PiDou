@@ -101,7 +101,7 @@
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
             UIAlertAction *sure = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                NSURL *url = [NSURL URLWithString:@"http://www.pidoutv.com"];
+                NSURL *url = [NSURL URLWithString:@"https://fir.im/pidou"];
                 [[UIApplication sharedApplication] openURL:url];
             }];
             [alertController addAction:cancel];
@@ -116,10 +116,12 @@
 
 // 公告
 - (void)announcement {
-    [GeneralHandle systemTitle:^(NSString *content) {
-        AnnouncementView *announce = [AnnouncementView announcementView];
-        announce.content = content;
-        [announce show];
+    [GeneralHandle systemTitle:^(NSDictionary *data) {
+        if ([[data valueForKey:@"status"] isEqualToString:@"1"]) {
+            AnnouncementView *announce = [AnnouncementView announcementView];
+            announce.content = [data valueForKey:@"content"];
+            [announce show];
+        }
     } failure:^(id  _Nonnull result) {
         
     }];

@@ -191,7 +191,7 @@ static NSString * XLMineListCellID      = @"kXLMineListCell";
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:msg preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
                 UIAlertAction *sure = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    NSURL *url = [NSURL URLWithString:@"http://www.pidoutv.com"];
+                    NSURL *url = [NSURL URLWithString:@"https://fir.im/pidou"];
                     [[UIApplication sharedApplication] openURL:url];
                 }];
                 [alertController addAction:cancel];

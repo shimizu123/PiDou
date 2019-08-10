@@ -16,6 +16,8 @@ singleton_h(AdNoticeView)
 + (instancetype)adNoticeView;
 //参与社区回馈
 @property (nonatomic, assign) BOOL isCommunity;
+//提现
+@property (nonatomic, assign) BOOL isWithdraw;
 
 - (void)show;
 - (void)dismiss;

@@ -13,12 +13,13 @@
 #import "XLMineHandle.h"
 #import "XLWalletInfoModel.h"
 #import "XLPDCoinHandle.h"
+#import "AdNoticeView.h"
 
 static NSString * XLWalletPriceCellID = @"kXLWalletPriceCell";
 static NSString * XLWalletRecordCellID = @"kXLWalletRecordCell";
 static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
 
-@interface XLMineWalletController () <UITableViewDelegate, UITableViewDataSource>
+@interface XLMineWalletController () <UITableViewDelegate, UITableViewDataSource, MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate>
 
 @property (nonatomic, strong) XLBaseTableView *tableView;
 
@@ -41,6 +42,9 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
     self.navigationItem.title = @"我的钱包";
     
     [self initUI];
+    
+    [[MTGRewardAdManager sharedInstance] loadVideo:@"140010" delegate:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rewardVideo) name:@"withdrawReward" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -258,6 +262,37 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
         _billData = [NSMutableArray array];
     }
     return _billData;
+}
+
+- (void)rewardVideo {
+    [[AdNoticeView sharedAdNoticeView] dismiss];
+    
+    //Check isReady before you show a reward video
+    if ([[MTGRewardAdManager sharedInstance] isVideoReadyToPlay:@"140010"]) {
+        [[MTGRewardAdManager sharedInstance] showVideo:@"140010" withRewardId:@"3" userId:@"" delegate:self viewController:self];
+    } else {
+        //We will help you to load automatically when isReady is NO
+        [HUDController showTextOnly:@"没有广告"];
+    }
+}
+
+#pragma mark - MTGRewardAdShowDelegate Delegate
+
+//Show Reward Video Ad Success Delegate
+- (void)onVideoAdShowSuccess:(NSString *)unitId {
+    
+}
+
+//Show Reward Video Ad Failed Delegate
+- (void)onVideoAdShowFailed:(NSString *)unitId withError:(NSError *)error {
+    
+}
+
+//About RewardInfo Delegate
+- (void)onVideoAdDismissed:(NSString *)unitId withConverted:(BOOL)converted withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
+    if (rewardInfo) {
+        [[XLWalletPriceCell sharedXLWalletPriceCell] withdrawAction];
+    }
 }
 
 

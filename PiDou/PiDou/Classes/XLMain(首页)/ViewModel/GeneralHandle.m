@@ -19,7 +19,7 @@
         
         if (code == 200) {
             if (success) {
-                success([data valueForKey:@"content"]);
+                success(data);
             }
         } else {
             if (failure) {
