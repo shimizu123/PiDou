@@ -30,6 +30,8 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
 @property (nonatomic, strong) XLWalletSegmentHeader *header;
 @property (nonatomic, assign) int page;
 
+@property (nonatomic, assign) BOOL isCommunity;
+
 @end
 
 @implementation XLMineWalletController
@@ -44,7 +46,7 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
     [self initUI];
     
     [[MTGRewardAdManager sharedInstance] loadVideo:@"140010" delegate:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rewardVideo) name:@"withdrawReward" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rewardVideo:) name:@"withdrawReward" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -264,7 +266,7 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
     return _billData;
 }
 
-- (void)rewardVideo {
+- (void)rewardVideo:(NSNotification *)notification {
     [[AdNoticeView sharedAdNoticeView] dismiss];
     
     //Check isReady before you show a reward video
@@ -273,6 +275,12 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
     } else {
         //We will help you to load automatically when isReady is NO
         [HUDController showTextOnly:@"没有广告"];
+    }
+    
+    NSString *str = notification.object;
+    if ([str isEqualToString:@"0"]) {
+        [[XLWalletPriceCell sharedXLWalletPriceCell] communityAction];
+        _isCommunity = YES;
     }
 }
 
@@ -291,6 +299,10 @@ static NSString * XLWalletSegmentHeaderID = @"kXLWalletSegmentHeader";
 //About RewardInfo Delegate
 - (void)onVideoAdDismissed:(NSString *)unitId withConverted:(BOOL)converted withRewardInfo:(MTGRewardAdInfo *)rewardInfo {
     if (rewardInfo) {
+        if (_isCommunity) {
+            _isCommunity = NO;
+            return;
+        }
         [[XLWalletPriceCell sharedXLWalletPriceCell] withdrawAction];
     }
 }

@@ -125,7 +125,7 @@
             // 获取当前点击时间
             NSDate *currentDate = [NSDate date];
             CGFloat timeInterval = currentDate.timeIntervalSince1970 - _lastSelectedDate.timeIntervalSince1970;
-            if (timeInterval <= 10) {
+            if (timeInterval <= 3) {
                 if (self.delegate && [self.delegate respondsToSelector:@selector(actonView:didSelectedWithIndex:)]) {
                     [self.delegate actonView:self didSelectedWithIndex:tag];
                 }

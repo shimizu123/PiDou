@@ -80,7 +80,7 @@
         
         if (i == images.count - 1) {
             
-            //enterButton = [self getEnterButton];
+            [self getEnterButton];
             [imageView addSubview:_enterButton];
             imageView.userInteractionEnabled = YES;
         }
@@ -102,15 +102,13 @@
         _enterButton.layer.cornerRadius = 5;
         [_enterButton setTitle:@"点击进入" forState:UIControlStateNormal];
     }
-    _enterButton.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT-80);
+    _enterButton.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 80 * kWidthRatio6s);
     [_enterButton addTarget:self action:@selector(enterBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     return _enterButton;
 }
 
-- (void)setEnterButton:(UIButton *)enterButton {
-    _enterButton = enterButton;
-}
+
 
 - (void)setCurrentColor:(UIColor *)currentColor {
     _page.currentPageIndicatorTintColor = currentColor;

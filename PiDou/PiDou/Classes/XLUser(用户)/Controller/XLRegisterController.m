@@ -38,6 +38,9 @@
     [super viewDidLoad];
     self.navigationItem.title = @"注册";
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] init];
+    self.fd_interactivePopDisabled = YES;
+    
     [self initUI];
     [WXApiManager sharedManager].delegate = self;
 }

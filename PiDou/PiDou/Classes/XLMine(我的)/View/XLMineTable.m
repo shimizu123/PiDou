@@ -29,6 +29,7 @@
 #import "XLShareView.h"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKAppWall/MTGWallAdManager.h>
+#import "ShopController.h"
 
 static NSString * XLMineTopCellID      = @"kXLMineTopCell";
 static NSString * XLMineAdCellID       = @"kXLMineAdCell";
@@ -203,7 +204,9 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
             case 1:
             {
                 // 皮逗商城
-                [HUDController hideHUDWithText:@"敬请期待"];
+               // [HUDController hideHUDWithText:@"敬请期待"];
+                ShopController *shopVC = [[ShopController alloc] init];
+                [self.tableView.navigationController pushViewController:shopVC animated:YES];
             }
                 break;
             case 2:

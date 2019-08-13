@@ -134,7 +134,7 @@ singleton_m(XLWalletPriceCell)
     [self.contentView addSubview:self.communityButton];
     [self.communityButton xl_setTitle:@"参与社区回馈" color:XL_COLOR_RED size:12.f];
     XLViewBorderRadius(self.communityButton, 14 * kWidthRatio6s, 1, XL_COLOR_RED.CGColor);
-    [self.communityButton addTarget:self action:@selector(communityAction) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.communityButton addTarget:self action:@selector(note:) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.xingView = [[UIView alloc] init];
     [self.contentView addSubview:self.xingView];
@@ -308,7 +308,12 @@ singleton_m(XLWalletPriceCell)
 
 - (void)note:(UIButton *)sender {
     AdNoticeView *noticeView = [AdNoticeView adNoticeView];
-    noticeView.isWithdraw = YES;
+    if ([sender.titleLabel.text isEqualToString:@"提现"]) {
+        noticeView.isWithdraw = YES;
+    } else {
+        noticeView.isCommunity = YES;
+    }
+    
     [noticeView show];
 }
 

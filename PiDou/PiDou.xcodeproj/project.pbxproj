@@ -404,6 +404,7 @@
 		54E03E1F22647D3800C97981 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0C22647D3800C97981 /* UIImage+YYWebImage.m */; };
 		54E03E2022647D3800C97981 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */; };
 		54E03E2122647D3800C97981 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E03E0F22647D3800C97981 /* YYWebImageOperation.m */; };
+		64002A3B2302576C00D5F252 /* ShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64002A3A2302576C00D5F252 /* ShopController.m */; };
 		64051E7222E1C6390070B643 /* MTGSDKReward.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64051E7122E1C6390070B643 /* MTGSDKReward.framework */; };
 		64051E7522E312D80070B643 /* RefreshButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64051E7422E312D80070B643 /* RefreshButton.m */; };
 		643B033E22DFFEFB0074C21A /* MTGSDKAppWall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643B033C22DFFEFA0074C21A /* MTGSDKAppWall.framework */; };
@@ -1238,6 +1239,8 @@
 		54E03E0D22647D3800C97981 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		54E03E0E22647D3800C97981 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		54E03E0F22647D3800C97981 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
+		64002A392302576C00D5F252 /* ShopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopController.h; sourceTree = "<group>"; };
+		64002A3A2302576C00D5F252 /* ShopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopController.m; sourceTree = "<group>"; };
 		64051E7122E1C6390070B643 /* MTGSDKReward.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MTGSDKReward.framework; sourceTree = "<group>"; };
 		64051E7322E312D80070B643 /* RefreshButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshButton.h; sourceTree = "<group>"; };
 		64051E7422E312D80070B643 /* RefreshButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshButton.m; sourceTree = "<group>"; };
@@ -2683,6 +2686,8 @@
 				544117A62287BEA700C955A6 /* XLAnnoDetailController.m */,
 				0ACB28012289642900991ADB /* XLInviteDetailController.h */,
 				0ACB28022289642900991ADB /* XLInviteDetailController.m */,
+				64002A392302576C00D5F252 /* ShopController.h */,
+				64002A3A2302576C00D5F252 /* ShopController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3709,6 +3714,7 @@
 				5449BB002254F75200646FBD /* XLUserDatabase.m in Sources */,
 				5449BB452256570700646FBD /* XLRegisterController.m in Sources */,
 				54AADAAB22740C9D00D41EC5 /* RBBSpringAnimation.m in Sources */,
+				64002A3B2302576C00D5F252 /* ShopController.m in Sources */,
 				54E03DC122645B6300C97981 /* HXPhotoViewTransition.m in Sources */,
 				54E03DDC22645B6300C97981 /* HXFullScreenCameraPlayView.m in Sources */,
 				54A4C25B225A382E0020CD7D /* XLPhotoBrowser.m in Sources */,

@@ -32,7 +32,7 @@ singleton_m(DialogView)
     
     self.label = [[UILabel alloc] init];
     [self addSubview:self.label];
-    self.label.text = @"连续点赞\n需间隔10秒哦！";
+    self.label.text = @"连续点赞\n需间隔3秒哦！";
     self.label.numberOfLines = 2;
     self.label.textAlignment = NSTextAlignmentCenter;
     [self.label xl_setTextColor:UIColor.whiteColor fontSize:9.f];

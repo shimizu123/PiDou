@@ -106,8 +106,11 @@ singleton_m(AdNoticeView)
 }
 
 - (void)watchRewardVideo {
-    if (_isWithdraw) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"withdrawReward" object:nil];
+    if (_isCommunity) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"withdrawReward" object:@"0"];
+        _isCommunity = NO;
+    } else if (_isWithdraw) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"withdrawReward" object:@"1"];
         _isWithdraw = NO;
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"rewardVideo" object:nil];
