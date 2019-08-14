@@ -435,6 +435,7 @@
 		64B0C3F522D9DEF700AACEC4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F422D9DEF600AACEC4 /* AdSupport.framework */; };
 		64B0C3F922D9DF4000AACEC4 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B0C3F822D9DF4000AACEC4 /* libresolv.9.tbd */; };
 		64BA235822DC428800C8271A /* AdNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BA235722DC428800C8271A /* AdNoticeView.m */; };
+		64C6D3902303FD3500254BC3 /* SmallGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C6D38F2303FD3500254BC3 /* SmallGameController.m */; };
 		64D0E70A22D4B8550055BBB1 /* DXRiskStatic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */; };
 		64D0E70C22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D0E70B22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework */; };
 		64D0E70E22D4D3930055BBB1 /* DingxiangCaptcha.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64D0E70D22D4D3930055BBB1 /* DingxiangCaptcha.bundle */; };
@@ -1295,6 +1296,8 @@
 		64B0C3FB22D9DFF600AACEC4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		64BA235622DC428800C8271A /* AdNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdNoticeView.h; sourceTree = "<group>"; };
 		64BA235722DC428800C8271A /* AdNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdNoticeView.m; sourceTree = "<group>"; };
+		64C6D38E2303FD3500254BC3 /* SmallGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmallGameController.h; sourceTree = "<group>"; };
+		64C6D38F2303FD3500254BC3 /* SmallGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmallGameController.m; sourceTree = "<group>"; };
 		64D0E70922D4B8540055BBB1 /* DXRiskStatic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DXRiskStatic.framework; sourceTree = "<group>"; };
 		64D0E70B22D4B8800055BBB1 /* DingxiangCaptchaSDKStatic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DingxiangCaptchaSDKStatic.framework; sourceTree = "<group>"; };
 		64D0E70D22D4D3930055BBB1 /* DingxiangCaptcha.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DingxiangCaptcha.bundle; sourceTree = "<group>"; };
@@ -2688,6 +2691,8 @@
 				0ACB28022289642900991ADB /* XLInviteDetailController.m */,
 				64002A392302576C00D5F252 /* ShopController.h */,
 				64002A3A2302576C00D5F252 /* ShopController.m */,
+				64C6D38E2303FD3500254BC3 /* SmallGameController.h */,
+				64C6D38F2303FD3500254BC3 /* SmallGameController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3906,6 +3911,7 @@
 				0A14C8B52275779A00F53F10 /* WXApiRequestHandler.m in Sources */,
 				0A2A1155226F271100BF399E /* XLCoinWechatCell.m in Sources */,
 				540C491C2257869100D45AAE /* XLMsgListView.m in Sources */,
+				64C6D3902303FD3500254BC3 /* SmallGameController.m in Sources */,
 				54AADAD72275FE6400D41EC5 /* XLFansFocusHandle.m in Sources */,
 				54411799228075E000C955A6 /* XLQQModel.m in Sources */,
 				54E03DB922645B6300C97981 /* HXPhotoPreviewBottomView.m in Sources */,

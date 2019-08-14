@@ -70,5 +70,6 @@
 #import "MTGNativeVideoCell.h"
 
 #import "DialogView.h"
+#import "NSString+TGExtension.h"
 
 #endif /* XLPrefixHeader_pch */

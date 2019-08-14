@@ -30,6 +30,7 @@
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKAppWall/MTGWallAdManager.h>
 #import "ShopController.h"
+#import "SmallGameController.h"
 
 static NSString * XLMineTopCellID      = @"kXLMineTopCell";
 static NSString * XLMineAdCellID       = @"kXLMineAdCell";
@@ -213,11 +214,11 @@ static NSString * XLInviteFriendCellID = @"kXLInviteFriendCell";
             {
                 // 小游戏
                 // [HUDController hideHUDWithText:@"敬请期待"];
-//                SmallGameController *smallGameVC = [[SmallGameController alloc] init];
-//                [self.tableView.navigationController pushViewController:smallGameVC animated:NO];
-                [[MTGSDK sharedInstance] preloadAppWallAdsWithUnitId:@"121625"];
-                MTGWallAdManager *wallAdManager = [[MTGWallAdManager alloc] initWithUnitID:@"121625" presentingViewController:self.tableView.parentController];
-                [wallAdManager showAppWall];
+                SmallGameController *smallGameVC = [[SmallGameController alloc] init];
+                [self.tableView.navigationController pushViewController:smallGameVC animated:YES];
+//                [[MTGSDK sharedInstance] preloadAppWallAdsWithUnitId:@"121625"];
+//                MTGWallAdManager *wallAdManager = [[MTGWallAdManager alloc] initWithUnitID:@"121625" presentingViewController:self.tableView.parentController];
+//                [wallAdManager showAppWall];
             }
                 break;
             case 3:

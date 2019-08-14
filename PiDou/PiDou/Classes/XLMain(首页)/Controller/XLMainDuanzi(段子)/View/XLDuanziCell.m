@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UILabel *duanziLabel;
 @property (nonatomic, strong) UIView *botKongView;
 
+@property (nonatomic, strong) UIButton *unfold;
+
 @end
 
 @implementation XLDuanziCell
@@ -51,9 +53,14 @@
     
     self.duanziLabel = [[UILabel alloc] init];
     [self.contentView addSubview:self.duanziLabel];
-   // self.duanziLabel.numberOfLines = 0;
-    self.duanziLabel.numberOfLines = 7;
+    self.duanziLabel.numberOfLines = 0;
+   // self.duanziLabel.numberOfLines = 7;
     [self.duanziLabel xl_setTextColor:XL_COLOR_DARKBLACK fontSize:16.f];
+    
+    self.unfold = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.contentView addSubview:self.unfold];
+    [self.unfold xl_setTitle:@"...全文" color:RGB_COLOR(72, 100, 149) size:16.f];
+    self.unfold.userInteractionEnabled = NO;
     
     self.godCommentView = [[XLGodCommentView alloc] init];
     [self.contentView addSubview:self.godCommentView];
@@ -73,12 +80,15 @@
         make.left.top.right.equalTo(self.contentView);
     }];
     
-    
-    
     [self.duanziLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).mas_offset(16 * kWidthRatio6s);
         make.top.equalTo(self.infoView.mas_bottom).mas_offset(12 * kWidthRatio6s);
         make.right.equalTo(self.contentView).mas_offset(-16 * kWidthRatio6s);
+    }];
+    
+    [self.unfold mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.duanziLabel);
+        make.bottom.equalTo(self.godCommentView.mas_top).mas_offset(5 * kWidthRatio6s);
     }];
     
     [self.godCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,10 +117,20 @@
 
 - (void)setTieziModel:(XLTieziModel *)tieziModel {
     _tieziModel = tieziModel;
-    self.duanziLabel.text = _tieziModel.content;
+  //  self.duanziLabel.text = _tieziModel.content;
     self.actionView.tieziModel = _tieziModel;
     self.tagRewardView.topics = _tieziModel.topics;
     self.tagRewardView.entity_id = _tieziModel.entity_id;
+    
+    NSString *str = _tieziModel.content;
+    if (str.length > 120) {
+        self.unfold.hidden = NO;
+        self.duanziLabel.text = [str substringToIndex:119];
+    } else {
+        self.unfold.hidden = YES;
+        self.duanziLabel.text = str;
+    }
+    
     
     _tieziModel.user_info.do_like_count = _tieziModel.do_like_count;
     _tieziModel.user_info.do_liked = _tieziModel.do_liked;
@@ -191,6 +211,8 @@
         }];
         self.tagRewardView.isDetail = YES;
         self.infoView.creatTime = _tieziModel.created;
+        self.unfold.hidden = YES;
+        self.duanziLabel.text = _tieziModel.content;
     } else {
         self.actionView.hidden = NO;
         [self.botKongView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -199,6 +221,7 @@
             make.top.equalTo(self.actionView.mas_bottom);
         }];
         self.tagRewardView.isDetail = NO;
+        self.unfold.hidden = NO;
     }
 }
 
