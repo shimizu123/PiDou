@@ -102,6 +102,12 @@ static NSString * XLDuanziCellID = @"kXLDuanziCell";
 //        }
         [WeakSelf reloadUserActionWithDic:result indexPath:indexPath];
     };
+    
+    duanziCell.didSelectUnfold = ^{
+        [WeakSelf.tableView beginUpdates];
+        [WeakSelf.tableView endUpdates];
+    };
+    
     duanziCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return duanziCell;
 }

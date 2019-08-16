@@ -300,6 +300,12 @@ static NSString * XLTopicDetailTopCellID  = @"kXLTopicDetailTopCell";
 //                    }
                     [WeakSelf reloadUserActionWithDic:result indexPath:indexPath];
                 };
+                
+                duanziCell.didSelectUnfold = ^{
+                    [WeakSelf.tableView beginUpdates];
+                    [WeakSelf.tableView endUpdates];
+                };
+                
                 if (!XLArrayIsEmpty(self.data)) {
                     XLTieziModel *tieziModel = self.data[row];
                     duanziCell.tieziModel = tieziModel;

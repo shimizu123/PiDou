@@ -276,7 +276,7 @@
     self.userIcon.user_id = _userInfo.user_id;
     self.userInfo.user_id = _userInfo.user_id;
     
-    [self.diamondButton setTitle:_userInfo.pdcoin_count forState:(UIControlStateNormal)];
+    [self.diamondButton setTitle:[NSString stringWithFormat:@"%.2f", [_userInfo.pdcoin_count floatValue]] forState:(UIControlStateNormal)];
     
     
     if (_userInfoViewType == XLMainUserInfoViewType_focus) {

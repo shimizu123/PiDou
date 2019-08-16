@@ -15,8 +15,8 @@
 #pragma mark - 首页内容列表
 + (void)tieziListWithPage:(int)page category:(NSString *)category success:(XLSuccess)success failure:(XLFailure)failure {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"page"] = [NSString stringWithFormat:@"%d",page];
-    params[@"category"] = category;
+    params[@"page_no"] = [NSString stringWithFormat:@"%d",page];
+    params[@"type"] = category;
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,Url_Entity];
     [XLAFNetworking post:url params:params success:^(id  _Nonnull responseObject) {

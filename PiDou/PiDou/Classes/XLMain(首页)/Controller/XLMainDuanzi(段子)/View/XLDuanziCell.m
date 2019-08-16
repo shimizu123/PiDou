@@ -59,8 +59,7 @@
     
     self.unfold = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:self.unfold];
-    [self.unfold xl_setTitle:@"...全文" color:RGB_COLOR(72, 100, 149) size:16.f];
-    self.unfold.userInteractionEnabled = NO;
+    [self.unfold xl_setTitle:@"展开" color:RGB_COLOR(72, 100, 149) size:16.f target:self action:@selector(clickUnfoldBtn:)];
     
     self.godCommentView = [[XLGodCommentView alloc] init];
     [self.contentView addSubview:self.godCommentView];
@@ -88,7 +87,7 @@
     
     [self.unfold mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.duanziLabel);
-        make.bottom.equalTo(self.godCommentView.mas_top).mas_offset(5 * kWidthRatio6s);
+        make.bottom.equalTo(self.godCommentView.mas_top).mas_offset(6 * kWidthRatio6s);
     }];
     
     [self.godCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -246,6 +245,22 @@
 
 - (void)actonView:(XLMainUserActionView *)actionView didSelectedWithIndex:(NSInteger)index {
     [[DialogView sharedDialogView] showView:self];
+}
+
+
+//展开
+- (void)clickUnfoldBtn:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [sender setTitle:@"收起" forState:UIControlStateNormal];
+        self.duanziLabel.text = _tieziModel.content;
+    } else {
+        [sender setTitle:@"展开" forState:UIControlStateNormal];
+        self.duanziLabel.text = [_tieziModel.content substringToIndex:119];
+    }
+    if (_didSelectUnfold) {
+        _didSelectUnfold();
+    }
 }
 
 @end

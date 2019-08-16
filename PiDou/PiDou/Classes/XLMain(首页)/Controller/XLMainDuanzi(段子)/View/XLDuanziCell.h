@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isDetail;
 
+@property (nonatomic, copy) void(^didSelectUnfold)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

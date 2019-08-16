@@ -95,7 +95,7 @@
 - (void)initLayout {
     [self.phoneNumL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.loginButton);
-        make.top.equalTo(self.view.mas_top).mas_offset(XL_NAVIBAR_H + 28 * kWidthRatio6s);
+        make.top.equalTo(self.view.mas_top).mas_offset(28 * kWidthRatio6s);
     }];
     
     [self.codeTF mas_makeConstraints:^(MASConstraintMaker *make) {

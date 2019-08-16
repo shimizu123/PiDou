@@ -98,7 +98,7 @@
 #define Url_Message         @"/message"
 #define Url_UserInfo        @"/user_info"
 #define Url_UserCancel      @"/user_cancel"
-#define Url_EntityDelete    @"/entity_delete"
+#define Url_EntityDelete    @"/delete_entity"
 #define Url_CommentDelete   @"/comment_delete"
 
 #define Url_WechatPrePay    @"/pre_pay"
