@@ -91,7 +91,7 @@ singleton_m(XLAFNetworking)
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
-        if (code == 401) {
+        if (code == 333) {
             [XLUserManager logout];
         }
         
@@ -137,7 +137,7 @@ singleton_m(XLAFNetworking)
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
-        if (code == 401) {
+        if (code == 333) {
             [XLUserManager logout];
         }
         if (success) {

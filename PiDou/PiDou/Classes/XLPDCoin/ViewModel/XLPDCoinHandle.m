@@ -10,6 +10,7 @@
 #import "XLPDCoinModel.h"
 #import "XLGainPDCoinModel.h"
 #import "XLAdvModel.h"
+#import "PdcOutflowRecordModel.h"
 
 @implementation XLPDCoinHandle
 
@@ -224,6 +225,61 @@
             }
         }
         
+    } failure:^(NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+// PDCoin转出
++ (void)pdCoinOutflow:(NSString *)amount transferType:(NSString *)transferType tel:(NSString *)telephone success:(XLSuccess)success failure:(XLFailure)failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"amount"] = amount;
+    params[@"transfer_type"] = transferType;
+    params[@"telphone"] = telephone;
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,Url_PdcTurnOut];
+    [XLAFNetworking post:url params:params success:^(id  _Nonnull responseObject) {
+        NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
+        NSString *msg = [responseObject valueForKey:@"msg"];
+        
+        if (code == 200) {
+            if (success) {
+                success(msg);
+            }
+        } else {
+            if (failure) {
+                failure(msg);
+            }
+        }
+    } failure:^(NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+// PDCoin转出转入明细
++ (void)outflowDetail:(int)page success:(XLSuccess)success failure:(XLFailure)failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"page"] = [NSString stringWithFormat:@"%d",page];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseUrl,Url_TurnOutBill];
+    [XLAFNetworking post:url params:params success:^(id  _Nonnull responseObject) {
+        NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
+        NSString *msg = [responseObject valueForKey:@"msg"];
+        
+        if (code == 200) {
+            NSMutableArray *data = [PdcOutflowRecordModel mj_objectArrayWithKeyValuesArray:[responseObject valueForKey:@"data"]];
+            if (success) {
+                success(data);
+            }
+        } else {
+            if (failure) {
+                failure(msg);
+            }
+        }
     } failure:^(NSError * _Nonnull error) {
         if (failure) {
             failure(error);

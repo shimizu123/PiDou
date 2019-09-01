@@ -36,6 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**广告*/
 + (void)advWithSuccess:(XLSuccess)success failure:(XLFailure)failure;
 
+// PDCoin转出
++ (void)pdCoinOutflow:(NSString *)amount transferType:(NSString *)transferType tel:(NSString *)telephone success:(XLSuccess)success failure:(XLFailure)failure;
+
+// PDCoin转出转入明细
++ (void)outflowDetail:(int)page success:(XLSuccess)success failure:(XLFailure)failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

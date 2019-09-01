@@ -18,6 +18,7 @@
 #import "XLAdvModel.h"
 #import "XLInviteDetailController.h"
 #import "PrivacyController.h"
+#import "OutflowController.h"
 
 @interface XLPDCoinController () <XLPDCoinNaviBarDelegate, XLPDCoinDiamondViewDelegate, XLCircleViewDelegate>
 
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) XLTwoLabelView *holdCoinView;
 @property (nonatomic, strong) XLTwoLabelView *freezeCoinView;
 @property (nonatomic, strong) UIButton *gainCoinButton;
+@property (nonatomic, strong) UIButton *outflowButton;
 
 @property (nonatomic, strong) UIButton *coinLookButton;
 
@@ -107,6 +109,11 @@
     [self.gainCoinButton xl_setTitle:@"获取更多PDCoin" color:[UIColor whiteColor] size:14.f target:self action:@selector(gainPDCoinAction)];
     XLViewBorderRadius(self.gainCoinButton, 16 * kWidthRatio6s, 1, [UIColor whiteColor].CGColor);
     
+    self.outflowButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    [self.scrollView addSubview:self.outflowButton];
+    [self.outflowButton xl_setTitle:@"PDCoin流转" color:[UIColor whiteColor] size:14.f target:self action:@selector(outflowAction)];
+    XLViewBorderRadius(self.outflowButton, 16 * kWidthRatio6s, 1, [UIColor whiteColor].CGColor);
+    
     self.diamondView = [[XLPDCoinDiamondView alloc] init];
     [self.scrollView addSubview:self.diamondView];
     self.diamondView.delegate = self;
@@ -152,11 +159,17 @@
     
     [self.gainCoinButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.holdCoinView.mas_bottom).mas_offset(32 * kWidthRatio6s);
-        make.width.mas_offset(133 * kWidthRatio6s);
+        make.width.mas_offset(130 * kWidthRatio6s);
         make.height.mas_offset(32 * kWidthRatio6s);
-        make.centerX.equalTo(self.view);
+       // make.centerX.equalTo(self.view);
+        make.left.equalTo(self.view).mas_offset(25 * kWidthRatio6s);
     }];
     
+    [self.outflowButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.height.equalTo(self.gainCoinButton);
+        make.width.mas_offset(100 * kWidthRatio6s);
+        make.right.equalTo(self.view).mas_offset(-50 * kWidthRatio6s);
+    }];
     
     [self.diamondView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.gainCoinButton.mas_bottom).mas_offset(8 * kWidthRatio6s);
@@ -165,13 +178,13 @@
     }];
     
     [self.inquiry mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.gainCoinButton);
+        make.centerX.equalTo(self.view);
         make.bottom.equalTo(self.coinLookButton.mas_top).mas_offset(-25 * kWidthRatio6s);
         make.height.mas_offset(20 * kWidthRatio6s);
     }];
     
     [self.coinLookButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.gainCoinButton);
+        make.centerX.equalTo(self.view);
         make.left.equalTo(self.view).mas_offset(32 * kWidthRatio6s);
         make.right.equalTo(self.view).mas_offset(-32 * kWidthRatio6s);
         make.height.mas_offset(96 * kWidthRatio6s);
@@ -261,6 +274,13 @@
 - (void)gainPDCoinAction {
     XLGainPDCoinController *gainVC = [[XLGainPDCoinController alloc] init];
     [self.navigationController pushViewController:gainVC animated:YES];
+}
+
+#pragma mark - PDCoin流转
+- (void)outflowAction {
+    OutflowController *outflowVC = [[OutflowController alloc] init];
+    outflowVC.pdcBalance = self.holdCoinView.titleBot;
+    [self.navigationController pushViewController:outflowVC animated:YES];
 }
 
 #pragma mark - 查看皮逗攻略

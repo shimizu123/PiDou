@@ -109,5 +109,8 @@
 #define Url_MessageReaded   @"/message_readed"
 #define Url_SystemTitle     @"/system_title"
 
+#define Url_PdcTurnOut      @"/pdc_turn_out"
+#define Url_TurnOutBill     @"/turn_out_bill"
+
 
 #endif /* XLInterface_h */
