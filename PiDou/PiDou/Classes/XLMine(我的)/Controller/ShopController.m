@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURL *url = [NSURL URLWithString:@"http://47.100.220.44/mobile/index.html#/home"];
+    NSURL *url = [NSURL URLWithString:@"http://web.pdtv.xn--3ds443g/mobile/index.html#/home"];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     [self.view addSubview:self.webView];
 }

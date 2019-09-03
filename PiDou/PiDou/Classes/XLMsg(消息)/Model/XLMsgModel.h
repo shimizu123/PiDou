@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
  4 关注
  5 PDcoin被冻结
  6  打赏
+ 7 解冻pdc
+ 8 成功转入PDC
+ 9 转出PDC失败
  */
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, strong) XLAppUserModel *user_info;
@@ -39,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 //已读消息
 @property (nonatomic, copy) NSString *isread;
 @property (nonatomic, copy) NSString *message_id;
+
+@property (nonatomic, copy) NSString *transfer_type;
+@property (nonatomic, copy) NSString *transfer_telphone;
 
 @end
 

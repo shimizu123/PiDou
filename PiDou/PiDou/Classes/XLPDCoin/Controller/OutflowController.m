@@ -300,7 +300,7 @@ singleton_m(OutflowController)
             break;
         case 4:
         {
-            _type = @"区块钱包";
+            _type = @"转出区块钱包";
             ChainWalletController *chainVC = [[ChainWalletController alloc] init];
             chainVC.pdcBalance = self.pdcBalance;
             [self.navigationController pushViewController:chainVC animated:NO];

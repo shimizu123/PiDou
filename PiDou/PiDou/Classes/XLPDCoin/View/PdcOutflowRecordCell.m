@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UILabel *timeL;
 
 @property (nonatomic, strong) UIView *hLine;
+@property (nonatomic, strong) UILabel *statusL;
 
 @end
 
@@ -42,6 +43,10 @@
     [self.contentView addSubview:self.numL];
     [self.numL xl_setTextColor:XL_COLOR_DARKBLACK fontSize:14.f];
     
+    self.statusL = [[UILabel alloc] init];
+    [self.contentView addSubview:self.statusL];
+    [self.statusL xl_setTextColor:XL_COLOR_RED fontSize:12.f];
+    
     self.timeL = [[UILabel alloc] init];
     [self.contentView addSubview:self.timeL];
     [self.timeL xl_setTextColor:XL_COLOR_DARKGRAY fontSize:12.f];
@@ -67,6 +72,11 @@
         make.right.equalTo(self.timeL.mas_left);
     }];
     
+    [self.statusL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.contentView);
+        make.left.equalTo(self.numL.mas_right).mas_offset(10 * kWidthRatio6s);
+    }];
+    
     [self.timeL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).mas_offset(-16 * kWidthRatio6s);
         make.centerY.equalTo(self.titleL);
@@ -85,12 +95,15 @@
     self.timeL.text = [_recordModel.created substringToIndex:10];
     self.titleL.text = _recordModel.transfer_type;
     
-    if ([_recordModel.status integerValue] == 1) { //转出成功
+    if ([_recordModel.status integerValue] == 1) { //转入成功
         self.numL.text = [NSString stringWithFormat:@"+%@",_recordModel.transfer_amount];
+        self.statusL.text = @"(转入成功)";
     } else if ([_recordModel.status integerValue] == 2) { //转出失败
         self.numL.text = [NSString stringWithFormat:@"-%@",_recordModel.transfer_amount];
+        self.statusL.text = @"(转出失败)";
     } else {
-        self.numL.text = @"待审核";
+        self.numL.text = [NSString stringWithFormat:@"-%@",_recordModel.transfer_amount];
+        self.statusL.text = @"(待审核)";
     }
 }
 

@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, XLMsgInfoType) {
     XLMsgInfoType_focus,
     XLMsgInfoType_pdcoin,
     XLMsgInfoType_xingCoin,
+    XLMsgInfoType_outflow
 };
 
 @interface XLMsgCell : UITableViewCell

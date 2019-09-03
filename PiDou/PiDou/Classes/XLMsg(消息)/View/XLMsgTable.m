@@ -16,6 +16,7 @@
 #import "WZLBadgeImport.h"
 #import "XLMsgModel.h"
 #import "XLMgsHandle.h"
+#import "OutflowDetailController.h"
 
 static NSString * XLMsgCellID = @"kXLMsgCellID";
 
@@ -112,8 +113,12 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
                 return 68 * kWidthRatio6s;
             }
                 break;
-            
-
+            case 8:
+            case 9:
+            {
+                return 130 * kWidthRatio6s;
+            }
+                break;
                 
                 
             default:
@@ -212,6 +217,26 @@ static NSString * XLMsgCellID = @"kXLMsgCellID";
         case 6:
         {
             // 打赏
+        }
+            break;
+        case 7:
+        {
+            // 解冻pdc
+        }
+            break;
+        case 8:
+        {
+            // 成功转入PDC
+            OutflowDetailController *outflowDetailVC = [[OutflowDetailController alloc] init];
+            [self.tableView.navigationController pushViewController:outflowDetailVC animated:YES];
+        }
+            break;
+        case 9:
+        {
+            // 转出PDC失败
+            OutflowDetailController *outflowDetailVC = [[OutflowDetailController alloc] init];
+            [self.tableView.navigationController pushViewController:outflowDetailVC animated:YES];
+
         }
             break;
         default:

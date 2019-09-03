@@ -117,16 +117,17 @@
     kDefineWeakSelf;
     [HUDController xl_showHUD];
     if (XLStringIsEmpty(self.validate_token)) {
-        [XLUserLoginHandle userRegisterWithPhoneNum:phonenum code:code password:password invitationCode:invCode success:^(XLAppUserModel *user) {
-            WeakSelf.user = user;
-            [XLUserManager loginWithUser:WeakSelf.user];
-            [HUDController hideHUDWithText:@"注册成功"];
-            
-            // 去绑定微信
-            [WeakSelf sendAuthRequest];
-        } failure:^(id  _Nonnull result) {
-            [HUDController xl_hideHUDWithResult:result];
-        }];
+//        [XLUserLoginHandle userRegisterWithPhoneNum:phonenum code:code password:password invitationCode:invCode success:^(XLAppUserModel *user) {
+//            WeakSelf.user = user;
+//            [XLUserManager loginWithUser:WeakSelf.user];
+//            [HUDController hideHUDWithText:@"注册成功"];
+//
+//            // 去绑定微信
+//            [WeakSelf sendAuthRequest];
+//        } failure:^(id  _Nonnull result) {
+//            [HUDController xl_hideHUDWithResult:result];
+//        }];
+        [HUDController hideHUDWithText:@"token为空"];
     } else {
         [XLUserLoginHandle wechatBindWithPhone:phonenum validate_token:self.validate_token sms_code:code password:password invitation_code:invCode success:^(XLAppUserModel *user) {
             WeakSelf.user = user;

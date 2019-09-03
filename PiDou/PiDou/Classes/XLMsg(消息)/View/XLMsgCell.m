@@ -11,6 +11,7 @@
 #import "XLTieziModel.h"
 #import "XLFansFocusHandle.h"
 #import "XLMineWalletController.h"
+#import "OutflowDetailController.h"
 
 @interface XLMsgCell ()
 
@@ -249,6 +250,7 @@
             break;
         case XLMsgInfoType_xingCoin:
         case XLMsgInfoType_pdcoin:
+        case XLMsgInfoType_outflow:
         {
             self.rightImgV.hidden = YES;
 //            self.rightVideoImgV.hidden = YES;
@@ -292,6 +294,9 @@
     } else if (self.infoType == XLMsgInfoType_xingCoin) {
         XLMineWalletController *walletVC = [[XLMineWalletController alloc] init];
         [self.navigationController pushViewController:walletVC animated:YES];
+    } else if (self.infoType == XLMsgInfoType_outflow) {
+        OutflowDetailController *outflowDetailVC = [[OutflowDetailController alloc] init];
+        [self.navigationController pushViewController:outflowDetailVC animated:YES];
     }
 }
 
@@ -418,6 +423,36 @@
             }
             
             self.iconImgV.image = [UIImage imageNamed:@"msg_rewardXing"];
+            self.timeL.text = [NSString stringWithFormat:@"%@",[NSDate messageTimeWithMilliSecondsSince1970:[_msgModel.created doubleValue]]];
+        }
+            break;
+        case 7:
+        {
+            
+        }
+            break;
+        case 8:
+        {
+            self.actionType = XLMsgActionType_comment;
+            self.infoType = XLMsgInfoType_outflow;
+            self.nameL.text = @"通知";
+            if ([_msgModel.transfer_type isEqualToString:@"转出好友"]) {
+                self.conmentL.text = [NSString stringWithFormat:@"【%@】向您转账【%@】PDCoin 成功", _msgModel.user_info.nickname, _msgModel.amount];
+            } else {
+                self.conmentL.text = [NSString stringWithFormat:@"%@【%@】【%@】PDCoin 成功", _msgModel.transfer_type, _msgModel.transfer_telphone ,_msgModel.amount];
+            }
+            
+            self.iconImgV.image = [UIImage imageNamed:@"msg_fzPDCoin"];
+            self.timeL.text = [NSString stringWithFormat:@"%@",[NSDate messageTimeWithMilliSecondsSince1970:[_msgModel.created doubleValue]]];
+        }
+            break;
+        case 9:
+        {
+            self.actionType = XLMsgActionType_comment;
+            self.infoType = XLMsgInfoType_outflow;
+            self.nameL.text = @"通知";
+            self.conmentL.text = [NSString stringWithFormat:@"%@【%@】【%@】PDCoin 失败", _msgModel.transfer_type, _msgModel.transfer_telphone ,_msgModel.amount];
+            self.iconImgV.image = [UIImage imageNamed:@"msg_fzPDCoin"];
             self.timeL.text = [NSString stringWithFormat:@"%@",[NSDate messageTimeWithMilliSecondsSince1970:[_msgModel.created doubleValue]]];
         }
             break;
