@@ -229,8 +229,8 @@
 
 - (void)updateUI {
     
-    self.holdCoinView.titleBot = [self.pdCoinModel.pdcoin_count stringValue];
-    self.freezeCoinView.titleBot = [self.pdCoinModel.freeze_pdcoin_count stringValue];
+    self.holdCoinView.titleBot = [NSString stringWithFormat:@"%.2f", [self.pdCoinModel.pdcoin_count floatValue]];
+    self.freezeCoinView.titleBot = [NSString stringWithFormat:@"%.2f", [self.pdCoinModel.freeze_pdcoin_count floatValue]];
     self.diamondView.data = self.pdCoinModel.records;
 }
 
